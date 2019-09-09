@@ -41,7 +41,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.integer "hp"
     t.integer "armor"
     t.boolean "shield"
+<<<<<<< HEAD
     t.integer "weapon"
+=======
+    t.string "weapon"
+>>>>>>> 5ad0a757a60287fdb71e360c798c46e7684c10f7
     t.integer "athletics"
     t.integer "subterfuge"
     t.integer "lore"
@@ -56,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
 
   create_table "class_types", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
     t.string "armor"
     t.string "abilities"
     t.integer "athletics"
@@ -63,12 +68,16 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.integer "lore"
     t.integer "physical_save"
     t.integer "magic_save"
+=======
+    t.string "sub_type"
+>>>>>>> 5ad0a757a60287fdb71e360c798c46e7684c10f7
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "races", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
     t.string "armor"
     t.string "abilities"
     t.integer "athletics"
@@ -76,12 +85,19 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.integer "lore"
     t.integer "physical_save"
     t.integer "magic_save"
+=======
+>>>>>>> 5ad0a757a60287fdb71e360c798c46e7684c10f7
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "spells", force: :cascade do |t|
+<<<<<<< HEAD
     t.string "type"
+=======
+    t.string "spell_type"
+    t.string "name"
+>>>>>>> 5ad0a757a60287fdb71e360c798c46e7684c10f7
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -89,7 +105,10 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+<<<<<<< HEAD
     t.string "password_digest"
+=======
+>>>>>>> 5ad0a757a60287fdb71e360c798c46e7684c10f7
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

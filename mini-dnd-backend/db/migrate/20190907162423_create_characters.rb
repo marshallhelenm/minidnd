@@ -9,7 +9,7 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :hp
       t.integer :armor
       t.boolean :shield
-      t.integer :weapon
+      t.string :weapon
       t.integer :athletics
       t.integer :subterfuge
       t.integer :lore
