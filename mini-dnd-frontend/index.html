@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="src/character.js"></script>
+    <script type="text/javascript" src="src/stats.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
   </head>
   <body>
@@ -25,12 +26,8 @@
         <p id='race'></p>
         <p id='level'></p>
         <p id='XP'></p>
-        <button id='attackBonus'></p>
-        <button id='athletics'></p>
-        <button id='subterfuge'></p>
-        <button id='lore'></p>
-        <button id='physicalSave'></p>
-        <button id='magicalSave'></p>
+        <button id='attackBonus'></button>
+
         
         
       </div>
@@ -39,10 +36,10 @@
       <div id='top-1'>
         <span id='class'>Class: </span>
         <span id='race'>Race: </span>
-        <span id='initiative' class = 'skillBox'>Initiative: </span>
+        <p>Initiative:<button id='initiative' class = 'skillBox'></button></p>
         <span id='saves'>Saves: 
-          <span class = 'skillBox' id = 'phys_save'></span>
-          <span class = 'skillBox' id = 'mag_save'></span>
+          <p>Physical:<button class = 'skillBox' id = 'phys_save'></button></p>
+          <p>Magical:<button class = 'skillBox' id = 'mag_save'></button></p>
         </span>
       </div>
 
@@ -55,9 +52,9 @@
       <div id='top-3'>
 
         <span id='skills'>Skills: 
-            <span class = 'skillBox' id = 'athletics'></span>
-            <span class = 'skillBox' id = 'subterfuge'></span>
-            <span class = 'skillBox' id = 'lore'></span>
+            <p>Athletics:<button class = 'skillBox' id = 'athletics'></button></p>
+            <p>Subterfuge:<button class = 'skillBox' id = 'subterfuge'></button></p>
+            <p>Lore:<button class = 'skillBox' id = 'lore'></button></p>
         </span>
 
       </div>
@@ -73,8 +70,6 @@
       <div id='abilities'>
         !-- includes spells --
       </div>
-
-
     </div> -->
   </body>
 </html>
