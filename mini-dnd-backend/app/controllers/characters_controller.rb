@@ -111,9 +111,11 @@ class CharactersController < ApplicationController
 
     # def phys_save
     #     phys = self.skillBonus
-    #     if self.class_type.sub_type == 'Caster'
-
+    #     if self.class_type.sub_type != 'Caster'
+    #         phys += 2
     #     end
+    #     self.physical_save = phys
+    #     self.save
     # end
 
 end    
