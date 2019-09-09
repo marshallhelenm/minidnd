@@ -1,17 +1,14 @@
 const BASE_URL = "http://localhost:3000"
 
 document.addEventListener('DOMContentLoaded',main)
-console.log('hey')
 function main(){
-    document.getElementById("submitUN").addEventListener('click',makeUN)
-    console.log('hi')
+    document.getElementById("submitLogin").addEventListener('click',makeUN)
+    
 }
 
 function makeUN(event){
-    let userName = document.getElementById("UserName").value 
-    console.log(userName)
-    // fetch(BASE_URL+'/users',{method:'POST'})
-    fetch(BASE_URL+'/users',{
+    let userName = document.getElementById("loginName").value
+    fetch(BASE_URL+'/login',{
         method:'POST',
         headers: {
             'Content-Type':'application/json',
@@ -21,6 +18,6 @@ function makeUN(event){
             'userName' : userName
         })
     })
-    .then(response => response.json)
-    .then(console.log)
+    .then(response => response.json())
+    .then(json => console.log(json.message))
 }
