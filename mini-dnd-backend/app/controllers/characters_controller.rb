@@ -1,20 +1,5 @@
 class CharactersController < ApplicationController
 
-<<<<<<< HEAD
-    # index, show, new, create, edit, update, delete
-
-    def update
-        params[:foo]
-    end
-end
-=======
-
-
-
-
-
-
-
 def armorClass(character) {
     case character.armor
         when 'light'
@@ -48,4 +33,3 @@ def hitPoints
 end
 
 
->>>>>>> 7fcb6fee830b25afe7a1135da542c1d0d39c96ef
