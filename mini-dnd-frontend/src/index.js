@@ -3,10 +3,14 @@ const BASE_URL = "http://localhost:3000"
 document.addEventListener('DOMContentLoaded',main)
 function main(){
     document.getElementById("submitLogin").addEventListener('click',makeUN)
+
+    //Character Creation Stuff
     loadRaces()
     loadClasses()
+    document.getElementById('submitNewCharacter').onclick = submitNewCharacter
 }
 
+//Character Creation Stuff
 function loadRaces(){
     let raceList = document.getElementById("selectRace")
     fetch(BASE_URL+'/races')
@@ -33,6 +37,20 @@ function loadClasses(){
         }
     })
 }
+function submitNewCharacter(){
+    console.log('hi')
+    fetch(BASE_URL+'/characters',{
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+            "Accept":   'application/json'
+        },
+        body: JSON.stringify({
+            
+        })
+    })
+}
+
 
 function makeUN(event){
     let userName = document.getElementById("loginName").value
