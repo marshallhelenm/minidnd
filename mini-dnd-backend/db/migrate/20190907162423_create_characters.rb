@@ -8,13 +8,13 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :max_hp
       t.integer :hp
       t.integer :armor
-      t.boolean :shield
       t.string :weapon
       t.integer :athletics
       t.integer :subterfuge
       t.integer :lore
       t.integer :physical_save
       t.integer :magic_save
+      t.integer :level
 
       t.timestamps
     end

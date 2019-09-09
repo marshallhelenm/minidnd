@@ -2,8 +2,51 @@
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="src/character.js"></script>
+    <script type="text/javascript" src="src/index.js"></script>
   </head>
   <body>
     <h1>Bite Sized DnD</h1>
+    <div id='top'>
+      <div id='top-1'>
+        <span id='class'>Class: </span>
+        <span id='race'>Race: </span>
+        <span id='initiative' class = 'skillBox'>Initiative: </span>
+        <span id='saves'>Saves: 
+          <span class = 'skillBox' id = 'phys_save'></span>
+          <span class = 'skillBox' id = 'mag_save'></span>
+        </span>
+      </div>
+
+      <div id='top-2'>
+        <img src='' id='char_photo'>
+        <h3 id='char_name'></h3>
+        <p id='char_description'></p>
+      </div>
+
+      <div id='top-3'>
+
+        <span id='skills'>Skills: 
+            <span class = 'skillBox' id = 'athletics'></span>
+            <span class = 'skillBox' id = 'subterfuge'></span>
+            <span class = 'skillBox' id = 'lore'></span>
+        </span>
+
+      </div>
+    </div>
+
+    <div id='bottom'>
+      <div id='attacks'>
+        <!-- also has dice tray if we can -->
+      </div>
+      <div id='inventory'>
+        <!-- includes backpack -->
+      </div>
+      <div id='abilities'>
+        <!-- includes spells -->
+      </div>
+
+
+    </div>
   </body>
 </html>
