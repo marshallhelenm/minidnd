@@ -1,10 +1,33 @@
 class CharactersController < ApplicationController
 
     # index, show, new, create, edit, update, delete
+    def new
+    end
+
+    def create
+        char = Character.new(char_params)
+        char.assignStats
+        char.save
+    end
+
 
     private
+
+    def char_params(params)
+        params.require(:character).permit(:name, :user, :class_type, :race, :weapon, :armor)
+    end
     
-    def armorClass(character) {
+    def assignStats
+        self.armorClass
+        self.maxHP
+        self.athletics
+        self.subterfuge
+        self.lore
+        self.phys_save
+        self.mag_save
+    end
+
+    def armorClass {
         case character.armor
             when 'light'
                 ac = 12
@@ -22,18 +45,15 @@ class CharactersController < ApplicationController
             ac += 2
         end # are they a fighter?
     
-        self.ac = ac
-        self.save
-        
+        self.armor_class = ac
     end
     
-    def hitPoints 
-        hitpoints = 0
+    def maxHP 
+        maxhp = 0
         if self.race_id == 3
-            hitpoints += 2*character.level
+            maxhp += 2*character.level
         end
-        self.max_hp = hitpoints
-        self.save
+        self.max_hp = maxhp
     end
     
     def mv
@@ -53,6 +73,7 @@ class CharactersController < ApplicationController
         if self.race_id = 1 # if they are an elf
             bonus += 1
         end
+        return bonus
     end
 
     def athletics
@@ -66,7 +87,6 @@ class CharactersController < ApplicationController
             ath += self.level/2
         end
         self.athletics = ath
-        self.save
     end
 
     def subterfuge
@@ -82,7 +102,6 @@ class CharactersController < ApplicationController
         end
         
         self.subterfuge = sub
-        self.save
     end
 
     def lore
@@ -98,15 +117,23 @@ class CharactersController < ApplicationController
         end
 
         self.lore = lor
-        self.save
     end
 
-    # def phys_save
-    #     phys = self.skillBonus
-    #     if self.class_type.sub_type == 'Caster'
+    def phys_save
+        phys = self.skillBonus
+        if self.class_type.sub_type != 'Caster'
+            phys += 2
+        end
+        self.physical_save = phys
+    end
 
-    #     end
-    # end
+    def mag_save
+        mag = self.skillBonus
+        if self.class_type.sub_type != 'Warrior'
+            mag += 2
+        end
+        self.magic_save = mag
+    end
 
 end    
 
