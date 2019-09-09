@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :spells
   resources :abilities
   resources :characters
+  post 'login', to: 'users#login'
   resources :class_types
   resources :races
   resources :users
