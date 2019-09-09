@@ -3,7 +3,6 @@ class Character < ApplicationRecord
   belongs_to :class_type
   belongs_to :race
 
-
   def mv
     case (self.armor)
         when 'light'
@@ -140,5 +139,6 @@ class Character < ApplicationRecord
       end
       return bonus
   end
+
 
 end
