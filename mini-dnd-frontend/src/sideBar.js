@@ -41,11 +41,12 @@ function charDropDown(charDrop) { //generate character drop down menu
     fetch(BASE_URL+`/users/${userID}`)
         .then(response => response.json())
         .then(characters => {
+            console.log(characters)
             let opt;
             let charDrop = document.getElementById('selectChar')
-            opt = document.createElement('option')
+                opt = document.createElement('option')
                 opt.innerText = 'New Character'
-                opt.setAttribute('id', character.id)
+                opt.setAttribute('id', 'select-new-char')
                 charDrop.appendChild(opt)
             for (let i=0; i < characters.length; i++){
                 opt = document.createElement('option')

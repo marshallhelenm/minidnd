@@ -3,8 +3,8 @@ class UsersController < ApplicationController
     def show
         user = User.find(params[:id])
         characters = {}
-        user.characters.forEach do |character|
-            characters.push({ id: character.id, name: character.name,})
+        user.characters.each do |character|
+            characters[character.id] = character.name
         end
         render json: characters
     end
