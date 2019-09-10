@@ -173,6 +173,13 @@ class Character < ApplicationRecord
     return bonus
   end
 
+  def getInitiative
+      bonus = self.mv
+      if self.class_type.sub_type == 'Rogue'
+        bonus += 2
+      end
+      return bonus
+  end
 
   def calculateStats
         self.armor_class = self.armorClass
@@ -181,5 +188,6 @@ class Character < ApplicationRecord
         self.lore = self.lore_bonus
         self.physical_save = self.phys_save
         self.magic_save = self.mag_save
+        self.initiative = self.getInitiative
   end
 end

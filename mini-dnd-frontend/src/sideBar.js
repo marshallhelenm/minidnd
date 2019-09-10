@@ -38,7 +38,7 @@ function selectChar(e) {
 
 function charDropDown(charDrop) { //generate character drop down menu
     let userID = localStorage.getItem('user_id')
-    fetch(BASE_URL+`/user/${userID}`)
+    fetch(BASE_URL+`/users/${userID}`)
         .then(response => response.json())
         .then(characters => {
             let opt;

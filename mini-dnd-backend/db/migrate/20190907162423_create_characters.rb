@@ -14,6 +14,7 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :lore
       t.integer :physical_save
       t.integer :magic_save
+      t.integer :initiative
       t.integer :max_hp
       t.integer :hp
       t.integer :level
