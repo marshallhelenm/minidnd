@@ -8,6 +8,6 @@ class UsersController < ApplicationController
         else
             new_user = User.create({username: params[:userName]})
             render json: {message: "User #{new_user.id} Created", user_id: new_user.id}
-        end
+        end #ignore this comment 
     end
 end
