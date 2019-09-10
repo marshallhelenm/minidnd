@@ -7,6 +7,7 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.references :race, foreign_key: true
       t.string :weapon
       t.string :armor
+      t.string :description, default: 'A brave (or foolish) adventurer!'
       #calculated things:
       t.integer :armor_class
       t.integer :athletics
