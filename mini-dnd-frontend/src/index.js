@@ -31,6 +31,7 @@ function makeUN(event){
 
 //Character Creation
 function loadRaces(){
+    console.log('loading classes')
     let raceList = document.getElementById("selectRace")
     fetch(BASE_URL+'/races')
     .then(response => response.json())
@@ -44,6 +45,7 @@ function loadRaces(){
     })
 }
 function loadClasses(){
+    console.log('loading classes')
     let classList = document.getElementById("selectClass")
     fetch(BASE_URL+'/class_types')
     .then(response => response.json())

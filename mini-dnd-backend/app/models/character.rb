@@ -17,22 +17,22 @@ class Character < ApplicationRecord
 
   def skillBonus
     bonus = self.mv
-    if self.race_id = 1 # if they are an elf
+    if self.race_id == 1 # if they are a human
         bonus += 1
     end
     return bonus
   end
 
   def initiative
-    init = char.mv
-    if char.class_type.sub_type == 'Rogue'
+    init = self.mv
+    if self.class_type.sub_type == 'Rogue'
       init += 2
     end
     return init
   end
 
-  def armorClass 
-    case character.armor
+  def armorClass
+    case self.armor
         when 'light'
             ac = 12
         when 'medium'
@@ -41,23 +41,50 @@ class Character < ApplicationRecord
             ac = 16
     end # what armor are they wearing?
 
-    if character.weapon == 'martial'
+    if self.weapon == 'martial'
         ac += 1
     end # do they have a shield?
 
-    if (character.class_type_id == 1)
+    if (self.class_type_id == 1)
         ac += 2
     end # are they a fighter?
 
     return ac
   end
 
-  def maxHP 
-      maxhp = 0
-      if self.race_id == 3
-          maxhp += 2*character.level
-      end
-      return maxhp
+  def maxHP
+    hitDie = 0
+    case self.class_type.sub_type
+    when 'Warrior'
+        hitDie = 10
+    when 'Rogue'
+        hitDie = 8
+    when 'Caster'
+        hitDie = 6
+    end
+
+    if self.level == 1
+    self.maxHP = rand(hitDie)+1
+    end
+
+    dwarf_bonus = 0  #0 unless you are a dwarf
+    if self.race_id == 3
+        dwarf_bonus = 2*character.level
+        self.maxHP = maxHP - dwarf_bonus + 2
+    end
+
+    newRoll = 0
+    i = 0
+    while(i < character.level)
+    i += 1
+    newRoll += rand(hitDie)+1
+    end
+    
+    if newRoll > self.maxHP
+        self.max_hp = newRoll + dwarf_bonus
+    else
+        self.max_hp += dwarf_bonus
+    end
   end
 
 
@@ -80,13 +107,13 @@ class Character < ApplicationRecord
         sub += 1
     end
 
-    if self.class_type.sub_type == 'Rogue'
-        ath += self.level
-    else
-        ath += self.level/2
-    end
-    
-    return sub
+      if self.class_type.sub_type == 'Rogue'
+          sub += self.level
+      else
+          sub += self.level/2
+      end
+      
+      return sub
   end
 
   def lore_bonus
@@ -113,11 +140,14 @@ class Character < ApplicationRecord
   end
 
   def mag_save
-    mag = self.level
-    if self.class_type.sub_type != 'Warrior'
-        mag += 2
-    end
-    return mag
+      mag = self.level
+      if self.class_type.sub_type != 'Warrior'
+          mag += 2
+      end
+      if self.race_id == 4 #if Elf
+          mag += 2
+      end
+      return mag
   end
 
   def attacks
