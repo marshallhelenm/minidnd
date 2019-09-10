@@ -64,23 +64,23 @@ class Character < ApplicationRecord
     end
 
     if self.level == 1
-    self.maxHP = rand(hitDie)+1
+    self.max_hp = rand(hitDie)+1
     end
 
     dwarf_bonus = 0  #0 unless you are a dwarf
     if self.race_id == 3
         dwarf_bonus = 2*character.level
-        self.maxHP = maxHP - dwarf_bonus + 2
+        self.max_hp = self.max_hp - dwarf_bonus + 2
     end
 
     newRoll = 0
     i = 0
-    while(i < character.level)
+    while(i < self.level)
     i += 1
     newRoll += rand(hitDie)+1
     end
     
-    if newRoll > self.maxHP
+    if newRoll > self.max_hp
         self.max_hp = newRoll + dwarf_bonus
     else
         self.max_hp += dwarf_bonus

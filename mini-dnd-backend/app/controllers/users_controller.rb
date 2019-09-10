@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 
     def get_user_data
+        user = User.find(params[:user_id])
+        if (!!user.characters.first)
+            render json: {hasCharacter: 'true', character: user.characters.first}
+        else
+            render json: {hasCharacter: 'false'}
+        end
     end
 
     def login
