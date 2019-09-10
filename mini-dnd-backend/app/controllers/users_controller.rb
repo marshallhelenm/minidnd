@@ -3,7 +3,11 @@ class UsersController < ApplicationController
     def get_user_data
         user = User.find(params[:user_id])
         if (!!user.characters.first)
-            render json: {hasCharacter: 'true', character: user.characters.first}
+            @character = user.characters.first
+            @race = Race.find(@character.race_id)
+            @class = Race.find(@character.class_type_id)
+            characterData = {character: @character, race: @race, class_type: @class_type}
+            render json: {hasCharacter: 'true'}
         else
             render json: {hasCharacter: 'false'}
         end

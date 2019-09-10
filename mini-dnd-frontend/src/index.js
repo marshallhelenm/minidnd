@@ -26,6 +26,9 @@ function loggedIn() {
             console.log('response received')
             if(json.hasCharacter == 'true'){
                 console.log(`render character ${json.character.id}`)
+
+                console.log(json.character)
+                displayStats(json.character)
             } else {
                 loadCharCreator()
             }
@@ -59,3 +62,4 @@ function makeUN(event){
         loggedIn()
     })
 }
+
