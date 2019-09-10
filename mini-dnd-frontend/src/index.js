@@ -8,8 +8,8 @@ function main(){
     loadRaces()
     loadClasses()
     document.getElementById('submitNewCharacter').onclick = submitNewCharacter
-    loggedIn
-    LoadSideBar
+    loggedIn()
+    loadSideBar()
 }
 
 //Login
@@ -89,13 +89,13 @@ function loggedIn() {
                 logOutBtn.style.display = 'block'
                 //logged in, render char sheet 
             case 'No Character':
-                    logOutBtn.style.display = 'block'
-                clearPage
-                loadCharCreator
+                logOutBtn.style.display = 'block'
+                clearPage()
+                loadCharCreator()
             case 'Unknown User': 
             logOutBtn.style.display = 'none'
-                clearPage
-                loadLogin
+                clearPage()
+                loadLogin()
                 }
         })
 }
