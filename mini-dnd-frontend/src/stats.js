@@ -1,9 +1,10 @@
-document.addEventListener('DOMContentLoaded', main)
+// grab select character drop down and give it event listener to execute loadCharacter
 
-function main(e) {
+function loadCharacter(e) {
     let char = //current character. How to find?
     displayStats(char)
     attackBox(char)
+    abilitiesBox(char)
 }
 
 
@@ -38,6 +39,25 @@ function attackBox(char) {
     box.appendChild(weapon)
     let atk = document.createElement('button')
     atk.textContent = '+ ' + char.toHit
+}
+
+function abilitiesBox(char){
+    let box = document.getElementById('abilities')
+    let allAbilities = Abilities.all
+    let ab;
+    let classDiv = document.getElementById('class_abilities')
+    let raceDiv = document.getElementById('race_abilities')
+    for (let i = 0; i < allAbilities.length; i++){
+        if (allAbilities[i].race_id == char.race_id) {
+            ab = document.createElement('p')
+            ab.innerText = allAbilities[i].description
+            raceDiv.appendChild(ab)
+        } else if (allAbilities[i].class_type_id == char.class_type_id) {
+            ab = document.createElement('p')
+            ab.innerText = allAbilities[i].description
+            classDiv.appendChild(ab)
+        }
+    }
 }
 
 

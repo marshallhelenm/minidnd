@@ -13,6 +13,10 @@
         <button id="submitLogin">Submit</button>
       </div>
 
+
+
+      <!-- Character Creation -->
+
       <div id="createCharacter">
         <h2>Create Character</h2>
         <input placeholder="Character Name" type='text' id='selectName'>
@@ -33,22 +37,16 @@
       </div>
       
       </div>
-      <div id="character">
-        <h2 id="charName"></h2>
-        <p id='classType'></p>
-        <p id='race'></p>
-        <p id='level'></p>
-        <p id='XP'></p>
-        <button id='attackBonus'></button>
+ 
 
-        
-        
-      </div>
-	  <!-- <script type="text/javascript" src="./src/index.js"></script> -->
-    <!--<div id='top'>
+      <!-- Character Sheet -->
+
+
+    <div id='top'>
       <div id='top-1'>
         <span id='class'>Class: </span>
         <span id='race'>Race: </span>
+        <span id='xp'>Experience: </span>
         <p>Initiative:<button id='initiative' class = 'skillBox'></button></p>
         <span id='saves'>Saves: 
           <p>Physical:<button class = 'skillBox' id = 'phys_save'></button></p>
@@ -75,14 +73,42 @@
 
     <div id='bottom'>
       <div id='attacks'>
-        !-- also has dice tray if we can --
       </div>
       <div id='inventory'>
-        !-- includes backpack -
+        <!-- includes backpack -->
       </div>
       <div id='abilities'>
-        !-- includes spells --
+        <span id='class_abilities'><h3>Class Abilities:</h3></span>
+        <span id='race_abilities'><h3>Race Abilities:</h3></span>
+        <!-- includes spells -->
       </div>
     </div> -->
   </body>
 </html>
+
+
+<!-- Side Bar -->
+
+<div id='side-bar'>
+  <div id='side-logo'></div>
+  <ul id='side-menu'>
+    <!-- log out button - style to no display when not logged in -->
+    <select id='selectChar'></select>
+    <button id='new-char-btn'>New Character</button>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -30,6 +30,7 @@ class Character < ApplicationRecord
     end
     return init
   end
+
   def armorClass 
     case character.armor
         when 'light'
@@ -48,7 +49,7 @@ class Character < ApplicationRecord
         ac += 2
     end # are they a fighter?
 
-    self.armor_class = ac
+    return ac
   end
 
   def maxHP 
@@ -56,67 +57,67 @@ class Character < ApplicationRecord
       if self.race_id == 3
           maxhp += 2*character.level
       end
-      self.max_hp = maxhp
+      return maxhp
   end
 
 
-  def athletics
-      ath = self.skillBonus
-      if self.race_id == 2 || self.race_id == 3 || self.race_id == 7 #if they are a dragonborn, dwarf, or half-orc
-          ath += 1
-      end
-      if self.class_type.sub_type == 'Warrior'
-          ath += self.level
-      else
-          ath += self.level/2
-      end
-      self.athletics = ath
+  def athletics_bonus
+    ath = self.skillBonus
+    if self.race_id == 2 || self.race_id == 3 || self.race_id == 7 #if they are a dragonborn, dwarf, or half-orc
+        ath += 1
+    end
+    if self.class_type.sub_type == 'Warrior'
+        ath += self.level
+    else
+        ath += self.level/2
+    end
+    return ath
   end
 
-  def subterfuge
-      sub = self.skillBonus
-      if self.race_id == 6 || self.race_id == 8 #if they are a halfling or tiefling
-          sub += 1
-      end
+  def subterfuge_bonus
+    sub = self.skillBonus
+    if self.race_id == 6 || self.race_id == 8 #if they are a halfling or tiefling
+        sub += 1
+    end
 
-      if self.class_type.sub_type == 'Rogue'
-          ath += self.level
-      else
-          ath += self.level/2
-      end
-      
-      self.subterfuge = sub
+    if self.class_type.sub_type == 'Rogue'
+        ath += self.level
+    else
+        ath += self.level/2
+    end
+    
+    return sub
   end
 
-  def lore
-      lor = self.skillBonus
-      if self.race_id == 4 || self.race_id == 5 #if they are a elf or gnome
-          lor += 2
-      end
+  def lore_bonus
+    lor = self.skillBonus
+    if self.race_id == 4 || self.race_id == 5 #if they are a elf or gnome
+        lor += 2
+    end
 
-      if self.class_type.sub_type == 'Caster'
-          lor += self.level
-      else
-          lor += self.level/2
-      end
+    if self.class_type.sub_type == 'Caster'
+        lor += self.level
+    else
+        lor += self.level/2
+    end
 
-      self.lore = lor
+    return lor
   end
 
   def phys_save
-      phys = self.level
-      if self.class_type.sub_type != 'Caster'
-          phys += 2
-      end
-      self.physical_save = phys
+    phys = self.level
+    if self.class_type.sub_type != 'Caster'
+        phys += 2
+    end
+    return phys
   end
 
   def mag_save
-      mag = self.level
-      if self.class_type.sub_type != 'Warrior'
-          mag += 2
-      end
-      self.magic_save = mag
+    mag = self.level
+    if self.class_type.sub_type != 'Warrior'
+        mag += 2
+    end
+    return mag
   end
 
   def attacks
@@ -133,11 +134,11 @@ class Character < ApplicationRecord
   end
 
   def toHit
-      bonus = self.level
-      if self.race_id == 7 # if they are a half-orc
-        bonus += 1
-      end
-      return bonus
+    bonus = self.level
+    if self.race_id == 7 # if they are a half-orc
+      bonus += 1
+    end
+    return bonus
   end
 
 
