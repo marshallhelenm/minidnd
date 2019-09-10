@@ -1,9 +1,15 @@
 function loadSideBar() {
     //load sideBar content
+    if (localStorage.getItem('user_id') == 'null'){
+        document.getElementById('side-menu').style.display = 'none'
+    } else{
+        document.getElementById('side-menu').style.display = 'flex'
+
+    }
+
     let btn = document.getElementById('log-out-btn')
     btn.addEventListener('click', event => {
         logOut()
-        btn.style.display = 'none'
     })
 }
 
@@ -14,6 +20,7 @@ function logOut(event) {
     console.log('logging out!')
     // clear all info off screen and bring us back to log in page
     let page = clearPage()
+    loadSideBar()
     loadLogIn()
     //render log in page method (needs to make logOut button invisible)
 }

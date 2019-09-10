@@ -147,7 +147,7 @@ function submitNewCharacter(){
         body: JSON.stringify({ //:name, :user, :class_type, :race, :weapon, :armor
             'name' : document.getElementById('selectName').value,
             'race_id' : document.getElementById('selectRace').value,
-            'user_id' : user_id,
+            'user_id' : localStorage.getItem('user_id'),
             'class_type_id' : document.getElementById('selectClass').value,
             'weapon' : document.getElementById('selectWeapon').value,
             'armor' : document.getElementById('selectArmor').value

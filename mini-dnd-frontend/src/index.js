@@ -1,5 +1,4 @@
 const BASE_URL = "http://localhost:3000"
-let user_id = -1
 document.addEventListener('DOMContentLoaded',main)
 function main(){
     //Character Creation Stuff
@@ -24,8 +23,9 @@ function loggedIn() {
         })
         .then(response => response.json())
         .then(json =>{
+            console.log('response received')
             if(json.hasCharacter == 'true'){
-
+                console.log(`render character ${json.character.id}`)
             } else {
                 loadCharCreator()
             }
@@ -38,6 +38,7 @@ function loggedIn() {
 }
 
 function makeUN(event){
+    console.log('makeUN called')
     let userName = document.getElementById("loginName").value
     event.target.style.display = 'none'
     fetch(BASE_URL+'/login',{
@@ -51,8 +52,10 @@ function makeUN(event){
         })
     })
     .then(response => response.json())
-    .then(json => {console.log(json.message)
+    .then(json => {
+        console.log(json.message)
         localStorage.setItem('user_id',json.user_id)
+        loadSideBar()
         loggedIn()
     })
 }

@@ -10,7 +10,6 @@ class CharactersController < ApplicationController
     end
 
     def create
-        # byebug
         char = Character.new(char_params)
         assignStats(char)
         char.save
@@ -20,11 +19,12 @@ class CharactersController < ApplicationController
     private
 
     def char_params
-        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor)
+        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level)
     end
     
     def assignStats(char)
         char.level = 1
+        char.xp = 0
         char.armor_class = char.armorClass
         char.athletics = char.athletics_bonus
         char.subterfuge = char.subterfuge_bonus
