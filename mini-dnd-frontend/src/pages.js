@@ -95,13 +95,12 @@ function loadCharCreator() {
     submitBtn.textContent = 'Create Character'
 
 
-    div.appendChild(submitBtn)
+    div.appendChild(input)
     div.appendChild(armorMenu)
     div.appendChild(weaponMenu)
     div.appendChild(raceMenu)
     div.appendChild(classMenu)
-    div.appendChild(input)
-
+    div.appendChild(submitBtn)
     loadRaces()
     loadClasses()
 }
