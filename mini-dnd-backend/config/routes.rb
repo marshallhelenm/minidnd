@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :abilities
   resources :characters
   post 'login', to: 'users#login'
+  get 'logout', to: 'users#logout'
+  post 'get_user_data', to: 'users#get_user_data'
   resources :class_types
   resources :races
   resources :users

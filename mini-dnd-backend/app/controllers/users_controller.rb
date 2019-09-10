@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+    def get_user_data
+    end
+
     def login
         found_user = User.where ("username = '#{params[:userName]}'")
         if (found_user.length > 0)
@@ -8,6 +11,9 @@ class UsersController < ApplicationController
         else
             new_user = User.create({username: params[:userName]})
             render json: {message: "User #{new_user.id} Created", user_id: new_user.id}
-        end #ignore this comment 
+        end 
+    end
+
+    def logout
     end
 end

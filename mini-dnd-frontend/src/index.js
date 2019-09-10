@@ -2,17 +2,59 @@ const BASE_URL = "http://localhost:3000"
 let user_id = -1
 document.addEventListener('DOMContentLoaded',main)
 function main(){
-    document.getElementById("submitLogin").addEventListener('click',makeUN)
 
     //Character Creation Stuff
     loadRaces()
     loadClasses()
     document.getElementById('submitNewCharacter').onclick = submitNewCharacter
-    loggedIn
-    LoadSideBar
+    loggedIn()
+    loadSideBar()
 }
 
 //Login
+
+function loggedIn() {
+    if (localStorage.getItem('user_id') != 'null'){
+        console.log('logging in user '+localStorage.getItem('user_id'))
+        fetch(BASE_URL+'/get_user_data',{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'applicaiton/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                'user_id': localStorage.getItem('user_id')
+            })
+        })
+        .then(
+            //render character
+        )
+    }
+    else{
+        console.log("Loading log in form")
+        loadLogIn()
+    }
+
+    // let logOutBtn = document.getElementById('log-out-btn')
+    // fetch(BASE_URL+'/check_for_login')
+    //     .then(response => response.json())
+    //     .then(json => { //json returns json.status and json.char
+    //     switch(json.status){
+    //         case 'Found Character':
+    //             logOutBtn.style.display = 'block'
+    //             //logged in, render char sheet 
+    //         case 'No Character':
+    //                 logOutBtn.style.display = 'block'
+    //             clearPage
+    //             loadCharCreator
+    //         case 'Unknown User': 
+    //         logOutBtn.style.display = 'none'
+    //             clearPage
+    //             loadLogin
+    //             }
+    //     })
+}
+
 function makeUN(event){
     let userName = document.getElementById("loginName").value
     fetch(BASE_URL+'/login',{
@@ -27,7 +69,7 @@ function makeUN(event){
     })
     .then(response => response.json())
     .then(json => {console.log(json.message)
-        user_id = json.user_id
+        localStorage.setItem('user_id',json.user_id)
     })
 }
 
@@ -79,24 +121,5 @@ function submitNewCharacter(){
     })
 }
 
-function loggedIn() {
-    let logOutBtn = document.getElementById('log-out-btn')
-    fetch(BASE_URL+'/check_for_login')
-        .then(response => response.json())
-        .then(json => { //json returns json.status and json.char
-        switch(json.status){
-            case 'Found Character':
-                logOutBtn.style.display = 'block'
-                //logged in, render char sheet 
-            case 'No Character':
-                    logOutBtn.style.display = 'block'
-                clearPage
-                loadCharCreator
-            case 'Unknown User': 
-            logOutBtn.style.display = 'none'
-                clearPage
-                loadLogin
-                }
-        })
-}
+
 

@@ -7,6 +7,7 @@ function clearPage() {
 }
 
 function loadLogIn(){
+    clearPage()
     let page = document.getElementById('page')
 
     let div = document.createElement('div')
@@ -19,11 +20,13 @@ function loadLogIn(){
 
     let btn = document.createElement('button')
     btn.setAttribute('id', 'submitLogin')
+    btn.addEventListener('click',makeUN)
     btn.innerText = 'Submit'
     div.appendChild(btn)
 }
 
-function loadCharCreator() {    
+function loadCharCreator() {   
+    clearPage() 
     let page = document.getElementById('page')
     let div = document.createElement('div')
     div.setAttribute('id', 'createCharacter')
@@ -38,3 +41,4 @@ function loadCharCreator() {
     )
     
 }
+
