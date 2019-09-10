@@ -16,6 +16,7 @@ Race.create(name: 'Gnome')
 Race.create(name: 'Halfling')
 Race.create(name: 'Half-Orc')
 Race.create(name: 'Tiefling')
+puts ('Successfully seeded races!')
 
 ClassType.create(name: 'Fighter', sub_type: 'Warrior')
 ClassType.create(name: 'Barbarian', sub_type: 'Warrior')
@@ -29,6 +30,7 @@ ClassType.create(name: 'Druid', sub_type: 'Caster')
 ClassType.create(name: 'Sorcerer', sub_type: 'Caster')
 ClassType.create(name: 'Warlock', sub_type: 'Caster')
 ClassType.create(name: 'Wizard', sub_type: 'Caster')
+puts ('Successfully seeded class types!')
 
 # Racial Abilities:
 Ability.create(race_id: 1, description: '10% bonus XP.')
@@ -42,6 +44,7 @@ Ability.create(race_id: 6, description: 'Reroll any 1’s, keep new result.')
 Ability.create(race_id: 7, description: '+1 to hit with weapons')
 Ability.create(race_id: 8, description: 'See in the dark.')
 Ability.create(race_id: 8, description: 'Cast darkness 1/venture.')
+puts ('Successfully seeded racial abilities!')
 
 # Class Abilities:
 
@@ -57,6 +60,7 @@ Ability.create(class_type_id: 9, description: 'Always has Wildshape prepared as 
 Ability.create(class_type_id: 10, description: 'Prepares 1 fewer spell. Can cast 1 extra spell each day.')
 Ability.create(class_type_id: 11, description: 'Eldritch Blast for 1d8 damage (can be done with attack)')
 Ability.create(class_type_id: 12, description: 'Can choose not to reroll spells each day. (All or none)')
+puts ('Successfully seeded class abilities!')
 
 
 # Spells:
@@ -82,6 +86,7 @@ Spell.create(spell_type: 'Divine', name: 'Sanctuary', description: 'Creatures mu
 Spell.create(spell_type: 'Divine', name: 'Speak With Dead', description: ': Ask (L) questions to a corpse. This doesn’t work if the creature was hostile to you in life. You must share a language to communicate.')
 Spell.create(spell_type: 'Divine', name: 'Tongues', description: 'Gain the ability to understand any language. Lasts for (L) minutes.')
 Spell.create(spell_type: 'Cleric', name: 'Turn Undead', description: '(L) undead are frightened and must flee from you. Intelligent undead may save to resist.')
+puts ('Successfully seeded divine spells!')
 
 
 Spell.create(spell_type: 'Nature', name: 'Animal Friendship', description: 'Convince up to (L) animals that you’re friendly. Save to avoid.')
@@ -105,6 +110,7 @@ Spell.create(spell_type: 'Nature', name: 'Stone Shape', description: 'Reshape an
 Spell.create(spell_type: 'Nature', name: 'Wall of Thorns', description: 'Create a wall of thorny bushes. Creatures that move through take (L/2)d4 damage.')
 Spell.create(spell_type: 'Nature', name: 'Water Breathing', description: 'Grant up to (L) creatures the ability to breath underwater for (L) hours.')
 Spell.create(spell_type: 'Druid', name: 'Wildshape', description: 'Take on the form of an animal for (L) hours. You may end this spell at will.')
+puts ('Successfully seeded nature spellsl!')
 
 
 Spell.create(spell_type: 'Arcane', name: 'Burning Hands', description: '')
@@ -127,6 +133,7 @@ Spell.create(spell_type: 'Arcane', name: 'Sleep', description: 'Up to (L) creatu
 Spell.create(spell_type: 'Arcane', name: 'Spider Climb', description: 'Give one creature the ability to walk on walls and ceilings. Lasts (L) rounds.')
 Spell.create(spell_type: 'Arcane', name: 'Unseen Servant', description: 'Creates an invisible servant that can follow simple commands for (L) hours. Can’t fight.')
 Spell.create(spell_type: 'Arcane', name: 'Wall of Force', description: 'Create (L) 5x5’ square(s) of force. They cannot be passed through. Lasts (L) rounds.')
+puts ('Successfully seeded arcane spells!')
 
 User.create(username: 'Helen')
 User.create(username: 'Nick')

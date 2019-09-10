@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.integer "max_hp"
     t.integer "hp"
     t.integer "level"
+    t.integer "xp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["class_type_id"], name: "index_characters_on_class_type_id"
