@@ -135,8 +135,9 @@ function loadClasses(){
 }
 
 
-function submitNewCharacter(){
-    console.log('hi')
+function submitNewCharacter(e){
+    console.log('submitting new character')
+
     fetch(BASE_URL+'/characters',{
         method: 'POST',
         headers: {
@@ -152,12 +153,18 @@ function submitNewCharacter(){
             'armor' : document.getElementById('selectArmor').value
         })
     })
+        .then(response => response.json()) 
+        .then(displayStats)
+        
+    loadCharSheet()
 }
 
 
 function loadCharSheet() {
+    console.log('loading char sheet')
     let sheet = document.createElement('div')
     sheet.setAttribute('id', 'charSheet')
+    document.body.appendChild(sheet)
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
@@ -189,7 +196,7 @@ function loadCharSheet() {
 
     let xpSpan = document.createElement('span')
     xpSpan.setAttribute('id', 'xp')
-    xpSpan.textContent = `Race: `
+    xpSpan.textContent = `XP: `
     top1.appendChild(xpSpan)
 
     let saveSpan = document.createElement('span')
@@ -211,6 +218,12 @@ function loadCharSheet() {
     mag.setAttribute('id', 'mag_save')
     mag.textContent = 'Magical:  '
     saveSpan.appendChild(mag)
+
+    let init = document.createElement('button')
+    init.classList.add('skillBox')
+    init.setAttribute('id', 'initiative')
+    init.textContent = 'Initiative:  '
+    saveSpan.appendChild(init)
 
 
     // top 2

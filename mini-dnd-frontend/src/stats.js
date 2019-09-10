@@ -1,34 +1,33 @@
 // grab select character drop down and give it event listener to execute loadCharacter
 
-function loadCharacter(e) {
-    let char = //current character. How to find?
-    displayStats(char)
-    attackBox(char)
-    abilitiesBox(char)
-}
 
 
 function displayStats(char) {
+    console.log(char)
     loadCharSheet()
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
 
     document.getElementById('race').innerText = `Race: ${char.race.name}`
 
-    document.getElementById('initiative').innerText = '+ ' + char.initiative
+    //document.getElementById('initiative').innerText = '+ ' + char.initiative
 
-    document.getElementById('phys_save').innerText = '+ ' + char.physical_save
+    document.getElementById('phys_save').innerText += '+ ' + char.stats.physical_save
 
-    document.getElementById('mag_save').innerText = '+ ' + char.magic_save
+    document.getElementById('mag_save').innerText += '+ ' + char.stats.magic_save
 
-    document.getElementById('char_name').innerText = char.name
+    document.getElementById('initiative').innerText += '+ ' + char.stats.initiative
 
-    document.getElementById('char_description').innerText = char.description
+    document.getElementById('char_name').innerText = char.stats.name
 
-    document.getElementById('athletics').innerText = '+ ' + char.athletics
+    document.getElementById('char_description').innerText = char.stats.description
 
-    document.getElementById('subterfuge').innerText = '+ ' + char.subterfuge
+    document.getElementById('athletics').innerText += '+ ' + char.stats.athletics
 
-    document.getElementById('lore').innerText = '+ ' + '+ ' + char.lore
+    document.getElementById('subterfuge').innerText += '+ ' + char.stats.subterfuge
+
+    document.getElementById('lore').innerText += '+ ' + char.stats.lore
+    attackBox(char)
+    //abilitiesBox(char)
 }
 
 function attackBox(char) {
