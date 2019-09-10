@@ -4,9 +4,7 @@
 
 function displayStats(char) {
     console.log(char)
-    loadCharSheet()
-
-
+    loadCharSheet() //contains clearPage
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
 
     document.getElementById('race').innerText = `Race: ${char.race.name}`
