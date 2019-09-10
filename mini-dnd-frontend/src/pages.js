@@ -161,10 +161,12 @@ function submitNewCharacter(e){
 
 
 function loadCharSheet() {
+    clearPage()
     console.log('loading char sheet')
     let sheet = document.createElement('div')
     sheet.setAttribute('id', 'charSheet')
-    document.body.appendChild(sheet)
+    let page = document.getElementById('page')
+    page.appendChild(sheet)
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
