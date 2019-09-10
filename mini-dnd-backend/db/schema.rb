@@ -33,19 +33,20 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
   end
 
   create_table "characters", force: :cascade do |t|
+    t.string "name"
     t.bigint "user_id"
     t.bigint "class_type_id"
     t.bigint "race_id"
-    t.string "name"
-    t.integer "max_hp"
-    t.integer "hp"
-    t.integer "armor"
     t.string "weapon"
+    t.string "armor"
+    t.integer "armor_class"
     t.integer "athletics"
     t.integer "subterfuge"
     t.integer "lore"
     t.integer "physical_save"
     t.integer "magic_save"
+    t.integer "max_hp"
+    t.integer "hp"
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

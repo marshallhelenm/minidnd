@@ -134,17 +134,3 @@ User.create(username: 'Nick')
 Character.create(name: 'Maiele Glynydark', class_type_id: 3, race_id: 4, user_id: 1, max_hp: 8, armor: 12, weapon: 'light', athletics: 8, subterfuge: 8, lore: 8, physical_save: 8, magic_save: 10, level: 1)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
