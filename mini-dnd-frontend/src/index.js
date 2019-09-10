@@ -8,6 +8,8 @@ function main(){
     loadRaces()
     loadClasses()
     document.getElementById('submitNewCharacter').onclick = submitNewCharacter
+    loggedIn
+    LoadSideBar
 }
 
 //Login
@@ -76,3 +78,25 @@ function submitNewCharacter(){
         })
     })
 }
+
+function loggedIn() {
+    let logOutBtn = document.getElementById('log-out-btn')
+    fetch(BASE_URL+'/check_for_login')
+        .then(response => response.json())
+        .then(json => { //json returns json.status and json.char
+        switch(json.status){
+            case 'Found Character':
+                logOutBtn.style.display = 'block'
+                //logged in, render char sheet 
+            case 'No Character':
+                    logOutBtn.style.display = 'block'
+                clearPage
+                loadCharCreator
+            case 'Unknown User': 
+            logOutBtn.style.display = 'none'
+                clearPage
+                loadLogin
+                }
+        })
+}
+
