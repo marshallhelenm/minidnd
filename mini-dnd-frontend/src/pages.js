@@ -105,6 +105,55 @@ function loadCharCreator() {
     loadClasses()
 }
 
+function loadRaces(){
+    console.log('loading classes')
+    let raceList = document.getElementById("selectRace")
+    fetch(BASE_URL+'/races')
+    .then(response => response.json())
+    .then(races => {
+        for(let race of races){
+            let option = document.createElement('option')
+            option.setAttribute('value',race.id)
+            option.textContent = race.name
+            raceList.appendChild(option)
+        }
+    })
+}
+function loadClasses(){
+    console.log('loading classes')
+    let classList = document.getElementById("selectClass")
+    fetch(BASE_URL+'/class_types')
+    .then(response => response.json())
+    .then(classes => {
+        for(let classtype of classes){
+            let option = document.createElement('option')
+            option.setAttribute('value',classtype.id)
+            option.textContent = classtype.name
+            classList.appendChild(option)
+        }
+    })
+}
+
+
+function submitNewCharacter(){
+    console.log('hi')
+    fetch(BASE_URL+'/characters',{
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+            "Accept":   'application/json'
+        },
+        body: JSON.stringify({ //:name, :user, :class_type, :race, :weapon, :armor
+            'name' : document.getElementById('selectName').value,
+            'race_id' : document.getElementById('selectRace').value,
+            'user_id' : localStorage.getItem('user_id'),
+            'class_type_id' : document.getElementById('selectClass').value,
+            'weapon' : document.getElementById('selectWeapon').value,
+            'armor' : document.getElementById('selectArmor').value
+        })
+    })
+}
+
 
 function loadCharSheet() {
     let sheet = document.createElement('div')
@@ -250,52 +299,3 @@ function loadCharSheet() {
     
 
 }
-
-
-function loadRaces(){
-    console.log('loading classes')
-    let raceList = document.getElementById("selectRace")
-    fetch(BASE_URL+'/races')
-    .then(response => response.json())
-    .then(races => {
-        for(let race of races){
-            let option = document.createElement('option')
-            option.setAttribute('value',race.id)
-            option.textContent = race.name
-            raceList.appendChild(option)
-        }
-    })
-}
-function loadClasses(){
-    console.log('loading classes')
-    let classList = document.getElementById("selectClass")
-    fetch(BASE_URL+'/class_types')
-    .then(response => response.json())
-    .then(classes => {
-        for(let classtype of classes){
-            let option = document.createElement('option')
-            option.setAttribute('value',classtype.id)
-            option.textContent = classtype.name
-            classList.appendChild(option)
-        }
-    })
-}
-function submitNewCharacter(){
-    console.log('hi')
-    fetch(BASE_URL+'/characters',{
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json',
-            "Accept":   'application/json'
-        },
-        body: JSON.stringify({ //:name, :user, :class_type, :race, :weapon, :armor
-            'name' : document.getElementById('selectName').value,
-            'race_id' : document.getElementById('selectRace').value,
-            'user_id' : user_id,
-            'class_type_id' : document.getElementById('selectClass').value,
-            'weapon' : document.getElementById('selectWeapon').value,
-            'armor' : document.getElementById('selectArmor').value
-        })
-    })
-}
-
