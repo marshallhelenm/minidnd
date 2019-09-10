@@ -69,7 +69,7 @@ class Character < ApplicationRecord
 
     dwarf_bonus = 0  #0 unless you are a dwarf
     if self.race_id == 3
-        dwarf_bonus = 2*character.level
+        dwarf_bonus = 2*self.level
         self.max_hp = self.max_hp - dwarf_bonus + 2
     end
 
