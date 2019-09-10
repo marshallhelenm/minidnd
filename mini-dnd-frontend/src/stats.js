@@ -1,11 +1,5 @@
 // grab select character drop down and give it event listener to execute loadCharacter
 
-function loadCharacter(e) {
-    let char = //current character. How to find?
-    displayStats(char)
-    attackBox(char)
-    abilitiesBox(char)
-}
 
 
 function displayStats(char) {
@@ -29,6 +23,8 @@ function displayStats(char) {
     document.getElementById('subterfuge').innerText = '+ ' + char.subterfuge
 
     document.getElementById('lore').innerText = '+ ' + '+ ' + char.lore
+    attackBox(char)
+    abilitiesBox(char)
 }
 
 function attackBox(char) {

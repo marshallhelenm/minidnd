@@ -135,8 +135,9 @@ function loadClasses(){
 }
 
 
-function submitNewCharacter(){
-    console.log('hi')
+function submitNewCharacter(e){
+    console.log('submitting new character')
+
     fetch(BASE_URL+'/characters',{
         method: 'POST',
         headers: {
@@ -152,6 +153,10 @@ function submitNewCharacter(){
             'armor' : document.getElementById('selectArmor').value
         })
     })
+        .then(response => response.json()) 
+        .then(displayStats)
+        
+    loadCharSheet()
 }
 
 
