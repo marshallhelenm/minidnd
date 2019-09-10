@@ -25,6 +25,7 @@ function loggedIn() {
         .then(json =>{
             console.log('response received')
             if(json.hasCharacter == 'true'){
+                console.log('get char renderer working')
                 console.log(`render character ${json.character.id}`)
 
                 console.log(json.character)
