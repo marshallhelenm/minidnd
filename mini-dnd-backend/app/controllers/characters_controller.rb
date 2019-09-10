@@ -8,6 +8,8 @@ class CharactersController < ApplicationController
                 class_type: characterStats.class_type}
         render json: {character: char}
     end
+
+    
     
     def new
     end

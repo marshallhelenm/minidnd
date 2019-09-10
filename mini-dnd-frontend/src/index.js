@@ -25,8 +25,9 @@ function loggedIn() { //checks if user is logged in or not and if they have a ch
         .then(response => response.json())
         .then(json =>{
             console.log('response received')
-            if(json.hasCharacter == 'true'){
+            if(json.hasCharacter == 'true'){// if they have a character, render it
                 console.log('get char renderer working')
+                console.log(`render character ${json.character.id}`)
                 // render character
                 displayStats(json.character)
             } else { // if they don't have a character, send them to the character creator

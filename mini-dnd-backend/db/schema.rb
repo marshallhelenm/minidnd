@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
   enable_extension "plpgsql"
 
   create_table "abilities", force: :cascade do |t|
-    t.integer "race_id"
-    t.integer "class_type_id"
+    t.integer "race_id", default: 0
+    t.integer "class_type_id", default: 0
     t.integer "character_id"
     t.string "description"
     t.datetime "created_at", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.integer "lore"
     t.integer "physical_save"
     t.integer "magic_save"
+    t.integer "initiative"
     t.integer "max_hp"
     t.integer "hp"
     t.integer "level"
