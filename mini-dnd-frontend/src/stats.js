@@ -9,6 +9,7 @@ function loadCharacter(e) {
 
 
 function displayStats(char) {
+    loadCharSheet()
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
 
     document.getElementById('race').innerText = `Race: ${char.race.name}`

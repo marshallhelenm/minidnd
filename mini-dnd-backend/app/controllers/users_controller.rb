@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+    def show
+        user = User.find(params[:id])
+        render json: user
+    end
+
     def get_user_data
         user = User.find(params[:user_id])
         if (!!user.characters.first)
@@ -22,4 +27,7 @@ class UsersController < ApplicationController
 
     def logout
     end
+
+
+
 end
