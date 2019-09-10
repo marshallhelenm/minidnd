@@ -24,6 +24,7 @@ class CharactersController < ApplicationController
     end
     
     def assignStats(char)
+        char.level = 1
         char.armor_class = char.armorClass
         char.athletics = char.athletics_bonus
         char.subterfuge = char.subterfuge_bonus
@@ -31,7 +32,6 @@ class CharactersController < ApplicationController
         char.physical_save = char.phys_save
         char.magic_save = char.mag_save
         char.max_hp = char.maxHP
-        char.level = 1
     end
 
 end    

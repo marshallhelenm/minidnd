@@ -10,8 +10,10 @@ function loadSideBar() {
 
 //Log Out
 function logOut(event) {
-    fetch(BASE_URL+'/logout') //fetch to clear cookie
+    localStorage.setItem('user_id',null)
+    console.log('logging out!')
     // clear all info off screen and bring us back to log in page
     let page = clearPage()
+    loadLogIn()
     //render log in page method (needs to make logOut button invisible)
 }
