@@ -4,7 +4,6 @@ function loadSideBar() {
         document.getElementById('side-menu').style.display = 'none'
     } else{
         document.getElementById('side-menu').style.display = 'flex'
-    }
     let charDrop = document.getElementById('selectChar')
     charDropDown(charDrop)
     charDrop.addEventListener('onchange', selectChar)
@@ -12,6 +11,8 @@ function loadSideBar() {
     btn.addEventListener('click', event => {
         logOut()
     })
+    }
+    
 }
 
 

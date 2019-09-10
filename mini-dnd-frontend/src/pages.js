@@ -154,7 +154,7 @@ function submitNewCharacter(e){
         })
     })
         .then(response => response.json()) 
-        .then(displayStats)
+        .then(json => displayStats(json))
         
     loadCharSheet()
 }

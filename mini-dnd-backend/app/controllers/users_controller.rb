@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
 
     def show
-        user = User.find(params[:id])
-        characters = {}
+        user = User.find(params[:id].to_i)
+        charactersList = []
         user.characters.each do |character|
-            characters[character.id] = character.name
+            charactersList.push({ id: character.id, name: character.name,})
         end
-        render json: characters
+        render json: {characters: charactersList}
     end
 
     def get_user_data
+        # byebug
         user = User.find(params[:user_id])
         if (!!user.characters.first)
             @character = user.characters.first
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
             characterData = {stats: @character, race: @character.race, class_type: @character.class_type}
             render json: {hasCharacter: 'true', character: characterData}
         else
+            # byebug
             render json: {hasCharacter: 'false'}
         end
     end
