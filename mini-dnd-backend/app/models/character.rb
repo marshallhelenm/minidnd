@@ -85,6 +85,8 @@ class Character < ApplicationRecord
     else
         self.max_hp += dwarf_bonus
     end
+
+    self.hp = self.max_hp
   end
 
 
@@ -172,4 +174,12 @@ class Character < ApplicationRecord
   end
 
 
+  def calculateStats
+        self.armor_class = self.armorClass
+        self.athletics = self.athletics_bonus
+        self.subterfuge = self.subterfuge_bonus
+        self.lore = self.lore_bonus
+        self.physical_save = self.phys_save
+        self.magic_save = self.mag_save
+  end
 end
