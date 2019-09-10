@@ -36,7 +36,7 @@ function selectChar(e) {
         loadCharCreator()
     } else {
         loadCharSheet()
-        fetch(BASE_URL+`/characters${event.target.value}`)
+        fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
         .then(displayStats)
     }

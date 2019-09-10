@@ -16,7 +16,6 @@ function loadLogIn(){
 
     let field = document.createElement('input')
     field.setAttribute('id', 'loginName')
-    field.placeholder = 'Username'
     div.appendChild(field)
 
     let btn = document.createElement('button')
@@ -162,12 +161,10 @@ function submitNewCharacter(e){
 
 
 function loadCharSheet() {
-    clearPage()
     console.log('loading char sheet')
     let sheet = document.createElement('div')
     sheet.setAttribute('id', 'charSheet')
-    let page = document.getElementById('page')
-    page.appendChild(sheet)
+    document.body.appendChild(sheet)
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
