@@ -2,7 +2,11 @@ class UsersController < ApplicationController
 
     def show
         user = User.find(params[:id])
-        render json: user
+        characters = {}
+        user.characters.forEach do |character|
+            characters.push({ id: character.id, name: character.name,})
+        end
+        render json: characters
     end
 
     def get_user_data

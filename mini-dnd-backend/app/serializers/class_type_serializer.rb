@@ -1,3 +1,3 @@
 class ClassTypeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :sub_type
+  attributes :id, :name, :sub_type, :abilities
 end

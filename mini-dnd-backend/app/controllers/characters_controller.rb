@@ -5,6 +5,8 @@ class CharactersController < ApplicationController
         char = Character.find(params[:id])
         render json: char
     end
+
+    
     
     def new
     end
