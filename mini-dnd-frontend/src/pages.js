@@ -95,3 +95,149 @@ function loadCharCreator() {
     div.appendChild(classMenu)
     div.appendChild(input)
 }
+
+
+function loadCharSheet() {
+    let sheet = document.createElement('div')
+    sheet.setAttribute('id', 'charSheet')
+
+    let top = document.createElement('div')
+    top.setAttribute('id', 'top')
+    let bottom = document.createElement('div')
+    bottom.setAttribute('id', 'bottom')
+    sheet.appendChild(top)
+    sheet.appendChild(bottom)
+
+    let top1 = document.createElement('div')
+    top1.setAttribute('id', 'top-1')
+    let top2 = document.createElement('div')
+    top2.setAttribute('id', 'top-2')
+    let top3 = document.createElement('div')
+    top3.setAttribute('id', 'top-3')
+    top.appendChild(top1)
+    top.appendChild(top2)
+    top.appendChild(top3)
+
+    // top 1
+    let classSpan = document.createElement('span')
+    classSpan.setAttribute('id', 'class')
+    classSpan.textContent = `Class: `
+    top1.appendChild(classSpan)
+
+    let raceSpan = document.createElement('span')
+    raceSpan.setAttribute('id', 'race')
+    raceSpan.textContent = `Race: `
+    top1.appendChild(raceSpan)
+
+    let xpSpan = document.createElement('span')
+    xpSpan.setAttribute('id', 'xp')
+    xpSpan.textContent = `Race: `
+    top1.appendChild(xpSpan)
+
+    let saveSpan = document.createElement('span')
+    saveSpan.setAttribute('id', 'saves')
+    top1.appendChild(saveSpan)
+
+    let h3 = document.createElement('h3')
+    h3.innerText = 'Saves: '
+    saveSpan.appendChild(h3)
+
+    let phys = document.createElement('button')
+    phys.classList.add('skillBox')
+    phys.setAttribute('id', 'phys_save')
+    phys.textContent = 'Physical:  '
+    saveSpan.appendChild(phys)
+
+    let mag = document.createElement('button')
+    mag.classList.add('skillBox')
+    mag.setAttribute('id', 'mag_save')
+    mag.textContent = 'Magical:  '
+    saveSpan.appendChild(mag)
+
+
+    // top 2
+
+    let img = document.createElement('img')
+    img.setAttribute('src', '')
+    img.setAttribute('id', 'char_photo')
+    top2.appendChild(img)
+
+    let charName = document.createElement('h3')
+    charName.setAttribute('id', 'char_name')
+    top2.appendChild(charName)
+
+    let charDescrip = document.createElement('p')
+    charDescrip.setAttribute('id', 'char_description')
+    top2.appendChild(charDescrip)
+
+    // top 3
+
+    let acBox = document.createElement('span')
+    acBox.setAttribute('id', 'ac')
+    acBox.textContent = `AC: `
+    top3.appendChild(acBox)
+
+    let hpBox = document.createElement('span')
+    hpBox.setAttribute('id', 'hp')
+    hpBox.textContent = `HP: `
+    top3.appendChild(hpBox)
+
+    let skillSpan = document.createElement('span')
+    skillSpan.setAttribute('id', 'skills')
+    top3.appendChild(skillSpan)
+
+    let h3Skills = document.createElement('h3')
+    h3.innerText = 'Skills: '
+    skillSpan.appendChild(h3Skills)
+
+    let ath = document.createElement('button')
+    ath.classList.add('skillBox')
+    ath.setAttribute('id', 'athletics')
+    ath.textContent = 'Athletics:  '
+    skillSpan.appendChild(ath)
+
+    let sub = document.createElement('button')
+    sub.classList.add('skillBox')
+    sub.setAttribute('id', 'subterfuge')
+    sub.textContent = 'Subterfuge:  '
+    skillSpan.appendChild(sub)
+
+    let lor = document.createElement('button')
+    lor.classList.add('skillBox')
+    lor.setAttribute('id', 'lore')
+    lor.textContent = 'Lore:  '
+    skillSpan.appendChild(lor)
+
+
+    // Bottom
+
+    let attacks = document.createElement('div')
+    attacks.setAttribute('id', 'attacks')
+    bottom.appendChild(attacks)
+
+    let inventory = document.createElement('div')
+    inventory.setAttribute('id', 'inventory')
+    bottom.appendChild(inventory)
+
+    let abilities = document.createElement('div')
+    bottom.appendChild(abilities)
+
+    let classAb = document.createElement('span')
+    classAb.setAttribute('id', 'class_abilities')
+    abilities.appendChild(classAb)
+
+    let classAbh3 = document.createElement('h3')
+    classAbh3.textContent = 'Class Abilities:'
+    abilities.appendChild(classAbh3)
+
+    let raceAbh3 = document.createElement('h3')
+    raceAbh3.textContent = 'Racial Abilities:'
+    abilities.appendChild(raceAbh3)
+
+    let raceAb = document.createElement('span')
+    raceAb.setAttribute('id', 'race_abilities')
+    abilities.appendChild(raceAb)
+
+    
+
+}
