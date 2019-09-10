@@ -5,27 +5,34 @@
 function displayStats(char) {
     console.log(char)
     loadCharSheet()
+
+
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
 
     document.getElementById('race').innerText = `Race: ${char.race.name}`
-
-    //document.getElementById('initiative').innerText = '+ ' + char.initiative
-
-    document.getElementById('phys_save').innerText += '+ ' + char.stats.physical_save
-
-    document.getElementById('mag_save').innerText += '+ ' + char.stats.magic_save
-
-    document.getElementById('initiative').innerText += '+ ' + char.stats.initiative
 
     document.getElementById('char_name').innerText = char.stats.name
 
     document.getElementById('char_description').innerText = char.stats.description
 
-    document.getElementById('athletics').innerText += '+ ' + char.stats.athletics
+    //saves
+    document.getElementById('phys_save').innerText += ' +' + char.stats.physical_save
 
-    document.getElementById('subterfuge').innerText += '+ ' + char.stats.subterfuge
+    document.getElementById('mag_save').innerText += ' +' + char.stats.magic_save
 
-    document.getElementById('lore').innerText += '+ ' + char.stats.lore
+    document.getElementById('initiative').innerText += ' +' + char.stats.initiative
+
+    //skills
+    document.getElementById('athletics').innerText += ' +' + char.stats.athletics
+
+    document.getElementById('subterfuge').innerText += ' +' + char.stats.subterfuge
+
+    document.getElementById('lore').innerText += ' +' + char.stats.lore
+
+    //other
+
+    document.getElementById('ac').innerText += ' ' + char.stats.armor_class
+    document.getElementById('hp').innerText += ' ' + char.stats.hp + '/' + char.stats.max_hp
     attackBox(char)
     //abilitiesBox(char)
 }
@@ -33,12 +40,12 @@ function displayStats(char) {
 function attackBox(char) {
     let box = document.getElementById('attacks')
     let numAtk = document.createElement('h3')
-    numAtk.textContent = `Number of Attacks: ${char.attacks}`
+    numAtk.textContent = `Number of Attacks: ${char.stats.attacks}`
     let weapon = document.createElement('h3')
-    weapon.textContent = `Weapon: ${char.weapon}`
+    weapon.textContent = `Weapon: ${char.stats.weapon}`
     box.appendChild(weapon)
     let atk = document.createElement('button')
-    atk.textContent = '+ ' + char.toHit
+    atk.textContent = '+ ' + char.stats.toHit
 }
 
 function abilitiesBox(char){

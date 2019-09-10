@@ -4,11 +4,11 @@ function loadSideBar() {
         document.getElementById('side-menu').style.display = 'none'
     } else{
         document.getElementById('side-menu').style.display = 'flex'
-    let charDrop = document.getElementById('selectChar')
-    charDropDown(charDrop)
-    charDrop.addEventListener('onchange', selectChar)
-    let btn = document.getElementById('log-out-btn')
-    btn.addEventListener('click', event => {
+        let charDrop = document.getElementById('selectChar')
+        charDropDown(charDrop)
+        charDrop.addEventListener('onchange', selectChar)
+        let btn = document.getElementById('log-out-btn')
+        btn.addEventListener('click', event => {
         logOut()
     })
     }
