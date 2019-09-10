@@ -17,6 +17,7 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :max_hp
       t.integer :hp
       t.integer :level
+      t.integer :xp
 
       t.timestamps
     end
