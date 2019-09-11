@@ -15,30 +15,35 @@
   <body>
     
     <!-- Side Bar -->
-    <div id='screen' class='row'>
-      
-      <nav id='side-bar' class='nav flex-column bg-dark'>
-          <h1 id='logo' class='nav-item text-light'>Bite Size DnD</h1>
-        <div id='side-logo' class="nav-item"></div>
-        <div id='side-menu' class="nav-item">
+    <div id='screen' class='container-fluid'>
+    <div class='row no-gutters'>
 
-          <div class='nav-item btn-group dropdown'>
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Select Character
-              </button>
-                <div class="dropdown-menu" id='selectChar'>
-                  <!-- things get dynamically added here -->
-              </div>
+      <div id='left' class='col-3'>
+        <nav id='side-bar' class='nav flex-column bg-dark'>
+            <h1 id='logo' class='nav-item text-light'>Bite Size DnD</h1>
+          <div id='side-logo' class="nav-item"></div>
+          <div id='side-menu' class="nav-item">
+
+            <div class='nav-item btn-group dropdown'>
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Character
+                </button>
+                  <div class="dropdown-menu" id='selectChar'>
+                    <!-- things get dynamically added here -->
+                </div>
+            </div>
+            <button id='log-out-btn' class='nav-item btn-secondary'>Log Out</button>
+            <button id='rules-btn' class='nav-item btn-secondary'>Rules</button>
           </div>
-          <button id='log-out-btn' class='nav-item btn-secondary'>Log Out</button>
-          <button id='rules-btn' class='nav-item btn-secondary'>Rules</button>
-        </div>
-        <p id='credits' class="nav-item text-light">Nick Dunlap & Helen Marshall 2019</p>
-      </nav>
-      
-      <div id='page'>
-        
+          <p id='credits' class="nav-item text-light">Nick Dunlap & Helen Marshall 2019</p>
+        </nav>
+      </div>
+
+      <div id='page' class='col'>
+        <!-- characterCreator and characterSheet both load here. Rules too. -->
       </div> 
+
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -1,10 +1,17 @@
 #page{
     border: solid;
+    display: flex;
 }
 
 #side-bar{
     border: solid;
-    margin-left: 1.5%;
+
+}
+
+#left{
+
+    top: 0;
+    bottom: 0;
 }
 
 #logo{
@@ -20,6 +27,25 @@
     flex-direction: column;
 }
 
-#createCharacter{
+#charForm{
     flex-direction: column;
 }
+
+#createCharacter{
+    flex-wrap: row;
+}
+
+#screen{
+    padding: 0;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+  
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
