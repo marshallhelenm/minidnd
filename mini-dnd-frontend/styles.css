@@ -1,10 +1,18 @@
 #page{
     border: solid;
+    display: flex;
 }
 
 #side-bar{
     border: solid;
-    margin-left: 1.5%;
+    height: 100vh;
+    
+    
+    
+}
+
+#left{
+    min-width: 200px;
 }
 
 #logo{
@@ -12,14 +20,41 @@
 }
 
 #credits{
-    /* justify-content: flex-end; */
-    /* float: right; */
+    /* align-self: flex-end; */
+    
 }
 
 #side-menu{
     flex-direction: column;
+    max-width: 100%;
+}
+
+#charForm{
+    flex-direction: column;
 }
 
 #createCharacter{
-    flex-direction: column;
+    flex-wrap: row;
+    width: 100%;
 }
+
+#charSheet{
+    width: 100%;
+}
+
+#screen{
+    padding: 0;
+    
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    
+  
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }

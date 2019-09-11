@@ -33,6 +33,13 @@ function displayStats(char) {
     document.getElementById('hp').innerText += ' ' + char.stats.hp + '/' + char.stats.max_hp
     attackBox(char)
     abilitiesBox(char)
+
+    //edit and delete buttons
+    let delBtn = document.getElementById('del-char')
+    delBtn.setAttribute('value', char.stats.id)
+
+    let editBtn = document.getElementById('edit-char')
+    editBtn.setAttribute('value', char.stats.id)
 }
 
 function attackBox(char) {

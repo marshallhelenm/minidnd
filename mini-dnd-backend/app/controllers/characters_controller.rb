@@ -14,13 +14,13 @@ class CharactersController < ApplicationController
             @abilityList.push(ability)
         end
 
-        char = {hasCharacter: 'true',
+        char = {
                 stats: characterStats, 
                 race: @race, 
                 class_type: @class_type,
                 abilities: @abilityList
                 }
-        render json: {character: char}
+        render json: {hasCharacter: 'true', character: char}
     end
 
     
