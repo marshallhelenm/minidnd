@@ -64,3 +64,7 @@ function makeUN(event){ //logs you in or creates a username and logs you in
     })
 }
 
+//For capitalizing the first letter of something
+function capitalize(string){
+    return string.slice(0,1).toUpperCase() + string.slice(1)
+}

@@ -41,7 +41,7 @@ function attackBox(char) {
     numAtk.textContent = writeNumAttacks(char)
     box.appendChild(numAtk)
     let weapon = document.createElement('h3')
-    weapon.textContent = `Weapon: ${char.stats.weapon}`
+    weapon.textContent = `${capitalize(char.stats.weapon)} Weapon`
     box.appendChild(weapon)
     let atk = document.createElement('button')
     atk.textContent = '+ ' + char.stats.toHit

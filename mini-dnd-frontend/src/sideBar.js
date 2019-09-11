@@ -75,5 +75,4 @@ function addOptionToCharacterDropdown(character){
     opt.setAttribute('value', character.id)
     opt.setAttribute('selected', 'selected')
     charDrop.appendChild(opt)
-    
 }
