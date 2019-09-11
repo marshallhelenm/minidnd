@@ -4,6 +4,8 @@ class Character < ApplicationRecord
   belongs_to :race
   has_many :race_abilities, through: :race
   has_many :class_type_abilities, through: :class_type
+  has_many :prepared_spells
+  has_many :spells, through: :prepared_spells
 
   def mv
     case (self.armor)
@@ -184,12 +186,79 @@ class Character < ApplicationRecord
   end
 
   def calculateStats
-        self.armor_class = self.armorClass
-        self.athletics = self.athletics_bonus
-        self.subterfuge = self.subterfuge_bonus
-        self.lore = self.lore_bonus
-        self.physical_save = self.phys_save
-        self.magic_save = self.mag_save
-        self.initiative = self.getInitiative
+    self.armor_class = self.armorClass
+    self.athletics = self.athletics_bonus
+    self.subterfuge = self.subterfuge_bonus
+    self.lore = self.lore_bonus
+    self.physical_save = self.phys_save
+    self.magic_save = self.mag_save
+    self.initiative = self.getInitiative
+    self.prepareSpells
+  end
+
+  def prepareSpells
+  
+    #Number of Spell slots
+    if (self.class_type.caster_type == 'none')
+      self.spell_slots = 0
+      return
+    end
+
+    self.spell_slots = 1 + self.level
+    if (self.spell_slots > 10)
+      self.spell_slots = 10
+    end
+    if (self.class_type.caster_type == 'half')
+      self.spell_slots = self.spell_slots/2
+    end
+
+
+
+    #Number of Prepared Spells
+    num_prepared_spells = 0
+
+    if (self.class_type.caster_type == 'full')
+      num_prepared_spells = 2 + self.level/2
+      if (num_prepared_spells > 7)
+        num_prepared_spells = 7
+      end
+    end
+    if (self.class_type.caster_type == 'half')
+      if (self.level == 1)
+        num_prepared_spells = 1
+      elsif (self.level >= 5)
+        num_prepared_spells = 3
+      else
+        num_prepared_spells = 2
+      end
+    end
+
+    #Prepare Spells
+    self.spells = []
+
+    if(self.class_type.name == 'Cleric')
+      spell = Spell.find_by(name: 'Turn Undead')
+      PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+    end
+
+    if(self.class_type.name == 'Druid')
+          spell = Spell.find_by(name: 'Wildshape')
+      PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+    end
+
+
+    classSpellList = Spell.where("spell_type = '#{self.class_type.magic_type}'")
+    spells_to_prepare = []
+
+    while (spells_to_prepare.uniq.length < num_prepared_spells)
+      spells_to_prepare = spells_to_prepare.uniq
+      spells_to_prepare.push(classSpellList.sample)
+    end
+
+    spells_to_prepare.each do |spell|
+      PreparedSpell.create(character_id: self.id, spell_id: spell.id)
+    end
+
+    # self.spells = 
   end
 end

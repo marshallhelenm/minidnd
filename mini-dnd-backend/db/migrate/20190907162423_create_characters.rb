@@ -21,6 +21,8 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :level
       t.integer :xp
 
+      t.integer :spell_slots
+
       t.timestamps
     end
   end

@@ -32,6 +32,8 @@ class CharactersController < ApplicationController
     def create
         # byebug
         @char = Character.new(char_params)
+        @char.level = 1
+        @char.xp = 0
         assignStats(@char)
         @char.save
         redirect_to @char
@@ -45,8 +47,6 @@ class CharactersController < ApplicationController
     end
     
     def assignStats(char)
-        char.level = 1
-        char.xp = 0
         char.calculateStats
         char.maxHP
     end

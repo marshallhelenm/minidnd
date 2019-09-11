@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_180101) do
+ActiveRecord::Schema.define(version: 2019_09_11_193051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_180101) do
     t.integer "hp"
     t.integer "level"
     t.integer "xp"
+    t.integer "spell_slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["class_type_id"], name: "index_characters_on_class_type_id"
@@ -59,6 +60,15 @@ ActiveRecord::Schema.define(version: 2019_09_11_180101) do
   create_table "class_types", force: :cascade do |t|
     t.string "name"
     t.string "sub_type"
+    t.string "caster_type"
+    t.string "magic_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prepared_spells", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "spell_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
