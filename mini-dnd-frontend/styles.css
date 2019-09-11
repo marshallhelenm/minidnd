@@ -19,3 +19,7 @@
 #side-menu{
     flex-direction: column;
 }
+
+#createCharacter{
+    flex-direction: column;
+}

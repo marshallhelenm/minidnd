@@ -16,6 +16,7 @@ function loadLogIn(){
 
     let field = document.createElement('input')
     field.setAttribute('id', 'loginName')
+    field.placeholder = 'Username'
     div.appendChild(field)
 
     let btn = document.createElement('button')
@@ -154,7 +155,10 @@ function submitNewCharacter(e){
         })
     })
         .then(response => response.json()) 
-        .then(json => displayStats(json))
+        .then(json => {
+        addOptionToCharacterDropdown(json.character.stats)
+        displayStats(json.character)
+        })
         
     loadCharSheet()
 }

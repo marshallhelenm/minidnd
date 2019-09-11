@@ -48,7 +48,7 @@ function selectChar(e) {
         loadCharSheet()
         fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
-        .then(displayStats)
+        .then(json => displayStats(json.character))
     }
 }
 
@@ -61,28 +61,31 @@ function charDropDown(charDrop) { //generate character drop down menu
             let opt;
             let charDrop = document.getElementById('selectChar')
                 opt = document.createElement('button')
-                let inDiv = document.createElement('div')
-                inDiv.textContent = 'New Character'
-                opt.appendChild(inDiv)
-                
+                opt.textContent = 'New Character'
                 opt.classList.add('dropdown-item')
                 opt.setAttribute('type', 'button')
                 opt.setAttribute('value', 'select-new-char')
-                opt.addEventListener('click', event => selectChar)
+                opt.addEventListener('click', event => selectChar())
                 charDrop.appendChild(opt)
 
             for (let i=0; i < characters.length; i++){
-                console.log('drop down: '+characters[i].name)
-                opt = document.createElement('button')
-                inDiv = document.createElement('div')
-                inDiv.textContent = characters[i].name
-                opt.addEventListener('click', event => selectChar)
-                opt.appendChild(inDiv)
-
-                opt.classList.add('dropdown-item')
-                opt.setAttribute('type', 'button')
-                opt.setAttribute('value', characters[i].id)
-                charDrop.appendChild(opt)
+                addOptionToCharacterDropdown(characters[i])
             }
         })
+}
+
+//called when new character is made
+function addOptionToCharacterDropdown(character){
+    console.log('character.name')
+    console.log(character)
+    console.log(character.name)
+    let charDrop = document.getElementById('selectChar')
+    let opt = document.createElement('button')
+    opt.addEventListener('click', event => selectChar(event))
+    opt.innerText = character.name
+    opt.setAttribute('value', character.id)
+    opt.setAttribute('selected', 'selected')
+    opt.setAttribute('type', 'button')
+    opt.classList.add('dropdown-item')
+    charDrop.appendChild(opt)
 }
