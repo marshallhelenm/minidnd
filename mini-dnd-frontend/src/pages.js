@@ -124,6 +124,7 @@ function loadRaces(){
         }
     })
 }
+
 function loadClasses(){
     console.log('loading classes')
     let classList = document.getElementById("selectClass")
@@ -138,7 +139,6 @@ function loadClasses(){
         }
     })
 }
-
 
 function submitNewCharacter(e){
     console.log('submitting new character')
@@ -166,7 +166,6 @@ function submitNewCharacter(e){
         
     loadCharSheet()
 }
-
 
 function loadCharSheet() {
     clearPage()
@@ -319,6 +318,21 @@ function loadCharSheet() {
     raceAb.setAttribute('id', 'race_abilities')
     abilities.appendChild(raceAb)
 
-    
+    let editBtn = document.createElement('button')
+    editBtn.setAttribute('id', 'edit-char')
+    editBtn.classList.add('btn')
+    editBtn.classList.add('btn-outline-secondary')
+    editBtn.classList.add('btn-sm')
+    editBtn.textContent = 'Edit Character'
+    editBtn.onclick = event => editChar(event)
+    bottom.appendChild(editBtn)
 
+    let delBtn = document.createElement('button')
+    delBtn.setAttribute('id', 'del-char')
+    delBtn.classList.add('btn')
+    delBtn.classList.add('btn-outline-danger')
+    delBtn.classList.add('btn-sm')
+    delBtn.textContent = 'Delete Character'
+    delBtn.onclick = event => confirmDelete(event)
+    bottom.appendChild(delBtn)
 }
