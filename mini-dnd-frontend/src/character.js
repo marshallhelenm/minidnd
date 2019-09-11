@@ -39,10 +39,11 @@ function editChar(e) {
     console.log("Changin' things up.")
     fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
-        .then(json => loadEditSheet(json.character))
+        .then(character => loadEditSheet(character))
 }
 
 function loadEditSheet(char) {   
+    console.log('editsheet', char)
     //creates edit form, with default values being the existing characters info
     //submit changes button onclick = submitCharChanges(char)
     console.log('editsheet loaded:', char)
@@ -112,9 +113,9 @@ function loadEditSheet(char) {
     
     let submitBtn = document.createElement('button')
     submitBtn.setAttribute('id', 'edit-character')
-    submitBtn.setAttribute('value', char.stats.id)
+    submitBtn.setAttribute('value', char.id)
     submitBtn.onclick = event => {
-        submitCharChanges(char.stats)
+        submitCharChanges(char)
     }
     submitBtn.textContent = 'Submit Changes'
 
