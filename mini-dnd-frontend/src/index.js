@@ -11,7 +11,6 @@ function main(){
 function loggedIn() { //checks if user is logged in or not and if they have a character and renders the appropriate page
     if (localStorage.getItem('user_id') != 'null'){ //if user is logged in, grab character info
 
-        console.log('logging in user '+localStorage.getItem('user_id'))
         fetch(BASE_URL+'/get_user_data',{
             method: 'POST',
             headers:{

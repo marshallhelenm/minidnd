@@ -286,6 +286,15 @@ function loadCharSheet() {
     spells.setAttribute('id','spells')
     bottom.appendChild(spells)
 
+    let restBtn = document.createElement('button')
+    restBtn.classList.add('btn')
+    restBtn.classList.add('btn-outline-secondary')
+    restBtn.classList.add('btn-sm')
+    restBtn.setAttribute('data-toggle','modal')
+    restBtn.setAttribute('data-target','#restModal')
+    restBtn.innerText = 'Return to Town'
+    bottom.appendChild(restBtn)
+
     let editBtn = document.createElement('button')
     editBtn.setAttribute('id', 'edit-char')
     editBtn.classList.add('btn')

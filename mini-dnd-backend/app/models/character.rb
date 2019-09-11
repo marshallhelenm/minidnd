@@ -259,6 +259,6 @@ class Character < ApplicationRecord
       PreparedSpell.create(character_id: self.id, spell_id: spell.id)
     end
 
-    # self.spells = 
+    self.save
   end
 end

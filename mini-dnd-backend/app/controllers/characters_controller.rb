@@ -55,12 +55,13 @@ class CharactersController < ApplicationController
     private
 
     def char_params
-        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :initiative, :description)
+        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :spell_slots, :description)
     end
     
     def assignStats(char)
         char.calculateStats
         char.maxHP
+        char.prepareSpells
     end
 
 end    

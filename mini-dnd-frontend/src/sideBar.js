@@ -76,9 +76,6 @@ function charDropDown(charDrop) { //generate character drop down menu
 
 //called when new character is made
 function addOptionToCharacterDropdown(character){
-    console.log('character.name')
-    console.log(character)
-    console.log(character.name)
     let charDrop = document.getElementById('selectChar')
     let opt = document.createElement('button')
     opt.addEventListener('click', event => selectChar(event))
