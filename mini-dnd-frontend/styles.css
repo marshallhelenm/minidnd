@@ -5,13 +5,13 @@
 
 #side-bar{
     border: solid;
-
+    height: 100vh;
+    
+    
 }
 
 #left{
-
-    top: 0;
-    bottom: 0;
+    min-width: 200px;
 }
 
 #logo{
@@ -19,12 +19,13 @@
 }
 
 #credits{
-    /* justify-content: flex-end; */
-    /* float: right; */
+    /* align-self: flex-end; */
+    
 }
 
 #side-menu{
     flex-direction: column;
+    max-width: 100%;
 }
 
 #charForm{
@@ -37,11 +38,13 @@
 
 #screen{
     padding: 0;
+    
 }
 
 .no-gutters {
     margin-right: 0;
     margin-left: 0;
+    
   
     > .col,
     > [class*="col-"] {
