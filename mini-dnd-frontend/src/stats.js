@@ -33,6 +33,7 @@ function displayStats(char) {
     document.getElementById('hp').innerText += ' ' + char.hp + '/' + char.max_hp
     attackBox(char)
     abilitiesBox(char)
+    spellsBox(char)
 
     //edit and delete buttons
     let delBtn = document.getElementById('del-char')
@@ -99,6 +100,9 @@ function abilitiesBox(char){
     }
 }
 
+function spellsBox(char){
+    
+}
 
 
 

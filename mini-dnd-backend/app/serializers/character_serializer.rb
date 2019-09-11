@@ -1,5 +1,5 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id, :name, :level,
+  attributes :id, :name, :level, :description,
   :hp, :armor, :weapon, 
   :athletics, :subterfuge, :lore, 
   :physical_save, :magic_save, 
