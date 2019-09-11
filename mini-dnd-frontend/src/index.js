@@ -28,10 +28,10 @@ function loggedIn() { //checks if user is logged in or not and if they have a ch
             console.log(json)
             if(json.hasCharacter == 'true'){// if they have a character, render it
                 console.log('get char renderer working')
-                console.log(`render character ${json.character.id}`)
+                console.log(`render character ${json.id}`)
                 // render character
-                console.log(json.character)
-                displayStats(json.character)
+                console.log(json)
+                displayStats(json)
             } else { // if they don't have a character, send them to the character creator
                 loadCharCreator()
             }
