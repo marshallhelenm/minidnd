@@ -38,7 +38,7 @@ function selectChar(e) {
         loadCharSheet()
         fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
-        .then(displayStats)
+        .then(json => displayStats(json.character))
     }
 }
 

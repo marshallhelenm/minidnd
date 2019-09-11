@@ -15,9 +15,10 @@ class CharactersController < ApplicationController
     end
 
     def create
-        char = Character.new(char_params)
-        assignStats(char)
-        char.save
+        @char = Character.new(char_params)
+        assignStats(@char)
+        @char.save
+        redirect_to @char
     end
 
 
