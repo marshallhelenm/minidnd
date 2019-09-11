@@ -1,3 +1,3 @@
 class RaceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :abilities
+  attributes :id, :name, :race_abilities
 end

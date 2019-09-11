@@ -32,7 +32,7 @@ function displayStats(char) {
     document.getElementById('ac').innerText += ' ' + char.stats.armor_class
     document.getElementById('hp').innerText += ' ' + char.stats.hp + '/' + char.stats.max_hp
     attackBox(char)
-    //abilitiesBox(char)
+    abilitiesBox(char)
 }
 
 function attackBox(char) {
@@ -75,21 +75,18 @@ function writeNumAttacks(char){
 }
 
 function abilitiesBox(char){
-    let box = document.getElementById('abilities')
-    let allAbilities = Abilities.all
-    let ab;
-    let classDiv = document.getElementById('class_abilities')
-    let raceDiv = document.getElementById('race_abilities')
+    let abList = document.getElementById('abilities')
+
+    while (abList.firstChild){
+        abList.removeChild(abList.firstChild)
+    }
+
+    let allAbilities = char.abilities
+
     for (let i = 0; i < allAbilities.length; i++){
-        if (allAbilities[i].race_id == char.race_id) {
-            ab = document.createElement('p')
-            ab.innerText = allAbilities[i].description
-            raceDiv.appendChild(ab)
-        } else if (allAbilities[i].class_type_id == char.class_type_id) {
-            ab = document.createElement('p')
-            ab.innerText = allAbilities[i].description
-            classDiv.appendChild(ab)
-        }
+        let ab = document.createElement('p')
+        ab.innerText = allAbilities[i].description
+        abList.appendChild(ab)
     }
 }
 

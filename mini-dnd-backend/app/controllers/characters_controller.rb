@@ -2,10 +2,24 @@ class CharactersController < ApplicationController
 
     # index, show, new, create, edit, update, delete
     def show
+
         characterStats = Character.find(params[:id])
-        char = {stats: characterStats, 
-                race: characterStats.race, 
-                class_type: characterStats.class_type}
+        @race = characterStats.race
+        @class_type = characterStats.class_type
+        @abilityList = []
+        @race.race_abilities.each do |ability|
+            @abilityList.push(ability)
+        end
+        @class_type.class_type_abilities.each do |ability|
+            @abilityList.push(ability)
+        end
+
+        char = {hasCharacter: 'true',
+                stats: characterStats, 
+                race: @race, 
+                class_type: @class_type,
+                abilities: @abilityList
+                }
         render json: {character: char}
     end
 
@@ -16,6 +30,7 @@ class CharactersController < ApplicationController
     end
 
     def create
+        # byebug
         @char = Character.new(char_params)
         assignStats(@char)
         @char.save

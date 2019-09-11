@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_173844) do
+ActiveRecord::Schema.define(version: 2019_09_11_180101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "abilities", force: :cascade do |t|
-    t.integer "race_id", default: 0
-    t.integer "class_type_id", default: 0
-    t.integer "character_id"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "char_spells", force: :cascade do |t|
     t.integer "character_id"
@@ -39,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.bigint "race_id"
     t.string "weapon"
     t.string "armor"
+    t.string "description", default: "A brave (or foolish) adventurer!"
     t.integer "armor_class"
     t.integer "athletics"
     t.integer "subterfuge"
@@ -57,9 +49,23 @@ ActiveRecord::Schema.define(version: 2019_09_09_173844) do
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
+  create_table "class_type_abilities", force: :cascade do |t|
+    t.integer "class_type_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "class_types", force: :cascade do |t|
     t.string "name"
     t.string "sub_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "race_abilities", force: :cascade do |t|
+    t.integer "race_id"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

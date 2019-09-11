@@ -299,22 +299,14 @@ function loadCharSheet() {
     let abilities = document.createElement('div')
     bottom.appendChild(abilities)
 
-    let classAb = document.createElement('span')
-    classAb.setAttribute('id', 'class_abilities')
-    abilities.appendChild(classAb)
 
     let classAbh3 = document.createElement('h3')
-    classAbh3.textContent = 'Class Abilities:'
+    classAbh3.textContent = 'Abilities:'
     abilities.appendChild(classAbh3)
 
-    let raceAbh3 = document.createElement('h3')
-    raceAbh3.textContent = 'Racial Abilities:'
-    abilities.appendChild(raceAbh3)
-
-    let raceAb = document.createElement('span')
-    raceAb.setAttribute('id', 'race_abilities')
-    abilities.appendChild(raceAb)
-
+    let classAb = document.createElement('ul')
+    classAb.setAttribute('id', 'abilities')
+    abilities.appendChild(classAb)
     
 
 }

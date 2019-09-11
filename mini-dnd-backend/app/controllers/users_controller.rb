@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     def show
         user = User.find(params[:id].to_i)
+        # byebug
         charactersList = []
         user.characters.each do |character|
             charactersList.push({ id: character.id, name: character.name,})
@@ -15,8 +16,7 @@ class UsersController < ApplicationController
         if (!!user.characters.first)
             @character = user.characters.first
             # byebug
-            characterData = {stats: @character, race: @character.race, class_type: @character.class_type}
-            render json: {hasCharacter: 'true', character: characterData}
+            redirect_to @character
         else
             # byebug
             render json: {hasCharacter: 'false'}

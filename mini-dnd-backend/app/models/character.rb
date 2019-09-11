@@ -2,6 +2,8 @@ class Character < ApplicationRecord
   belongs_to :user
   belongs_to :class_type
   belongs_to :race
+  has_many :race_abilities, through: :race
+  has_many :class_type_abilities, through: :class_type
 
   def mv
     case (self.armor)
