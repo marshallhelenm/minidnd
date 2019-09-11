@@ -12,7 +12,17 @@ function loadSideBar() {
         let btn = document.getElementById('log-out-btn')
         btn.addEventListener('click', event => {
         logOut()
-    })
+        })
+
+        let rulesBtn = document.getElementById('rules-btn')
+        rulesBtn.addEventListener('click', event => {
+            event.preventDefault()
+            clearPage()
+            let p = document.createElement('h2')
+            p.textContent = 'Under Construction'
+            let page = document.getElementById('page')
+            page.appendChild(p)
+        })
     }
     
 }
@@ -50,14 +60,27 @@ function charDropDown(charDrop) { //generate character drop down menu
             let characters = characterList.characters
             let opt;
             let charDrop = document.getElementById('selectChar')
-                opt = document.createElement('option')
-                opt.innerText = 'New Character'
+                opt = document.createElement('button')
+                let inDiv = document.createElement('div')
+                inDiv.textContent = 'New Character'
+                opt.appendChild(inDiv)
+                
+                opt.classList.add('dropdown-item')
+                opt.setAttribute('type', 'button')
                 opt.setAttribute('value', 'select-new-char')
+                opt.addEventListener('click', event => selectChar)
                 charDrop.appendChild(opt)
+
             for (let i=0; i < characters.length; i++){
                 console.log('drop down: '+characters[i].name)
-                opt = document.createElement('option')
-                opt.innerText = characters[i].name
+                opt = document.createElement('button')
+                inDiv = document.createElement('div')
+                inDiv.textContent = characters[i].name
+                opt.addEventListener('click', event => selectChar)
+                opt.appendChild(inDiv)
+
+                opt.classList.add('dropdown-item')
+                opt.setAttribute('type', 'button')
                 opt.setAttribute('value', characters[i].id)
                 charDrop.appendChild(opt)
             }

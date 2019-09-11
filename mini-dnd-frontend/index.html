@@ -17,16 +17,23 @@
     <!-- Side Bar -->
     <div id='screen' class='row'>
       
-      <nav id='side-bar' class='nav justify-content-center'>
-        <h1>Bite Size DnD</h1>
+      <nav id='side-bar' class='nav flex-column bg-dark'>
+          <h1 id='logo' class='nav-item text-light'>Bite Size DnD</h1>
         <div id='side-logo' class="nav-item"></div>
         <div id='side-menu' class="nav-item">
-          <select id='selectChar'>
-            <option>Select Character</option>
-          </select>
-          <button id='log-out-btn'>Log Out</button> <!-- style to no display when not logged in -->
+
+          <div class='nav-item btn-group dropdown'>
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select Character
+              </button>
+                <div class="dropdown-menu" id='selectChar'>
+                  <!-- things get dynamically added here -->
+              </div>
+          </div>
+          <button id='log-out-btn' class='nav-item btn-secondary'>Log Out</button>
+          <button id='rules-btn' class='nav-item btn-secondary'>Rules</button>
         </div>
-        <p id='credits' class="nav-item">Nick Dunlap & Helen Marshall 2019</p>
+        <p id='credits' class="nav-item text-light">Nick Dunlap & Helen Marshall 2019</p>
       </nav>
       
       <div id='page'>

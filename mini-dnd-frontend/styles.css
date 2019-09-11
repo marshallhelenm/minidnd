@@ -4,12 +4,16 @@
 
 #side-bar{
     border: solid;
-    flex-direction: column;
     margin-left: 1.5%;
 }
 
+#logo{
+    justify-content: flex-start;
+}
+
 #credits{
-    
+    /* justify-content: flex-end; */
+    /* float: right; */
 }
 
 #side-menu{
