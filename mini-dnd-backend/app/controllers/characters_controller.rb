@@ -4,26 +4,26 @@ class CharactersController < ApplicationController
     def show
 
         characterStats = Character.find(params[:id])
-        @race = characterStats.race
-        @class_type = characterStats.class_type
-        @abilityList = []
-        @race.race_abilities.each do |ability|
-            @abilityList.push(ability)
-        end
-        @class_type.class_type_abilities.each do |ability|
-            @abilityList.push(ability)
-        end
+        render :json => characterStats
+        # @race = characterStats.race
+        # @class_type = characterStats.class_type
+        # @abilityList = []
+        # @race.race_abilities.each do |ability|
+        #     @abilityList.push(ability)
+        # end
+        # @class_type.class_type_abilities.each do |ability|
+        #     @abilityList.push(ability)
+        # end
 
-        char = {
-                stats: characterStats, 
-                race: @race, 
-                class_type: @class_type,
-                abilities: @abilityList
-                }
-        render json: {hasCharacter: 'true', character: char}
+        # char = {
+        #         stats: characterStats, 
+        #         race: @race, 
+        #         class_type: @class_type,
+        #         abilities: @abilityList
+        #         }
+        # render json: {hasCharacter: 'true', character: char}
     end
 
-    
     
     def new
         
@@ -36,14 +36,26 @@ class CharactersController < ApplicationController
         @char.xp = 0
         assignStats(@char)
         @char.save
-        redirect_to @char
+        render :json => @char
+    end
+    
+    def edit
+    end
+
+    def update
+        @char = Character.find(params[:id])
+        @char.update(char_params)
+        @char.armor_class = @char.armorClass
+        @char.save
+        render :json => @char
+        
     end
 
 
     private
 
     def char_params
-        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :initiative)
+        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :initiative, :description)
     end
     
     def assignStats(char)

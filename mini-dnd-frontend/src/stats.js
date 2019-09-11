@@ -3,7 +3,6 @@
 
 
 function displayStats(char) {
-    console.log(char)
     loadCharSheet() //contains clearPage
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
 

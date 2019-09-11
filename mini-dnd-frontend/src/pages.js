@@ -45,6 +45,11 @@ function loadCharCreator() {
     input.setAttribute('placeholder', 'Character Name')
     input.setAttribute('type', 'text')
     input.setAttribute('id', 'selectName')
+
+    let charDescrip = document.createElement('textarea')
+    charDescrip.setAttribute('placeholder', 'A brave (or stupid) adventurer!')
+    charDescrip.setAttribute('type', 'textarea')
+    charDescrip.setAttribute('id', 'charDescrip')
     
     let raceMenu = document.createElement('select')
     raceMenu.setAttribute('id', 'selectRace')
@@ -100,6 +105,7 @@ function loadCharCreator() {
 
     
     charForm.appendChild(input)
+    charForm.appendChild(charDescrip)
     charForm.appendChild(armorMenu)
     charForm.appendChild(weaponMenu)
     charForm.appendChild(raceMenu)
@@ -138,33 +144,6 @@ function loadClasses(){
             classList.appendChild(option)
         }
     })
-}
-
-function submitNewCharacter(e){
-    console.log('submitting new character')
-
-    fetch(BASE_URL+'/characters',{
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json',
-            "Accept":   'application/json'
-        },
-        body: JSON.stringify({ //:name, :user, :class_type, :race, :weapon, :armor
-            'name' : document.getElementById('selectName').value,
-            'race_id' : document.getElementById('selectRace').value,
-            'user_id' : localStorage.getItem('user_id'),
-            'class_type_id' : document.getElementById('selectClass').value,
-            'weapon' : document.getElementById('selectWeapon').value,
-            'armor' : document.getElementById('selectArmor').value
-        })
-    })
-        .then(response => response.json()) 
-        .then(json => {
-        addOptionToCharacterDropdown(json.character.stats)
-        displayStats(json.character)
-        })
-        
-    loadCharSheet()
 }
 
 function loadCharSheet() {
