@@ -282,6 +282,10 @@ function loadCharSheet() {
     inventory.setAttribute('id', 'abilities')
     bottom.appendChild(abilities)
 
+    let spells = document.createElement('div')
+    spells.setAttribute('id','spells')
+    bottom.appendChild(spells)
+
     let editBtn = document.createElement('button')
     editBtn.setAttribute('id', 'edit-char')
     editBtn.classList.add('btn')
