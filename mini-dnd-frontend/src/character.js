@@ -202,3 +202,25 @@ function submitNewCharacter(e){
         
     loadCharSheet()
 }
+
+
+function useSpellSlot(char){
+    console.log('Using slot number ',char.spell_slots)
+    char.spell_slots--
+    fetch(BASE_URL+'/characters/'+char.id,{
+        method: 'PATCH',
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(char)
+    })
+    console.log('Down to slot ',char.spell_slots)
+
+    let slots = document.getElementById('slots')
+    if (char.spell_slots > 0){
+        slots.innerText = 'Remaining Spell Slots: ' + char.spell_slots
+    } else{
+        slots.textContent = 'No more spell slots!'
+        document.getElementById('cast-button').style.display = 'none'
+    }
+}

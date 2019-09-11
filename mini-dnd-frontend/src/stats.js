@@ -13,6 +13,7 @@ function displayStats(char) {
 
     document.getElementById('char_description').innerText = char.description
 
+
     //saves
     document.getElementById('phys_save').innerText += ' +' + char.physical_save
 
@@ -91,6 +92,10 @@ function abilitiesBox(char){
         abList.removeChild(abList.firstChild)
     }
 
+    let title = document.createElement('h3')
+    title.textContent = 'Abilities'
+    abList.appendChild(title)
+
     let allAbilities = [char.class_type_abilities,char.race_abilities].flat()
     console.log('ALL ABILITIES',allAbilities)
     for (let i = 0; i < allAbilities.length; i++){
@@ -101,7 +106,47 @@ function abilitiesBox(char){
 }
 
 function spellsBox(char){
+    if (char.class_type.caster_type == 'none'){
+        return
+    }   
+
+    let spellBox = document.getElementById('spells')
+
+    let title = document.createElement('h3')
+    title.textContent = 'Spells'
+    spellBox.appendChild(title)
+
+    let slotBar = document.createElement('span')
+    spellBox.appendChild(slotBar)
+
+    let slots = document.createElement('p')
+    slots.setAttribute('id','slots')
+    if (char.spell_slots > 0){
+        slots.textContent = 'Remaining Spell Slots: ' + char.spell_slots
+
+    } else{
+        slots.textContent = 'No more spell slots'
+    }
+    slotBar.appendChild(slots)
+
+    let castBtn = document.createElement('button')
+    castBtn.textContent = 'Cast Spell'
+    castBtn.setAttribute('id','cast-button')
+    castBtn.addEventListener('click',() =>{useSpellSlot(char)})
+    slotBar.appendChild(castBtn)
     
+    if (char.spell_slots == 0){
+        castBtn.style.display = 'none'
+    } 
+
+    let preparedSpells = document.createElement('ul')
+    console.log('spells ',char.spells)
+    for(let spell of char.spells){
+        let spellListing = document.createElement('li')
+        spellListing.textContent = spell.name +": " + spell.description
+        preparedSpells.appendChild(spellListing)
+    }
+    spellBox.appendChild(preparedSpells)
 }
 
 
