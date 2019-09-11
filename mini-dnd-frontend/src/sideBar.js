@@ -84,8 +84,15 @@ function addOptionToCharacterDropdown(character){
     opt.addEventListener('click', event => selectChar(event))
     opt.innerText = character.name
     opt.setAttribute('value', character.id)
+    opt.setAttribute('id', `char-${character.id}`)
     opt.setAttribute('selected', 'selected')
     opt.setAttribute('type', 'button')
     opt.classList.add('dropdown-item')
     charDrop.appendChild(opt)
+}
+
+//called when character is updated
+function editCharacterInDropdown(character){
+    let opt = document.getElementById(`char-${character.id}`)
+    opt.innerText = character.name
 }

@@ -110,7 +110,7 @@ Spell.create(spell_type: 'Nature', name: 'Stone Shape', description: 'Reshape an
 Spell.create(spell_type: 'Nature', name: 'Wall of Thorns', description: 'Create a wall of thorny bushes. Creatures that move through take (L/2)d4 damage.')
 Spell.create(spell_type: 'Nature', name: 'Water Breathing', description: 'Grant up to (L) creatures the ability to breath underwater for (L) hours.')
 Spell.create(spell_type: 'Druid', name: 'Wildshape', description: 'Take on the form of an animal for (L) hours. You may end this spell at will.')
-puts ('Successfully seeded nature spellsl!')
+puts ('Successfully seeded nature spells!')
 
 
 Spell.create(spell_type: 'Arcane', name: 'Burning Hands', description: '')
@@ -135,9 +135,6 @@ Spell.create(spell_type: 'Arcane', name: 'Unseen Servant', description: 'Creates
 Spell.create(spell_type: 'Arcane', name: 'Wall of Force', description: 'Create (L) 5x5’ square(s) of force. They cannot be passed through. Lasts (L) rounds.')
 puts ('Successfully seeded arcane spells!')
 
-User.create(username: 'Helen')
-User.create(username: 'Nick')
 
-Character.create(name: 'Maiele Glynydark', class_type_id: 3, race_id: 4, user_id: 1, max_hp: 8, armor: 12, weapon: 'light', athletics: 8, subterfuge: 8, lore: 8, physical_save: 8, magic_save: 10, level: 1)
 
 
