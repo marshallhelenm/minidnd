@@ -4,6 +4,7 @@
 
 function displayStats(char) {
     loadCharSheet() //contains clearPage
+    console.log("SDFOSDJFOISDJFOISD", char)
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
 
     document.getElementById('race').innerText = `Race: ${char.race.name}`
@@ -47,6 +48,8 @@ function attackBox(char) {
     numAtk.textContent = writeNumAttacks(char)
     box.appendChild(numAtk)
     let weapon = document.createElement('h3')
+
+    console.log(char.weapon)
     weapon.textContent = `${capitalize(char.weapon)} Weapon`
     box.appendChild(weapon)
     let atk = document.createElement('button')
@@ -66,17 +69,17 @@ function writeNumAttacks(char){
         console.log('warrior bonus attacks')
         number += (char.level-1)/3
     }
-
-    text = number + 'Attack'
+    
+    text = number + ' Attack'
     if (number > 1) {text += 's'}
 
-    if (char.class_type.name == 'Warlock' && char.race.name == 'Dragon'){
+    if (char.class_type.name == 'Warlock' && char.race.name == 'Dragonborn'){
       text = 'Pick 2: ' + text + ", Eldritch Blast, Breath Attack"
       return text   
-    } 
-    if (char.class_type.name == 'Warlock'){text += ' + Eldritch Blast'}
-    if (char.race.name == 'Dragonborn'){text += ' + Breath Attack'}
-    
+    } else{
+        if (char.class_type.name == 'Warlock'){text += ' + Eldritch Blast'}
+        if (char.race.name == 'Dragonborn'){text += ' + Breath Attack'}
+    }
     return text
 }
 
@@ -87,8 +90,8 @@ function abilitiesBox(char){
         abList.removeChild(abList.firstChild)
     }
 
-    let allAbilities = char.abilities
-
+    let allAbilities = [char.class_type_abilities,char.race_abilities].flat()
+    console.log('ALL ABILITIES',allAbilities)
     for (let i = 0; i < allAbilities.length; i++){
         let ab = document.createElement('p')
         ab.innerText = allAbilities[i].description

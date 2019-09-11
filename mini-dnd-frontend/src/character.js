@@ -177,8 +177,8 @@ function submitNewCharacter(e){
     })
         .then(response => response.json()) 
         .then(json => {
-        addOptionToCharacterDropdown(json.character.stats)
-        displayStats(json.character)
+        addOptionToCharacterDropdown(json)
+        displayStats(json)
         })
         
     loadCharSheet()
