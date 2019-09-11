@@ -63,3 +63,17 @@ function charDropDown(charDrop) { //generate character drop down menu
             }
         })
 }
+
+//called when new character is made
+function addOptionToCharacterDropdown(character){
+    console.log('character.name')
+    console.log(character)
+    console.log(character.name)
+    let charDrop = document.getElementById('selectChar')
+    let opt = document.createElement('option')
+    opt.innerText = character.name
+    opt.setAttribute('value', character.id)
+    opt.setAttribute('selected', 'selected')
+    charDrop.appendChild(opt)
+    
+}

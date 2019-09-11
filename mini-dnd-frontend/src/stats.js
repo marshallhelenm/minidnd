@@ -37,13 +37,41 @@ function displayStats(char) {
 
 function attackBox(char) {
     let box = document.getElementById('attacks')
-    let numAtk = document.createElement('h3')
-    numAtk.textContent = `Number of Attacks: ${char.stats.attacks}`
+    let numAtk = document.createElement('p')
+    numAtk.textContent = writeNumAttacks(char)
+    box.appendChild(numAtk)
     let weapon = document.createElement('h3')
     weapon.textContent = `Weapon: ${char.stats.weapon}`
     box.appendChild(weapon)
     let atk = document.createElement('button')
     atk.textContent = '+ ' + char.stats.toHit
+}
+
+function writeNumAttacks(char){
+    let number = 1
+    let text = ''
+    if (char.stats.weapon == 'finesse'){
+        number++
+        if (char.class_type.name == 'Monk'){
+            number++
+        }
+    }
+    if (char.class_type.sub_type == 'Warrior'){
+        console.log('warrior bonus attacks')
+        number += (char.stats.level-1)/3
+    }
+
+    text = number + 'Attack'
+    if (number > 1) {text += 's'}
+
+    if (char.class_type.name == 'Warlock' && char.race.name == 'Dragon'){
+      text = 'Pick 2: ' + text + ", Eldritch Blast, Breath Attack"
+      return text   
+    } 
+    if (char.class_type.name == 'Warlock'){text += ' + Eldritch Blast'}
+    if (char.race.name == 'Dragonborn'){text += ' + Breath Attack'}
+    
+    return text
 }
 
 function abilitiesBox(char){
