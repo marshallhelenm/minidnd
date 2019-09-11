@@ -15,13 +15,18 @@ function confirmDelete(e){
     let confirm = document.createElement('button')
     confirm.setAttribute('value', event.target.value)
     confirm.onclick = event => deleteChar(event)
+    confirm.classList.add('close')
+    confirm.textContent = 'Delete'
+    confirm.onclick = event => deleteChar(event)
+    alert.appendChild(confirm)
     
     let dismiss = document.createElement('button')
-    
-
-    // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    // <span aria-hidden="true">&times;</span>
-
+    dismiss.setAttribute('type', 'button')
+    dismiss.setAttribute('data-dismiss', 'alert')
+    dismiss.setAttribute('aria-label', 'Close')
+    dismiss.classList.add('close')
+    dismiss.textContent = 'Cancel'
+    alert.appendChild(dismiss)
 
     let page = document.getElementById('page')
     page.appendChild(alert)
@@ -32,7 +37,7 @@ function deleteChar(e) {
     console.log("That's so sad!")
     console.log(event.target.value)
     // fetch(BASE_URL+`/characters/${event.target.value}`, {method: 'DELETE'})
-    // loggedIn()
+    loggedIn()
 }
 
 
