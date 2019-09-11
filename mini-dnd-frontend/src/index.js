@@ -70,3 +70,8 @@ function makeUN(event){ //logs you in or creates a username and logs you in
 function capitalize(string){
     return string.slice(0,1).toUpperCase() + string.slice(1)
 }
+
+function randomName() {
+    // scrape random name generator??????????   
+
+}

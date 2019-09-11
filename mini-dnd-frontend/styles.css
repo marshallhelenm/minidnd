@@ -3,48 +3,35 @@
     display: flex;
 }
 
+.vert{
+    flex-direction: column;
+    width: 100%;
+}
+
 #side-bar{
     border: solid;
-    height: 100vh;
-    
-    
-    
+    height: 100vh; 
 }
 
 #left{
     min-width: 200px;
 }
 
-#logo{
+/* #logo{
     justify-content: flex-start;
 }
 
 #credits{
-    /* align-self: flex-end; */
+    align-self: flex-end;
     
-}
+} */
 
 #side-menu{
     flex-direction: column;
     max-width: 100%;
 }
-
-#charForm{
-    flex-direction: column;
-}
-
-#createCharacter{
-    flex-wrap: row;
-    width: 100%;
-}
-
-#charSheet{
-    width: 100%;
-}
-
 #screen{
-    padding: 0;
-    
+    padding: 0; 
 }
 
 .no-gutters {

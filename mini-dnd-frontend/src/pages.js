@@ -31,34 +31,58 @@ function loadCharCreator() {
     clearPage() 
     let page = document.getElementById('page')
     let div = document.createElement('div')
+    div.classList.add('vert')
     div.setAttribute('id', 'createCharacter')
     let charForm = document.createElement('div')
     charForm.setAttribute('id', 'charForm')
+    charForm.classList.add('vert')
     page.appendChild(div)
-    
     
     let title =  document.createElement('h2')
     title.innerText = 'Create Character'
     div.appendChild(title)
+
     
-    let input = document.createElement('input')
-    input.setAttribute('placeholder', 'Character Name')
-    input.setAttribute('type', 'text')
-    input.setAttribute('id', 'selectName')
+    let name = document.createElement('input')
+    name.setAttribute('placeholder', 'Character Name')
+    // name.defaultValue = randomName()
+    name.setAttribute('type', 'text')
+    name.setAttribute('id', 'selectName')
+    name.classList.add('form-control')
+    let nameDiv = document.createElement('div')
+    nameDiv.classList.add('form-group')
+    nameDiv.appendChild(name)
 
     let charDescrip = document.createElement('textarea')
     charDescrip.setAttribute('placeholder', 'A brave (or stupid) adventurer!')
+    charDescrip.defaultValue = 'A brave (or stupid) adventurer!'
     charDescrip.setAttribute('type', 'textarea')
     charDescrip.setAttribute('id', 'charDescrip')
+    charDescrip.classList.add('form-control')
+    let descripDiv = document.createElement('div')
+    descripDiv.classList.add('form-group')
+    descripDiv.appendChild(charDescrip)
     
     let raceMenu = document.createElement('select')
     raceMenu.setAttribute('id', 'selectRace')
+    raceMenu.classList.add('form-control')
+    let raceMenuDiv = document.createElement('div')
+    raceMenuDiv.classList.add('form-group')
+    raceMenuDiv.appendChild(raceMenu)
     
     let classMenu = document.createElement('select')
     classMenu.setAttribute('id', 'selectClass')
+    classMenu.classList.add('form-control')
+    let classMenuDiv = document.createElement('div')
+    classMenuDiv.classList.add('form-group')
+    classMenuDiv.appendChild(classMenu)
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
+    weaponMenu.classList.add('form-control')
+    let weaponMenuDiv = document.createElement('div')
+    weaponMenuDiv.classList.add('form-group')
+    weaponMenuDiv.appendChild(weaponMenu)
     
     let finesse = document.createElement('option')
     finesse.setAttribute('value', 'finesse')
@@ -82,6 +106,10 @@ function loadCharCreator() {
     
     let armorMenu = document.createElement('select')
     armorMenu.setAttribute('id', 'selectArmor')
+    armorMenu.classList.add('form-control')
+    let armorMenuDiv = document.createElement('div')
+    armorMenuDiv.classList.add('form-group')
+    armorMenuDiv.appendChild(armorMenu)
     
     let light = document.createElement('option')
     light.setAttribute('value', 'light')
@@ -100,16 +128,18 @@ function loadCharCreator() {
     
     let submitBtn = document.createElement('button')
     submitBtn.setAttribute('id', 'submitNewCharacter')
+    submitBtn.classList.add('btn')
+    submitBtn.classList.add('btn-outline-success')
     submitBtn.onclick = submitNewCharacter
     submitBtn.textContent = 'Create Character'
 
     
-    charForm.appendChild(input)
+    charForm.appendChild(nameDiv)
     charForm.appendChild(charDescrip)
-    charForm.appendChild(armorMenu)
-    charForm.appendChild(weaponMenu)
-    charForm.appendChild(raceMenu)
-    charForm.appendChild(classMenu)
+    charForm.appendChild(raceMenuDiv)
+    charForm.appendChild(classMenuDiv)
+    charForm.appendChild(armorMenuDiv)
+    charForm.appendChild(weaponMenuDiv)
     charForm.appendChild(submitBtn)
     div.appendChild(charForm)
     loadRaces()
@@ -153,9 +183,12 @@ function loadCharSheet() {
     sheet.setAttribute('id', 'charSheet')
     let page = document.getElementById('page')
     page.appendChild(sheet)
+    sheet.classList.add('vert')
+
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
+    top.classList.add('vert')
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     sheet.appendChild(top)
