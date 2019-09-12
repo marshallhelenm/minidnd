@@ -49,7 +49,8 @@ class CharactersController < ApplicationController
         loot = params[:loot]
         bonus_xp = params[:loot]
         party_size = params[:loot]
-        @char.returnToSafety(loot,bonus_xp,party_size)
+        wizConfirm = params[:wizConfirm]
+        @char.returnToSafety(loot,bonus_xp,party_size,wizConfirm)
         @char = Character.find(params[:id])
         render :json => @char
     end

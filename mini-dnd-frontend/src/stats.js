@@ -3,8 +3,8 @@
 
 
 function displayStats(char) {
+        console.log('char in displayStats:', char)
     loadCharSheet() //contains clearPage
-    console.log("SDFOSDJFOISDJFOISD", char)
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
     document.getElementById('class').setAttribute('value',char.class_type.name)
 
@@ -13,8 +13,6 @@ function displayStats(char) {
     document.getElementById('char_name').innerText = char.name
 
     document.getElementById('char_description').innerText = char.description
-
-    console.log(char)
     document.getElementById('char_photo').setAttribute('src',char.img_url)
     //saves
     document.getElementById('phys_save').innerText += ' +' + char.physical_save
@@ -52,8 +50,6 @@ function attackBox(char) {
     numAtk.textContent = writeNumAttacks(char)
     box.appendChild(numAtk)
     let weapon = document.createElement('h3')
-
-    console.log(char.weapon)
     weapon.textContent = `${capitalize(char.weapon)} Weapon`
     box.appendChild(weapon)
     let atk = document.createElement('button')
@@ -99,7 +95,6 @@ function abilitiesBox(char){
     abList.appendChild(title)
 
     let allAbilities = [char.class_type_abilities,char.race_abilities].flat()
-    console.log('ALL ABILITIES',allAbilities)
     for (let i = 0; i < allAbilities.length; i++){
         let ab = document.createElement('p')
         ab.innerText = allAbilities[i].description
@@ -142,7 +137,6 @@ function spellsBox(char){
     } 
 
     let preparedSpells = document.createElement('ul')
-    console.log('spells ',char.spells)
     for(let spell of char.spells){
         let spellListing = document.createElement('li')
         spellListing.textContent = spell.name +": " + spell.description

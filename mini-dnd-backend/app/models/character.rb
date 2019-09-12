@@ -242,8 +242,8 @@ class Character < ApplicationRecord
     return num_prepared_spells
   end
 
-  def prepareSpells
-  
+  def prepareSpells(wizConfirm)
+    console.log('wizConfirm inside prepareSpells:', wizConfirm)
     #Number of Spell slots
     calculateSpellSlots
 
@@ -251,6 +251,7 @@ class Character < ApplicationRecord
     num_prepared_spells = calculateNumPreparedSpells
 
     #Prepare Spells
+
     self.spells = [] # spells currently prepared
 
     if(self.class_type.name == 'Cleric')
@@ -288,7 +289,7 @@ class Character < ApplicationRecord
     self.maxHP
   end
 
-  def returnToSafety(loot=0,bonus_xp=0,party_size=6)
+  def returnToSafety(loot=0,bonus_xp=0,party_size=6, wizConfirm)
     if loot == ''
       loot = 0
     end
@@ -316,7 +317,7 @@ class Character < ApplicationRecord
     end
 
     self.hp = self.max_hp
-    self.prepareSpells
+    self.prepareSpells(wizConfirm)
     self.save
         # byebug
   end

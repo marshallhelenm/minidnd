@@ -204,7 +204,6 @@ function loadClasses(){
 
 function loadCharSheet() {
     clearPage()
-    console.log('loading char sheet')
     let sheet = document.createElement('div')
     sheet.setAttribute('id', 'charSheet')
     let page = document.getElementById('page')
@@ -433,13 +432,24 @@ function loadCharSheet() {
 function showModal(event) {
     let restBtn = document.getElementById('rest-btn')
     restBtn.setAttribute('data-toggle','modal')
-    let isWiz = document.getElementById('class').value
-    console.log('isWiz', isWiz)
-    if (isWiz == 'Wizard'){
+
+    let isWiz = document.getElementById('class').getAttribute('value')
+
+    if (isWiz != 'Wizard'){
         let wizConfirm = document.getElementById('wiz')
         wizConfirm.style.display = 'none'
+    } else {
+        let wizConfirm = document.getElementById('wiz')
+        wizConfirm.style.display = 'flex'
+        wizConfirm.defaultValue = 'yes'
     }
+
+    let confirmRestBtn = document.getElementById('confirm-rest-button')
+    confirmRestBtn.addEventListener('click', returnToTown)
+
 }
+
+
 
 
 
