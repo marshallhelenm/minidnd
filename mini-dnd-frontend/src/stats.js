@@ -13,7 +13,8 @@ function displayStats(char) {
 
     document.getElementById('char_description').innerText = char.description
 
-
+    console.log(char)
+    document.getElementById('char_photo').setAttribute('src',char.img_url)
     //saves
     document.getElementById('phys_save').innerText += ' +' + char.physical_save
 

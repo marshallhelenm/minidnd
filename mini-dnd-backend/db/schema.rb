@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_193051) do
     t.string "weapon"
     t.string "armor"
     t.string "description", default: "A brave (or foolish) adventurer!"
-    t.string "img_url"
+    t.string "img_url", default: "https://media.wizards.com/2015/images/dnd/ClassSymb_Fighter.png"
     t.integer "armor_class"
     t.integer "athletics"
     t.integer "subterfuge"
