@@ -211,6 +211,14 @@ function loadCharSheet() {
     page.appendChild(sheet)
     sheet.classList.add('vert')
 
+    let charHeader = document.createElement('div')
+    charHeader.setAttribute('id', 'char-header')
+    charHeader.classList.add('horz')
+    let charBody = document.createElement('div')
+    charBody.setAttribute('id', 'char-body')
+    charBody.classList.add('vert')
+    sheet.appendChild(charHeader)
+    sheet.appendChild(charBody)
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
@@ -221,38 +229,61 @@ function loadCharSheet() {
     sheet.appendChild(top)
     sheet.appendChild(bottom)
 
-    let top1 = document.createElement('div')
-    top1.setAttribute('id', 'top-1')
-    top1.classList.add('top-item')
-    let top2 = document.createElement('div')
-    top2.setAttribute('id', 'top-2')
-    top2.classList.add('top-item')
-    let top3 = document.createElement('div')
-    top3.setAttribute('id', 'top-3')
-    top3.classList.add('top-item')
-    top.appendChild(top1)
-    top.appendChild(top2)
-    top.appendChild(top3)
+    let charBodyLeft = document.createElement('div')
+    charBodyLeft.setAttribute('id', 'char-body-left')
+    charBodyLeft.classList.add('top-item')
+    let charBodyCenter = document.createElement('div')
+    charBodyCenter.setAttribute('id', 'char-body-center')
+    charBodyCenter.classList.add('top-item')
+    let charBodyRight = document.createElement('div')
+    charBodyRight.setAttribute('id', 'char-body-right')
+    charBodyRight.classList.add('top-item')
+    top.appendChild(charBodyLeft)
+    top.appendChild(charBodyCenter)
+    top.appendChild(charBodyRight)
 
-    // top 1
+    // Char Header
+    let nameLevelSpan = document.createElement('span')
+    nameLevelSpan.setAttribute('id', 'nameLevelSpan')
+    nameLevelSpan.classList.add('vert')
+    nameLevelSpan.classList.add('vert-small')
+    charHeader.appendChild(nameLevelSpan)
+
+    let charName = document.createElement('h3')
+    charName.setAttribute('id', 'char_name')
+    nameLevelSpan.appendChild(charName)
+
+    let charLevelSpan = document.createElement('span')
+    charLevelSpan.setAttribute('id', 'level')
+    charLevelSpan.textContent = `Level: `
+    nameLevelSpan.appendChild(charLevelSpan)
+    
+    let classRaceXpSpan = document.createElement('span')
+    classRaceXpSpan.classList.add('vert')
+    classRaceXpSpan.classList.add('vert-small')
+    charHeader.appendChild(classRaceXpSpan)
+
     let classSpan = document.createElement('span')
     classSpan.setAttribute('id', 'class')
     classSpan.textContent = `Class: `
-    top1.appendChild(classSpan)
+    classRaceXpSpan.appendChild(classSpan)
 
     let raceSpan = document.createElement('span')
     raceSpan.setAttribute('id', 'race')
     raceSpan.textContent = `Race: `
-    top1.appendChild(raceSpan)
+    classRaceXpSpan.appendChild(raceSpan)
 
     let xpSpan = document.createElement('span')
     xpSpan.setAttribute('id', 'xp')
     xpSpan.textContent = `XP: `
-    top1.appendChild(xpSpan)
+    classRaceXpSpan.appendChild(xpSpan)
 
+    //Char Body Left
     let saveSpan = document.createElement('span')
     saveSpan.setAttribute('id', 'saves')
-    top1.appendChild(saveSpan)
+    saveSpan.classList.add('vert')
+    saveSpan.classList.add('vert-sidebar')
+    charBodyLeft.appendChild(saveSpan)
 
     let h3 = document.createElement('h3')
     h3.innerText = 'Saves: '
@@ -277,39 +308,54 @@ function loadCharSheet() {
     saveSpan.appendChild(init)
 
 
-    // top 2
+    // Char Body Center
 
     let img = document.createElement('img')
     img.setAttribute('src', '')
     img.setAttribute('id', 'char_photo')
-    top2.appendChild(img)
-
-    let charName = document.createElement('h3')
-    charName.setAttribute('id', 'char_name')
-    top2.appendChild(charName)
+    charBodyCenter.appendChild(img)
 
     let charDescrip = document.createElement('p')
     charDescrip.setAttribute('id', 'char_description')
-    top2.appendChild(charDescrip)
+    charBodyCenter.appendChild(charDescrip)
 
-    // top 3
+    let hpSpan = document.createElement('span')
+    hpSpan.setAttribute('id', 'hp-span')
+    charBodyCenter.appendChild(hpSpan)
+
+    let hpTitle = document.createElement('h4')
+    hpTitle.classList.add('hp-item')
+    hpTitle.textContent = `HP: `
+    hpSpan.appendChild(hpTitle)
+
+    let hpCurrent = document.createElement('input')
+    hpCurrent.classList.add('hp-item')
+    hpCurrent.setAttribute('id', 'hp')
+    hpCurrent.setAttribute('type','number')
+    hpCurrent.setAttribute('value',3)
+    hpSpan.appendChild(hpCurrent)
+
+    let hpMax = document.createElement('h4')
+    hpMax.classList.add('hp-item')
+    hpMax.textContent = `/`
+    hpSpan.appendChild(hpMax)
 
     let acBox = document.createElement('span')
     acBox.setAttribute('id', 'ac')
     acBox.textContent = `AC: `
-    top3.appendChild(acBox)
+    charBodyCenter.appendChild(acBox)
 
-    let hpBox = document.createElement('span')
-    hpBox.setAttribute('id', 'hp')
-    hpBox.textContent = `HP: `
-    top3.appendChild(hpBox)
+
+    // Char Body Right
 
     let skillSpan = document.createElement('span')
     skillSpan.setAttribute('id', 'skills')
-    top3.appendChild(skillSpan)
+    skillSpan.classList.add('vert')
+    skillSpan.classList.add('vert-sidebar')
+    charBodyRight.appendChild(skillSpan)
 
     let h3Skills = document.createElement('h3')
-    h3.innerText = 'Skills: '
+    h3Skills.innerText = 'Skills: '
     skillSpan.appendChild(h3Skills)
 
     let ath = document.createElement('button')
@@ -332,6 +378,9 @@ function loadCharSheet() {
 
 
     // Bottom
+    let weaponAbilitiesBox = document.createElement('span')
+    bottom.appendChild(weaponAbilitiesBox)
+
 
     let attacks = document.createElement('div')
     attacks.setAttribute('id', 'attacks')
