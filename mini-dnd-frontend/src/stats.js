@@ -6,6 +6,7 @@ function displayStats(char) {
     loadCharSheet() //contains clearPage
     console.log("SDFOSDJFOISDJFOISD", char)
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
+    document.getElementById('class').setAttribute('value',char.class_type.name)
 
     document.getElementById('race').innerText = `Race: ${char.race.name}`
 
