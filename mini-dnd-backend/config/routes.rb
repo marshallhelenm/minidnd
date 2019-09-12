@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'login', to: 'users#login'
   get 'logout', to: 'users#logout'
   post 'get_user_data', to: 'users#get_user_data'
+  post 'characters/:id/rest', to: 'characters#restAtTown'
   resources :class_types
   resources :races
   resources :users

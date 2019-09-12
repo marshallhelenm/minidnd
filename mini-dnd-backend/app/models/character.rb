@@ -193,7 +193,6 @@ class Character < ApplicationRecord
     self.physical_save = self.phys_save
     self.magic_save = self.mag_save
     self.initiative = self.getInitiative
-    self.prepareSpells
   end
 
   def prepareSpells
@@ -235,6 +234,7 @@ class Character < ApplicationRecord
 
     #Prepare Spells
     self.spells = []
+    self.save
 
     if(self.class_type.name == 'Cleric')
       spell = Spell.find_by(name: 'Turn Undead')
@@ -256,9 +256,57 @@ class Character < ApplicationRecord
     end
 
     spells_to_prepare.each do |spell|
-      PreparedSpell.create(character_id: self.id, spell_id: spell.id)
+      #PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+      self.spells << Spell.find(spell.id)
     end
 
     self.save
+  end
+
+
+  def levelUp
+    self.level = level + 1
+    self.calculateStats
+    self.maxHP
+  end
+
+  def returnToSafety(loot=0,bonus_xp=0,party_size=6)
+    if loot == ''
+      loot = 0
+    end
+    if bonus_xp == ''
+      bonus_xp = 0
+    end
+    if party_size == ''
+      party_size = 6
+    end
+    loot = loot.to_i
+    bonus_xp = bonus_xp.to_i
+    party_size = party_size.to_i
+        # byebug
+    total_revenue = loot 
+    share = total_revenue/party_size
+    profit = share - (self.level*10)
+    if (profit < 0)
+      profit = 0
+    end
+
+    self.xp += profit + bonus_xp
+    
+    if (self.xp >= xpToLevel(self.level))
+      self.levelUp
+    end
+
+    self.hp = self.max_hp
+    self.prepareSpells
+    self.save
+        # byebug
+  end
+
+  def xpToLevel(level)
+      if (level == 1)
+        return 100
+      end
+      return (level*100) + xpToLevel(level-1)
   end
 end

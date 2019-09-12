@@ -5,25 +5,7 @@ class CharactersController < ApplicationController
 
         characterStats = Character.find(params[:id])
         render :json => characterStats
-        # @race = characterStats.race
-        # @class_type = characterStats.class_type
-        # @abilityList = []
-        # @race.race_abilities.each do |ability|
-        #     @abilityList.push(ability)
-        # end
-        # @class_type.class_type_abilities.each do |ability|
-        #     @abilityList.push(ability)
-        # end
-
-        # char = {
-        #         stats: characterStats, 
-        #         race: @race, 
-        #         class_type: @class_type,
-        #         abilities: @abilityList
-        #         }
-        # render json: {hasCharacter: 'true', character: char}
     end
-
     
     def new
         
@@ -35,7 +17,9 @@ class CharactersController < ApplicationController
         @char.level = 1
         @char.xp = 0
         assignStats(@char)
+        @char.prepareSpells        
         @char.save
+
         render :json => @char
     end
     
@@ -51,6 +35,15 @@ class CharactersController < ApplicationController
         
     end
 
+    def restAtTown
+        @char = Character.find(params[:id])
+        loot = params[:loot]
+        bonus_xp = params[:loot]
+        party_size = params[:loot]
+        @char.returnToSafety(loot,bonus_xp,party_size)
+        @char = Character.find(params[:id])
+        render :json => @char
+    end
 
     private
 
@@ -61,7 +54,6 @@ class CharactersController < ApplicationController
     def assignStats(char)
         char.calculateStats
         char.maxHP
-        char.prepareSpells
     end
 
 end    
