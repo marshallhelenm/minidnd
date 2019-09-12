@@ -379,3 +379,6 @@ function loadCharSheet() {
     delBtn.onclick = event => confirmDelete(event)
     btnDiv.appendChild(delBtn)
 }
+
+
+

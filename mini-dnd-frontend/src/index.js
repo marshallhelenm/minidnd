@@ -58,10 +58,10 @@ function makeUN(event){ //logs you in or creates a username and logs you in
     })
     .then(response => response.json())
     .then(json => {
-        console.log(json.message)
-        localStorage.setItem('user_id',json.user_id)
-        loadSideBar()
-        loggedIn()
+            console.log(json.message)
+            localStorage.setItem('user_id',json.user_id)
+            loadSideBar()
+            loggedIn()
     })
 }
 

@@ -196,11 +196,29 @@ function submitNewCharacter(e){
     })
         .then(response => response.json()) 
         .then(json => {
-        addOptionToCharacterDropdown(json)
-        displayStats(json)
-        })
-        
-    loadCharSheet()
+            if (!!json.error){
+                console.log('an invalid character!')
+                let alert = document.createElement('div')
+                alert.classList.add('alert')
+                alert.classList.add('alert-danger')
+                alert.setAttribute('role', 'alert')
+                alert.textContent = 'Every hero needs a name!' 
+                let dismiss = document.createElement('button')
+                dismiss.setAttribute('type', 'button')
+                dismiss.setAttribute('data-dismiss', 'alert')
+                dismiss.setAttribute('aria-label', 'Close')
+                dismiss.classList.add('close')
+                dismiss.textContent = 'X'
+                alert.appendChild(dismiss)
+                
+                let charForm = document.getElementById('charForm')
+                charForm.appendChild(alert)
+            } else{
+                console.log('a valid character!', json)
+                displayStats(json)
+                addOptionToCharacterDropdown(json)
+            }
+        })       
 }
 
 

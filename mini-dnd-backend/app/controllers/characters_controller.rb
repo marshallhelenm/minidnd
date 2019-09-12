@@ -2,26 +2,8 @@ class CharactersController < ApplicationController
 
     # index, show, new, create, edit, update, delete
     def show
-
         characterStats = Character.find(params[:id])
         render :json => characterStats
-        # @race = characterStats.race
-        # @class_type = characterStats.class_type
-        # @abilityList = []
-        # @race.race_abilities.each do |ability|
-        #     @abilityList.push(ability)
-        # end
-        # @class_type.class_type_abilities.each do |ability|
-        #     @abilityList.push(ability)
-        # end
-
-        # char = {
-        #         stats: characterStats, 
-        #         race: @race, 
-        #         class_type: @class_type,
-        #         abilities: @abilityList
-        #         }
-        # render json: {hasCharacter: 'true', character: char}
     end
 
     
@@ -35,8 +17,12 @@ class CharactersController < ApplicationController
         @char.level = 1
         @char.xp = 0
         assignStats(@char)
-        @char.save
-        render :json => @char
+        if @char.valid?
+            @char.save
+            render :json => @char
+        else
+            render :json => {error: 'Every hero needs a name!'}
+        end
     end
     
     def edit

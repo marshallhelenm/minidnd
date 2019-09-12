@@ -7,6 +7,9 @@ class Character < ApplicationRecord
   has_many :prepared_spells
   has_many :spells, through: :prepared_spells
 
+  validates :name, presence: true
+
+
   def mv
     case (self.armor)
         when 'light'
@@ -261,4 +264,11 @@ class Character < ApplicationRecord
 
     self.save
   end
+
+  def random_character()
+    
+
+    
+  end
+
 end
