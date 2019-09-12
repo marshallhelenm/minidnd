@@ -39,13 +39,11 @@ class CharactersController < ApplicationController
         
     end
 
-<<<<<<< HEAD
     def destroy
         @char = Character.find(params[:id])
         @char.delete
     end
 
-=======
     def restAtTown
         @char = Character.find(params[:id])
         loot = params[:loot]
@@ -55,7 +53,6 @@ class CharactersController < ApplicationController
         @char = Character.find(params[:id])
         render :json => @char
     end
->>>>>>> b967906121ad5cddf304a68e49ab2f19f676a6ce
 
     private
 
