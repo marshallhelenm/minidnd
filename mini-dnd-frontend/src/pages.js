@@ -356,11 +356,12 @@ function loadCharSheet() {
     restBtn.classList.add('btn')
     restBtn.classList.add('btn-outline-secondary')
     restBtn.classList.add('btn-sm')
-    restBtn.setAttribute('data-toggle','modal')
+    restBtn.setAttribute('id', 'rest-btn')
+    restBtn.onclick = event => showModal(event)
     restBtn.setAttribute('data-target','#restModal')
     restBtn.innerText = 'Return to Town'
     btnDiv.appendChild(restBtn)
-
+ 
     let editBtn = document.createElement('button')
     editBtn.setAttribute('id', 'edit-char')
     editBtn.classList.add('btn')
@@ -378,6 +379,17 @@ function loadCharSheet() {
     delBtn.textContent = 'Delete Character'
     delBtn.onclick = event => confirmDelete(event)
     btnDiv.appendChild(delBtn)
+}
+
+function showModal(event) {
+    let restBtn = document.getElementById('rest-btn')
+    restBtn.setAttribute('data-toggle','modal')
+    let isWiz = document.getElementById('class').value
+    console.log('isWiz', isWiz)
+    if (isWiz == 'Wizard'){
+        let wizConfirm = document.getElementById('wiz')
+        wizConfirm.style.display = 'none'
+    }
 }
 
 
