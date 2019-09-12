@@ -5,7 +5,6 @@ class CharactersController < ApplicationController
         characterStats = Character.find(params[:id])
         render :json => characterStats
     end
-
     
     def new
         
@@ -17,12 +16,15 @@ class CharactersController < ApplicationController
         @char.level = 1
         @char.xp = 0
         assignStats(@char)
+        @char.prepareSpells        
+        
         if @char.valid?
             @char.save
             render :json => @char
         else
             render :json => {error: 'Every hero needs a name!'}
         end
+
     end
     
     def edit
@@ -37,11 +39,23 @@ class CharactersController < ApplicationController
         
     end
 
+<<<<<<< HEAD
     def destroy
         @char = Character.find(params[:id])
         @char.delete
     end
 
+=======
+    def restAtTown
+        @char = Character.find(params[:id])
+        loot = params[:loot]
+        bonus_xp = params[:loot]
+        party_size = params[:loot]
+        @char.returnToSafety(loot,bonus_xp,party_size)
+        @char = Character.find(params[:id])
+        render :json => @char
+    end
+>>>>>>> b967906121ad5cddf304a68e49ab2f19f676a6ce
 
     private
 
@@ -52,7 +66,6 @@ class CharactersController < ApplicationController
     def assignStats(char)
         char.calculateStats
         char.maxHP
-        char.prepareSpells
     end
 
 end    

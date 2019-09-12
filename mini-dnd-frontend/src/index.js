@@ -1,6 +1,7 @@
 const BASE_URL = "http://localhost:3000"
 document.addEventListener('DOMContentLoaded',main)
 function main(){
+    document.getElementById('confirm-rest-button').addEventListener('click',returnToTown)
     //Character Creation Stuff
     loggedIn()
     loadSideBar()

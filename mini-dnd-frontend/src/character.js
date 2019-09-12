@@ -242,3 +242,26 @@ function useSpellSlot(char){
         document.getElementById('cast-button').style.display = 'none'
     }
 }
+
+function returnToTown(){
+    $('#restModal').modal('toggle')
+    let charID = document.getElementById('edit-char').value
+    let loot = document.getElementById('rest-silver-looted').value
+    let partySize = document.getElementById('rest-party-size').value
+    let bonusXP = document.getElementById('rest-bonus-xp').value
+
+    fetch(BASE_URL+'/characters/'+charID+'/rest',{
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+            "Accept":   'application/json'
+        },
+        body: JSON.stringify({
+            'loot': loot,
+            'partySize': partySize,
+            'bonusXP': bonusXP
+        })
+    })
+    .then(response => response.json())
+    .then(json => displayStats(json))
+}
