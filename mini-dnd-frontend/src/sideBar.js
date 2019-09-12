@@ -29,9 +29,9 @@ function loadSideBar() {
 
 function logOut(event) {
     localStorage.setItem('user_id',null)
-    console.log('logging out!')
     // clear all info off screen and bring us back to log in page
     let page = clearPage()
+
     loadSideBar()
     loadLogIn()
 }
@@ -54,9 +54,12 @@ function charDropDown(charDrop) { //generate character drop down menu
     fetch(BASE_URL+`/users/${userID}`)
         .then(response => response.json())
         .then(characterList => {
+            let charDrop = document.getElementById('selectChar')
+            while (!!charDrop.firstChild){
+                charDrop.removeChild(charDrop.firstChild)
+            }
             let characters = characterList.characters
             let opt;
-            let charDrop = document.getElementById('selectChar')
                 opt = document.createElement('button')
                 opt.textContent = 'New Character'
                 opt.classList.add('dropdown-item')

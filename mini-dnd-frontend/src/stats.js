@@ -3,8 +3,8 @@
 
 
 function displayStats(char) {
+        console.log('char in displayStats:', char)
     loadCharSheet() //contains clearPage
-    console.log("SDFOSDJFOISDJFOISD", char)
     document.getElementById('class').innerText = `Class: ${char.class_type.name}`
     document.getElementById('class').setAttribute('value',char.class_type.name)
 
@@ -129,7 +129,6 @@ function abilitiesBox(char){
     abList.appendChild(title)
 
     let allAbilities = [char.class_type_abilities,char.race_abilities].flat()
-    console.log('ALL ABILITIES',allAbilities)
     for (let i = 0; i < allAbilities.length; i++){
         let ab = document.createElement('p')
         ab.innerText = allAbilities[i].description
@@ -172,7 +171,6 @@ function spellsBox(char){
     } 
 
     let preparedSpells = document.createElement('ul')
-    console.log('spells ',char.spells)
     for(let spell of char.spells){
         let spellListing = document.createElement('li')
         spellListing.textContent = spell.name +": " + spell.description

@@ -27,16 +27,12 @@ function confirmDelete(e){
 }
 
 function deleteChar(e) {
-    
-    console.log("That's so sad!")
-    console.log(event.target.value)
     fetch(BASE_URL+`/characters/${event.target.value}`, {method: 'DELETE'})
         .then(loggedIn(), removeCharFromDropdown(`char-${event.target.value}`))
 }
 
 
 function editChar(e) {
-    console.log("Changin' things up.")
     fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
         .then(character => loadEditSheet(character))
@@ -176,8 +172,6 @@ function submitCharChanges(stats){
 
 
 function submitNewCharacter(e){
-    console.log('submitting new character')
-
     fetch(BASE_URL+'/characters',{
         method: 'POST',
         headers: {
@@ -196,16 +190,31 @@ function submitNewCharacter(e){
     })
         .then(response => response.json()) 
         .then(json => {
-        addOptionToCharacterDropdown(json)
-        displayStats(json)
-        })
-        
-    loadCharSheet()
+            if (!!json.error){
+                let alert = document.createElement('div')
+                alert.classList.add('alert')
+                alert.classList.add('alert-danger')
+                alert.setAttribute('role', 'alert')
+                alert.textContent = 'Every hero needs a name!' 
+                let dismiss = document.createElement('button')
+                dismiss.setAttribute('type', 'button')
+                dismiss.setAttribute('data-dismiss', 'alert')
+                dismiss.setAttribute('aria-label', 'Close')
+                dismiss.classList.add('close')
+                dismiss.textContent = 'X'
+                alert.appendChild(dismiss)
+                
+                let charForm = document.getElementById('charForm')
+                charForm.appendChild(alert)
+            } else{
+                displayStats(json)
+                addOptionToCharacterDropdown(json)
+            }
+        })       
 }
 
 
 function useSpellSlot(char){
-    console.log('Using slot number ',char.spell_slots)
     char.spell_slots--
     fetch(BASE_URL+'/characters/'+char.id,{
         method: 'PATCH',
@@ -214,8 +223,6 @@ function useSpellSlot(char){
         },
         body: JSON.stringify(char)
     })
-    console.log('Down to slot ',char.spell_slots)
-
     let slots = document.getElementById('slots')
     if (char.spell_slots > 0){
         slots.innerText = 'Remaining Spell Slots: ' + char.spell_slots
@@ -225,25 +232,30 @@ function useSpellSlot(char){
     }
 }
 
-function returnToTown(){
+function returnToTown(event){
     $('#restModal').modal('toggle')
     let charID = document.getElementById('edit-char').value
     let loot = document.getElementById('rest-silver-looted').value
     let partySize = document.getElementById('rest-party-size').value
     let bonusXP = document.getElementById('rest-bonus-xp').value
-
-    fetch(BASE_URL+'/characters/'+charID+'/rest',{
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json',
-            "Accept":   'application/json'
-        },
-        body: JSON.stringify({
-            'loot': loot,
-            'partySize': partySize,
-            'bonusXP': bonusXP
+    let wizConfirm = {
+        'isWiz' : document.getElementById('class').getAttribute('value'),
+        'keepSpells' : document.getElementById('wiz-confirm').value
+    }
+        fetch(BASE_URL+'/characters/'+charID+'/restAtTown',{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+                "Accept":   'application/json'
+            },
+            body: JSON.stringify({
+                'loot': loot,
+                'partySize': partySize,
+                'bonusXP': bonusXP,
+                'wizConfirm' : wizConfirm
+            })
         })
-    })
-    .then(response => response.json())
-    .then(json => displayStats(json))
+        .then(response => response.json())
+        .then(json => displayStats(json))
+
 }

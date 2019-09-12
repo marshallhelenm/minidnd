@@ -8,6 +8,9 @@ class Character < ApplicationRecord
   has_many :spells, through: :prepared_spells
   attr_accessor :initiative
 
+  validates :name, presence: true
+
+
   def mv
     case (self.armor)
         when 'light'
@@ -188,9 +191,7 @@ class Character < ApplicationRecord
     self.initiative = self.getInitiative
   end
 
-  def prepareSpells
-  
-    #Number of Spell slots
+  def calculateSpellSlots
     if (self.class_type.caster_type == 'none')
       self.spell_slots = 0
       return
@@ -203,10 +204,13 @@ class Character < ApplicationRecord
     if (self.class_type.caster_type == 'half')
       self.spell_slots = self.spell_slots/2
     end
+    if (self.class_type.name == 'Sorcerer')
+      self.spell_slots = self.spell_slots + 1
+    end
+    self.spell_slots
+  end
 
-
-
-    #Number of Prepared Spells
+  def calculateNumPreparedSpells
     num_prepared_spells = 0
 
     if (self.class_type.caster_type == 'full')
@@ -224,19 +228,35 @@ class Character < ApplicationRecord
         num_prepared_spells = 2
       end
     end
+    if (self.class_type.name == 'Sorcerer')
+      num_prepared_spells = num_prepared_spells - 1
+    end
+
+    return num_prepared_spells
+  end
+
+  def prepareSpells(wizConfirm)
+    console.log('wizConfirm inside prepareSpells:', wizConfirm)
+    #Number of Spell slots
+    calculateSpellSlots
+
+    #Number of Prepared Spells
+    num_prepared_spells = calculateNumPreparedSpells
 
     #Prepare Spells
-    self.spells = []
-    self.save
+
+    self.spells = [] # spells currently prepared
 
     if(self.class_type.name == 'Cleric')
       spell = Spell.find_by(name: 'Turn Undead')
       PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+      self.spells.push(spell)
     end
 
     if(self.class_type.name == 'Druid')
           spell = Spell.find_by(name: 'Wildshape')
       PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+      self.spells.push(spell)
     end
 
 
@@ -244,12 +264,11 @@ class Character < ApplicationRecord
     spells_to_prepare = []
 
     while (spells_to_prepare.uniq.length < num_prepared_spells)
-      spells_to_prepare = spells_to_prepare.uniq
       spells_to_prepare.push(classSpellList.sample)
+      spells_to_prepare = spells_to_prepare.uniq
     end
 
     spells_to_prepare.each do |spell|
-      #PreparedSpell.new(character_id: self.id, spell_id: spell.id)
       self.spells << Spell.find(spell.id)
     end
 
@@ -263,7 +282,7 @@ class Character < ApplicationRecord
     self.maxHP
   end
 
-  def returnToSafety(loot=0,bonus_xp=0,party_size=6)
+  def returnToSafety(loot=0,bonus_xp=0,party_size=6, wizConfirm)
     if loot == ''
       loot = 0
     end
@@ -291,7 +310,7 @@ class Character < ApplicationRecord
     end
 
     self.hp = self.max_hp
-    self.prepareSpells
+    self.prepareSpells(wizConfirm)
     self.save
         # byebug
   end

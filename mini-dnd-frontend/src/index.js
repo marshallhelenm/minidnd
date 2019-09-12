@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000"
 document.addEventListener('DOMContentLoaded',main)
 function main(){
-    document.getElementById('confirm-rest-button').addEventListener('click',returnToTown)
+    
     //Character Creation Stuff
     loggedIn()
     loadSideBar()
@@ -24,13 +24,7 @@ function loggedIn() { //checks if user is logged in or not and if they have a ch
         })
         .then(response => response.json())
         .then(json =>{
-            console.log('response received')
-            console.log(json)
             if(!!json.race){// if they have a character, render it
-                console.log('get char renderer working')
-                console.log(`render character ${json.id}`)
-                // render character
-                console.log(json)
                 displayStats(json)
             } else { // if they don't have a character, send them to the character creator
                 loadCharCreator()
@@ -38,7 +32,6 @@ function loggedIn() { //checks if user is logged in or not and if they have a ch
         })
     }
     else{ //if user is not logged in, send them to log in form
-        console.log("Loading log in form")
         loadLogIn()
     }
 }
@@ -59,10 +52,10 @@ function makeUN(event){ //logs you in or creates a username and logs you in
     })
     .then(response => response.json())
     .then(json => {
-        console.log(json.message)
-        localStorage.setItem('user_id',json.user_id)
-        loadSideBar()
-        loggedIn()
+            console.log(json.message)
+            localStorage.setItem('user_id',json.user_id)
+            loadSideBar()
+            loggedIn()
     })
 }
 

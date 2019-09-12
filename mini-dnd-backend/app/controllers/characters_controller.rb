@@ -17,9 +17,14 @@ class CharactersController < ApplicationController
         @char = Character.new(char_params)
         assignStats(@char)
         @char.prepareSpells        
-        @char.save
+        
+        if @char.valid?
+            @char.save
+            render :json => @char
+        else
+            render :json => {error: 'Every hero needs a name!'}
+        end
 
-        render :json => @char
     end
     
     def edit
@@ -34,12 +39,18 @@ class CharactersController < ApplicationController
         
     end
 
+    def destroy
+        @char = Character.find(params[:id])
+        @char.delete
+    end
+
     def restAtTown
         @char = Character.find(params[:id])
         loot = params[:loot]
         bonus_xp = params[:loot]
         party_size = params[:loot]
-        @char.returnToSafety(loot,bonus_xp,party_size)
+        wizConfirm = params[:wizConfirm]
+        @char.returnToSafety(loot,bonus_xp,party_size,wizConfirm)
         @char = Character.find(params[:id])
         render :json => @char
     end
