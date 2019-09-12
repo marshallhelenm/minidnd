@@ -47,10 +47,14 @@ function loadCharCreator() {
     name.setAttribute('placeholder', 'Character Name')
     // name.defaultValue = randomName()
     name.setAttribute('type', 'text')
-    name.setAttribute('id', 'selectName')
+    name.setAttribute('id', 'name-field')
     name.classList.add('form-control')
     let nameDiv = document.createElement('div')
     nameDiv.classList.add('form-group')
+    let nameLabel = document.createElement('label')
+    nameLabel.setAttribute('for', 'name-field')
+    nameLabel.textContent = 'Name:'
+    nameDiv.appendChild(nameLabel)
     nameDiv.appendChild(name)
 
     let charDescrip = document.createElement('textarea')
@@ -61,6 +65,10 @@ function loadCharCreator() {
     charDescrip.classList.add('form-control')
     let descripDiv = document.createElement('div')
     descripDiv.classList.add('form-group')
+    let descripLabel = document.createElement('label')
+    descripLabel.setAttribute('for', 'charDescrip')
+    descripLabel.textContent = 'Description:'
+    descripDiv.appendChild(descripLabel)
     descripDiv.appendChild(charDescrip)
     
     let raceMenu = document.createElement('select')
@@ -68,20 +76,34 @@ function loadCharCreator() {
     raceMenu.classList.add('form-control')
     let raceMenuDiv = document.createElement('div')
     raceMenuDiv.classList.add('form-group')
+    let raceLabel = document.createElement('label')
+    raceLabel.setAttribute('for', 'selectRace')
+    raceLabel.textContent = 'Select a Race:'
+    raceMenuDiv.appendChild(raceLabel)
     raceMenuDiv.appendChild(raceMenu)
+    
     
     let classMenu = document.createElement('select')
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
     classMenuDiv.classList.add('form-group')
+    let classLabel = document.createElement('label')
+    classLabel.setAttribute('for', 'selectClass')
+    classLabel.textContent = 'Select a Class:'
+    classMenuDiv.appendChild(classLabel)
     classMenuDiv.appendChild(classMenu)
+    
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
     weaponMenu.classList.add('form-control')
     let weaponMenuDiv = document.createElement('div')
     weaponMenuDiv.classList.add('form-group')
+    let weaponLabel = document.createElement('label')
+    weaponLabel.setAttribute('for', 'selectWeapon')
+    weaponLabel.textContent = 'Select a Weapon:'
+    weaponMenuDiv.appendChild(weaponLabel)
     weaponMenuDiv.appendChild(weaponMenu)
     
     let finesse = document.createElement('option')
@@ -109,6 +131,10 @@ function loadCharCreator() {
     armorMenu.classList.add('form-control')
     let armorMenuDiv = document.createElement('div')
     armorMenuDiv.classList.add('form-group')
+    let armorLabel = document.createElement('label')
+    armorLabel.setAttribute('for', 'selectArmor')
+    armorLabel.textContent = 'Select Armor:'
+    armorMenuDiv.appendChild(armorLabel)
     armorMenuDiv.appendChild(armorMenu)
     
     let light = document.createElement('option')
@@ -135,7 +161,7 @@ function loadCharCreator() {
 
     
     charForm.appendChild(nameDiv)
-    charForm.appendChild(charDescrip)
+    charForm.appendChild(descripDiv)
     charForm.appendChild(raceMenuDiv)
     charForm.appendChild(classMenuDiv)
     charForm.appendChild(armorMenuDiv)
@@ -191,6 +217,7 @@ function loadCharSheet() {
     top.classList.add('vert')
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
+    bottom.classList.add('vert')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
 

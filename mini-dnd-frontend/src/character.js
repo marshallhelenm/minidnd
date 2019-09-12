@@ -149,7 +149,7 @@ function loadEditSheet(char) {
 
 function submitCharChanges(stats){
     let char = {
-        'name' : document.getElementById('selectName').value,
+        'name' : document.getElementById('name-field').value,
         'description' : document.getElementById('charDescrip').value,
         'user_id' : localStorage.getItem('user_id'),
         'weapon' : document.getElementById('selectWeapon').value,
@@ -185,7 +185,7 @@ function submitNewCharacter(e){
             "Accept":   'application/json'
         },
         body: JSON.stringify({ //:name, :user, :class_type, :race, :weapon, :armor
-            'name' : document.getElementById('selectName').value,
+            'name' : document.getElementById('name-field').value,
             'description' : document.getElementById('charDescrip').value,
             'race_id' : document.getElementById('selectRace').value,
             'user_id' : localStorage.getItem('user_id'),
