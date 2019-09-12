@@ -223,10 +223,13 @@ function loadCharSheet() {
 
     let top1 = document.createElement('div')
     top1.setAttribute('id', 'top-1')
+    top1.classList.add('top-item')
     let top2 = document.createElement('div')
     top2.setAttribute('id', 'top-2')
+    top2.classList.add('top-item')
     let top3 = document.createElement('div')
     top3.setAttribute('id', 'top-3')
+    top3.classList.add('top-item')
     top.appendChild(top1)
     top.appendChild(top2)
     top.appendChild(top3)
@@ -346,6 +349,9 @@ function loadCharSheet() {
     spells.setAttribute('id','spells')
     bottom.appendChild(spells)
 
+    let btnDiv = document.createElement('div')
+    bottom.appendChild(btnDiv)
+
     let restBtn = document.createElement('button')
     restBtn.classList.add('btn')
     restBtn.classList.add('btn-outline-secondary')
@@ -353,7 +359,7 @@ function loadCharSheet() {
     restBtn.setAttribute('data-toggle','modal')
     restBtn.setAttribute('data-target','#restModal')
     restBtn.innerText = 'Return to Town'
-    bottom.appendChild(restBtn)
+    btnDiv.appendChild(restBtn)
 
     let editBtn = document.createElement('button')
     editBtn.setAttribute('id', 'edit-char')
@@ -362,7 +368,7 @@ function loadCharSheet() {
     editBtn.classList.add('btn-sm')
     editBtn.textContent = 'Edit Character'
     editBtn.onclick = event => editChar(event)
-    bottom.appendChild(editBtn)
+    btnDiv.appendChild(editBtn)
 
     let delBtn = document.createElement('button')
     delBtn.setAttribute('id', 'del-char')
@@ -371,5 +377,5 @@ function loadCharSheet() {
     delBtn.classList.add('btn-sm')
     delBtn.textContent = 'Delete Character'
     delBtn.onclick = event => confirmDelete(event)
-    bottom.appendChild(delBtn)
+    btnDiv.appendChild(delBtn)
 }

@@ -5,5 +5,5 @@ class CharacterSerializer < ActiveModel::Serializer
   :athletics, :subterfuge, :lore, 
   :physical_save, :magic_save, 
   :class_type, :race, :race_abilities, :class_type_abilities,
-  :spell_slots, :spells
+  :spell_slots, :spells, :img_url
 end
