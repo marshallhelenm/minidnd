@@ -14,7 +14,6 @@ function displayStats(char) {
 
     document.getElementById('char_description').innerText = char.description
 
-    console.log(char)
     document.getElementById('char_photo').setAttribute('src',char.img_url)
     //saves
     document.getElementById('phys_save').innerText += ' +' + char.physical_save
@@ -31,9 +30,11 @@ function displayStats(char) {
     document.getElementById('lore').innerText += ' +' + char.lore
 
     //other
-
+    document.getElementById('level').innerText += ' ' + char.level
+    document.getElementById('xp').innerText += ' ' + char.xp
     document.getElementById('ac').innerText += ' ' + char.armor_class
-    document.getElementById('hp').innerText += ' ' + char.hp + '/' + char.max_hp
+    document.getElementById('hp').value = char.hp
+    document.getElementById('maxHp').textContent += char.max_hp
     attackBox(char)
     abilitiesBox(char)
     spellsBox(char)
@@ -51,11 +52,40 @@ function attackBox(char) {
     let numAtk = document.createElement('p')
     numAtk.textContent = writeNumAttacks(char)
     box.appendChild(numAtk)
-    let weapon = document.createElement('h3')
+    let weapon = document.createElement('p')
 
     console.log(char.weapon)
-    weapon.textContent = `${capitalize(char.weapon)} Weapon`
+    weapon.textContent = `${capitalize(char.weapon)} Weapon - DMG: `
+    
+    switch(char.weapon){
+        case 'finesse':
+            weapon.textContent += '1d4'
+            break;
+        case 'ranged':
+            weapon.textContent += '1d6'
+            break;
+        case 'martial':
+            weapon.textContent += '1d8'
+            if (char.class_type.name == "Barbarian"){
+                weapon.textContent += ' +2'
+            }
+            break;
+        case 'large':
+            weapon.textContent += '1d12'
+            if (char.class_type.name == "Barbarian"){
+                weapon.textContent += ' +2'
+            }
+            break;
+    }
+            if (char.class_type.name == "Paladin"){
+                weapon.textContent += ' (+2 against undead)'
+            }
+
+
     box.appendChild(weapon)
+
+
+
     let atk = document.createElement('button')
     atk.textContent = '+ ' + char.toHit
 }

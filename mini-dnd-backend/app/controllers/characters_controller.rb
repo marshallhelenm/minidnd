@@ -3,8 +3,9 @@ class CharactersController < ApplicationController
     # index, show, new, create, edit, update, delete
     def show
 
-        characterStats = Character.find(params[:id])
-        render :json => characterStats
+        @char = Character.find(params[:id])
+        @char.calculateStats()
+        render :json => @char
     end
     
     def new
@@ -14,8 +15,6 @@ class CharactersController < ApplicationController
     def create
         # byebug
         @char = Character.new(char_params)
-        @char.level = 1
-        @char.xp = 0
         assignStats(@char)
         @char.prepareSpells        
         @char.save
@@ -44,7 +43,7 @@ class CharactersController < ApplicationController
         @char = Character.find(params[:id])
         render :json => @char
     end
-    
+
     def destroy
         @char = Character.find(params[:id])
         @char.delete

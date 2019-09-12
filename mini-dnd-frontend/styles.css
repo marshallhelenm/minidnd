@@ -63,13 +63,6 @@
 .no-gutters {
     margin-right: 0;
     margin-left: 0;
-    
-  
-    > .col,
-    > [class*="col-"] {
-      padding-right: 0;
-      padding-left: 0;
-    }
 }
 
 #top{
@@ -80,6 +73,11 @@ flex-direction: row;
 .top-item{
     display: flex;
     flex-direction: column;
+    max-width: 300px;
+}
+
+.role-descriptor{
+    max-width: 100px;
 }
 
 #hp-span{
@@ -96,8 +94,12 @@ flex-direction: row;
     margin: 0%;
 }
 
-
 #char_photo{
     width: 300px;
     height: 280px;
+}
+
+#weapons-and-abilities{
+    justify-content: space-between;
+    padding: 0;
 }

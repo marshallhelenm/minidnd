@@ -222,7 +222,7 @@ function loadCharSheet() {
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
-    top.classList.add('vert')
+    top.classList.add('horz')
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
@@ -261,6 +261,7 @@ function loadCharSheet() {
     let classRaceXpSpan = document.createElement('span')
     classRaceXpSpan.classList.add('vert')
     classRaceXpSpan.classList.add('vert-small')
+    classRaceXpSpan.classList.add('role-descriptor')
     charHeader.appendChild(classRaceXpSpan)
 
     let classSpan = document.createElement('span')
@@ -336,8 +337,9 @@ function loadCharSheet() {
     hpSpan.appendChild(hpCurrent)
 
     let hpMax = document.createElement('h4')
+    hpMax.setAttribute('id','maxHp')
     hpMax.classList.add('hp-item')
-    hpMax.textContent = `/`
+    hpMax.textContent = `/ `
     hpSpan.appendChild(hpMax)
 
     let acBox = document.createElement('span')
@@ -379,20 +381,28 @@ function loadCharSheet() {
 
     // Bottom
     let weaponAbilitiesBox = document.createElement('span')
+    weaponAbilitiesBox.setAttribute('id','weapons-and-abilities')
+    weaponAbilitiesBox.classList.add('horz')
     bottom.appendChild(weaponAbilitiesBox)
 
+    let weaponBox = document.createElement('span')
+    weaponAbilitiesBox.appendChild(weaponBox)
+
+    let weaponTitle = document.createElement('h3')
+    weaponTitle.textContent = "Attacks"
+    weaponBox.appendChild(weaponTitle)
 
     let attacks = document.createElement('div')
     attacks.setAttribute('id', 'attacks')
-    bottom.appendChild(attacks)
+    weaponBox.appendChild(attacks)
 
     let inventory = document.createElement('div')
     inventory.setAttribute('id', 'inventory')
     bottom.appendChild(inventory)
 
     let abilities = document.createElement('div')
-    inventory.setAttribute('id', 'abilities')
-    bottom.appendChild(abilities)
+    abilities.setAttribute('id', 'abilities')
+    weaponAbilitiesBox.appendChild(abilities)
 
     let spells = document.createElement('div')
     spells.setAttribute('id','spells')

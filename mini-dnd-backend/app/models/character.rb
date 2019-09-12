@@ -6,6 +6,7 @@ class Character < ApplicationRecord
   has_many :class_type_abilities, through: :class_type
   has_many :prepared_spells
   has_many :spells, through: :prepared_spells
+  attr_accessor :initiative
 
   def mv
     case (self.armor)
@@ -25,14 +26,6 @@ class Character < ApplicationRecord
         bonus += 1
     end
     return bonus
-  end
-
-  def initiative
-    init = self.mv
-    if self.class_type.sub_type == 'Rogue'
-      init += 2
-    end
-    return init
   end
 
   def armorClass
