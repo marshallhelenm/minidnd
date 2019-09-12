@@ -31,34 +31,80 @@ function loadCharCreator() {
     clearPage() 
     let page = document.getElementById('page')
     let div = document.createElement('div')
+    div.classList.add('vert')
     div.setAttribute('id', 'createCharacter')
     let charForm = document.createElement('div')
     charForm.setAttribute('id', 'charForm')
+    charForm.classList.add('vert')
     page.appendChild(div)
-    
     
     let title =  document.createElement('h2')
     title.innerText = 'Create Character'
     div.appendChild(title)
+
     
-    let input = document.createElement('input')
-    input.setAttribute('placeholder', 'Character Name')
-    input.setAttribute('type', 'text')
-    input.setAttribute('id', 'selectName')
+    let name = document.createElement('input')
+    name.setAttribute('placeholder', 'Character Name')
+    // name.defaultValue = randomName()
+    name.setAttribute('type', 'text')
+    name.setAttribute('id', 'name-field')
+    name.classList.add('form-control')
+    let nameDiv = document.createElement('div')
+    nameDiv.classList.add('form-group')
+    let nameLabel = document.createElement('label')
+    nameLabel.setAttribute('for', 'name-field')
+    nameLabel.textContent = 'Name:'
+    nameDiv.appendChild(nameLabel)
+    nameDiv.appendChild(name)
 
     let charDescrip = document.createElement('textarea')
     charDescrip.setAttribute('placeholder', 'A brave (or stupid) adventurer!')
+    charDescrip.defaultValue = 'A brave (or stupid) adventurer!'
     charDescrip.setAttribute('type', 'textarea')
     charDescrip.setAttribute('id', 'charDescrip')
+    charDescrip.classList.add('form-control')
+    let descripDiv = document.createElement('div')
+    descripDiv.classList.add('form-group')
+    let descripLabel = document.createElement('label')
+    descripLabel.setAttribute('for', 'charDescrip')
+    descripLabel.textContent = 'Description:'
+    descripDiv.appendChild(descripLabel)
+    descripDiv.appendChild(charDescrip)
     
     let raceMenu = document.createElement('select')
     raceMenu.setAttribute('id', 'selectRace')
+    raceMenu.classList.add('form-control')
+    let raceMenuDiv = document.createElement('div')
+    raceMenuDiv.classList.add('form-group')
+    let raceLabel = document.createElement('label')
+    raceLabel.setAttribute('for', 'selectRace')
+    raceLabel.textContent = 'Select a Race:'
+    raceMenuDiv.appendChild(raceLabel)
+    raceMenuDiv.appendChild(raceMenu)
+    
     
     let classMenu = document.createElement('select')
     classMenu.setAttribute('id', 'selectClass')
+    classMenu.classList.add('form-control')
+    let classMenuDiv = document.createElement('div')
+    classMenuDiv.classList.add('form-group')
+    let classLabel = document.createElement('label')
+    classLabel.setAttribute('for', 'selectClass')
+    classLabel.textContent = 'Select a Class:'
+    classMenuDiv.appendChild(classLabel)
+    classMenuDiv.appendChild(classMenu)
+    
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
+    weaponMenu.classList.add('form-control')
+    let weaponMenuDiv = document.createElement('div')
+    weaponMenuDiv.classList.add('form-group')
+    let weaponLabel = document.createElement('label')
+    weaponLabel.setAttribute('for', 'selectWeapon')
+    weaponLabel.textContent = 'Select a Weapon:'
+    weaponMenuDiv.appendChild(weaponLabel)
+    weaponMenuDiv.appendChild(weaponMenu)
     
     let finesse = document.createElement('option')
     finesse.setAttribute('value', 'finesse')
@@ -82,6 +128,14 @@ function loadCharCreator() {
     
     let armorMenu = document.createElement('select')
     armorMenu.setAttribute('id', 'selectArmor')
+    armorMenu.classList.add('form-control')
+    let armorMenuDiv = document.createElement('div')
+    armorMenuDiv.classList.add('form-group')
+    let armorLabel = document.createElement('label')
+    armorLabel.setAttribute('for', 'selectArmor')
+    armorLabel.textContent = 'Select Armor:'
+    armorMenuDiv.appendChild(armorLabel)
+    armorMenuDiv.appendChild(armorMenu)
     
     let light = document.createElement('option')
     light.setAttribute('value', 'light')
@@ -100,16 +154,18 @@ function loadCharCreator() {
     
     let submitBtn = document.createElement('button')
     submitBtn.setAttribute('id', 'submitNewCharacter')
+    submitBtn.classList.add('btn')
+    submitBtn.classList.add('btn-outline-success')
     submitBtn.onclick = submitNewCharacter
     submitBtn.textContent = 'Create Character'
 
     
-    charForm.appendChild(input)
-    charForm.appendChild(charDescrip)
-    charForm.appendChild(armorMenu)
-    charForm.appendChild(weaponMenu)
-    charForm.appendChild(raceMenu)
-    charForm.appendChild(classMenu)
+    charForm.appendChild(nameDiv)
+    charForm.appendChild(descripDiv)
+    charForm.appendChild(raceMenuDiv)
+    charForm.appendChild(classMenuDiv)
+    charForm.appendChild(armorMenuDiv)
+    charForm.appendChild(weaponMenuDiv)
     charForm.appendChild(submitBtn)
     div.appendChild(charForm)
     loadRaces()
@@ -153,20 +209,27 @@ function loadCharSheet() {
     sheet.setAttribute('id', 'charSheet')
     let page = document.getElementById('page')
     page.appendChild(sheet)
+    sheet.classList.add('vert')
+
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
+    top.classList.add('vert')
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
+    bottom.classList.add('vert')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
 
     let top1 = document.createElement('div')
     top1.setAttribute('id', 'top-1')
+    top1.classList.add('top-item')
     let top2 = document.createElement('div')
     top2.setAttribute('id', 'top-2')
+    top2.classList.add('top-item')
     let top3 = document.createElement('div')
     top3.setAttribute('id', 'top-3')
+    top3.classList.add('top-item')
     top.appendChild(top1)
     top.appendChild(top2)
     top.appendChild(top3)
@@ -286,6 +349,9 @@ function loadCharSheet() {
     spells.setAttribute('id','spells')
     bottom.appendChild(spells)
 
+    let btnDiv = document.createElement('div')
+    bottom.appendChild(btnDiv)
+
     let restBtn = document.createElement('button')
     restBtn.classList.add('btn')
     restBtn.classList.add('btn-outline-secondary')
@@ -293,7 +359,7 @@ function loadCharSheet() {
     restBtn.setAttribute('data-toggle','modal')
     restBtn.setAttribute('data-target','#restModal')
     restBtn.innerText = 'Return to Town'
-    bottom.appendChild(restBtn)
+    btnDiv.appendChild(restBtn)
 
     let editBtn = document.createElement('button')
     editBtn.setAttribute('id', 'edit-char')
@@ -302,7 +368,7 @@ function loadCharSheet() {
     editBtn.classList.add('btn-sm')
     editBtn.textContent = 'Edit Character'
     editBtn.onclick = event => editChar(event)
-    bottom.appendChild(editBtn)
+    btnDiv.appendChild(editBtn)
 
     let delBtn = document.createElement('button')
     delBtn.setAttribute('id', 'del-char')
@@ -311,5 +377,5 @@ function loadCharSheet() {
     delBtn.classList.add('btn-sm')
     delBtn.textContent = 'Delete Character'
     delBtn.onclick = event => confirmDelete(event)
-    bottom.appendChild(delBtn)
+    btnDiv.appendChild(delBtn)
 }

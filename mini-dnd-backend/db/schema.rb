@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_193051) do
     t.string "weapon"
     t.string "armor"
     t.string "description", default: "A brave (or foolish) adventurer!"
+    t.string "img_url"
     t.integer "armor_class"
     t.integer "athletics"
     t.integer "subterfuge"

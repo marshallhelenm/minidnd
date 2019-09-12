@@ -27,8 +27,6 @@ function loadSideBar() {
     
 }
 
-
-//Log Out
 function logOut(event) {
     localStorage.setItem('user_id',null)
     console.log('logging out!')
@@ -37,7 +35,6 @@ function logOut(event) {
     loadSideBar()
     loadLogIn()
 }
-
 
 function selectChar(e) {
     console.log('switchin')
@@ -92,4 +89,9 @@ function addOptionToCharacterDropdown(character){
 function editCharacterInDropdown(character){
     let opt = document.getElementById(`char-${character.id}`)
     opt.innerText = character.name
+}
+
+function removeCharFromDropdown(id) {
+    let btn = document.getElementById(id)
+    btn.parentElement.removeChild(btn)
 }

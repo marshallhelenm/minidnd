@@ -30,8 +30,8 @@ function deleteChar(e) {
     
     console.log("That's so sad!")
     console.log(event.target.value)
-    // fetch(BASE_URL+`/characters/${event.target.value}`, {method: 'DELETE'})
-    loggedIn()
+    fetch(BASE_URL+`/characters/${event.target.value}`, {method: 'DELETE'})
+        .then(loggedIn(), removeCharFromDropdown(`char-${event.target.value}`))
 }
 
 
@@ -39,19 +39,18 @@ function editChar(e) {
     console.log("Changin' things up.")
     fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
-        .then(json => loadEditSheet(json.character))
+        .then(character => loadEditSheet(character))
 }
 
 function loadEditSheet(char) {   
-    //creates edit form, with default values being the existing characters info
-    //submit changes button onclick = submitCharChanges(char)
-    console.log('editsheet loaded:', char)
     clearPage() 
     let page = document.getElementById('page')
     let div = document.createElement('div')
+    div.classList.add('vert')
     div.setAttribute('id', 'createCharacter')
-    let charForm = document.createElement('div')
+    let charForm = document.createElement('form')
     charForm.setAttribute('id', 'charForm')
+    charForm.classList.add('vert')
     page.appendChild(div)
     
     
@@ -59,18 +58,32 @@ function loadEditSheet(char) {
     title.innerText = 'Edit Character'
     div.appendChild(title)
     
-    let input = document.createElement('input')
-    input.setAttribute('placeholder', char.name)
-    input.setAttribute('type', 'text')
-    input.setAttribute('id', 'selectName')
+    let name = document.createElement('input')
+    name.setAttribute('placeholder', 'char.name')
+    name.defaultValue = char.name
+    name.setAttribute('type', 'text')
+    name.setAttribute('id', 'selectName')
+    name.classList.add('form-control')
+    let nameDiv = document.createElement('div')
+    nameDiv.classList.add('form-group')
+    nameDiv.appendChild(name)
 
     let charDescrip = document.createElement('textarea')
     charDescrip.setAttribute('placeholder', char.description)
+    charDescrip.defaultValue = char.description
     charDescrip.setAttribute('type', 'textarea')
     charDescrip.setAttribute('id', 'charDescrip')
+    charDescrip.classList.add('form-control')
+    let descripDiv = document.createElement('div')
+    descripDiv.classList.add('form-group')
+    descripDiv.appendChild(charDescrip)
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
+    weaponMenu.classList.add('form-control')
+    let weaponMenuDiv = document.createElement('div')
+    weaponMenuDiv.classList.add('form-group')
+    weaponMenuDiv.appendChild(weaponMenu)
     
     let finesse = document.createElement('option')
     finesse.setAttribute('value', 'finesse')
@@ -94,6 +107,10 @@ function loadEditSheet(char) {
     
     let armorMenu = document.createElement('select')
     armorMenu.setAttribute('id', 'selectArmor')
+    armorMenu.classList.add('form-control')
+    let armorMenuDiv = document.createElement('div')
+    armorMenuDiv.classList.add('form-group')
+    armorMenuDiv.appendChild(armorMenu)
     
     let light = document.createElement('option')
     light.setAttribute('value', 'light')
@@ -112,17 +129,19 @@ function loadEditSheet(char) {
     
     let submitBtn = document.createElement('button')
     submitBtn.setAttribute('id', 'edit-character')
-    submitBtn.setAttribute('value', char.stats.id)
+    submitBtn.setAttribute('value', char.id)
     submitBtn.onclick = event => {
-        submitCharChanges(char.stats)
+        submitCharChanges(char)
     }
     submitBtn.textContent = 'Submit Changes'
+    submitBtn.classList.add('btn')
+    submitBtn.classList.add('btn-outline-success')
 
     
-    charForm.appendChild(input)
-    charForm.appendChild(charDescrip)
-    charForm.appendChild(armorMenu)
-    charForm.appendChild(weaponMenu)
+    charForm.appendChild(nameDiv)
+    charForm.appendChild(descripDiv)
+    charForm.appendChild(armorMenuDiv)
+    charForm.appendChild(weaponMenuDiv)
     charForm.appendChild(submitBtn)
     div.appendChild(charForm)
 
@@ -130,7 +149,7 @@ function loadEditSheet(char) {
 
 function submitCharChanges(stats){
     let char = {
-        'name' : document.getElementById('selectName').value,
+        'name' : document.getElementById('name-field').value,
         'description' : document.getElementById('charDescrip').value,
         'user_id' : localStorage.getItem('user_id'),
         'weapon' : document.getElementById('selectWeapon').value,
@@ -152,7 +171,7 @@ function submitCharChanges(stats){
         body: JSON.stringify(char)
     })
         .then(response => response.json())
-        .then(character => console.log('json is', character))
+        .then(character => displayStats(character))
 }
 
 
@@ -166,7 +185,7 @@ function submitNewCharacter(e){
             "Accept":   'application/json'
         },
         body: JSON.stringify({ //:name, :user, :class_type, :race, :weapon, :armor
-            'name' : document.getElementById('selectName').value,
+            'name' : document.getElementById('name-field').value,
             'description' : document.getElementById('charDescrip').value,
             'race_id' : document.getElementById('selectRace').value,
             'user_id' : localStorage.getItem('user_id'),
