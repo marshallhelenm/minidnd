@@ -47,8 +47,8 @@ class CharactersController < ApplicationController
     def restAtTown
         @char = Character.find(params[:id])
         loot = params[:loot]
-        bonus_xp = params[:loot]
-        party_size = params[:loot]
+        bonus_xp = params[:bonusXP]
+        party_size = params[:partySize]
         wizConfirm = params[:wizConfirm]
         @char.returnToSafety(loot,bonus_xp,party_size,wizConfirm)
         @char = Character.find(params[:id])

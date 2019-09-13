@@ -81,6 +81,10 @@ function loadCharCreator() {
     raceLabel.textContent = 'Select a Race:'
     raceMenuDiv.appendChild(raceLabel)
     raceMenuDiv.appendChild(raceMenu)
+
+    let raceDescription = document.createElement('ul')
+    raceMenu.addEventListener('change',displayRaceAbilities)
+    raceMenuDiv.appendChild(raceDescription)
     
     
     let classMenu = document.createElement('select')
@@ -197,6 +201,9 @@ function loadRaces(){
             let option = document.createElement('option')
             option.setAttribute('value',race.id)
             option.setAttribute('id',race.name)
+
+            
+
             option.textContent = race.name
             raceList.appendChild(option)
         }
@@ -495,6 +502,8 @@ function showModal(event) {
 }
 
 
-
+function displayRaceAbilities(event){
+    console.log(event.target.abilities)
+}
 
 
