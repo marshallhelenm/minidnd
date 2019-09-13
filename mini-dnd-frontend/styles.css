@@ -101,3 +101,7 @@ flex-direction: row;
     width: 300px;
     height: 280px;
 }
+
+#rand-char-btn{
+    margin-bottom: 5%;
+}
