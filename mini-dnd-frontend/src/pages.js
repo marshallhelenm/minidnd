@@ -202,11 +202,9 @@ function loadCharCreator() {
     div.appendChild(charForm)
     loadRaces()
     loadClasses()
-    showInfo(raceMenuDiv, classMenuDiv)
 }
 
 function loadRaces(){
-    console.log('loading classes')
     let raceList = document.getElementById("selectRace")
     fetch(BASE_URL+'/races')
     .then(response => response.json())
@@ -232,7 +230,6 @@ function loadRaces(){
 }
 
 function loadClasses(){
-    console.log('loading classes')
     let classList = document.getElementById("selectClass")
     fetch(BASE_URL+'/class_types')
     .then(response => response.json())
@@ -580,16 +577,6 @@ function showModal(event) {
     confirmRestBtn.addEventListener('click', returnToTown)
 
 }
-
-function showInfo(raceMenu, classMenu) {
-    let raceIndex = raceMenu.selectedIndex
-    console.log("this method will display the race and class info during character creation! It just doesn't yet...", raceIndex, raceMenu.options)
-    // let raceDescrip = document.createElement('div')
-
-
-    // raceMenuDiv.appendChild(raceDescrip)
-}
-
 
 function displayRaceAbilities(menu){
     let index = menu.selectedIndex

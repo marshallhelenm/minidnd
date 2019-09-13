@@ -13,7 +13,6 @@ class CharactersController < ApplicationController
     end
 
     def create
-        # byebug
         @char = Character.new(char_params)
         assignStats(@char)
         @char.prepareSpells        

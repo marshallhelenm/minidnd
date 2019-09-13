@@ -5,9 +5,7 @@ function sampleFrom(arr) {
 
 function randomCharacter(event) {
     // put random character info on the character creation form
-    console.log('suggesting random character traits')
     let descriptors = randDescriptors()
-    console.log(sampleFrom(descriptors['race']))
     let race = sampleFrom(descriptors['race'])
     let class_type = sampleFrom(descriptors['class_type'])
     let adjective = sampleFrom(descriptors['adjective'])
@@ -69,7 +67,6 @@ function randomCharacter(event) {
             break;
     }
 
-    console.log(armor, weapon)
 
 
 

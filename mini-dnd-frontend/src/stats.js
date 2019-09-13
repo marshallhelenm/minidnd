@@ -124,7 +124,7 @@ function writeNumAttacks(char){
     }
     if (char.class_type.sub_type == 'Warrior'){
         console.log('warrior bonus attacks')
-        number += (char.level-1)/3
+        number += Math.floor((char.level-1)/3)
     }
     
     text = number + ' Attack'

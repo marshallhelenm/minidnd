@@ -70,6 +70,13 @@ flex-direction: row;
     border-radius: 50px;
     background-color: #f5f6f7;
 }
+
+#hp{
+    background-color: #f5f6f7;
+    border: none;
+    font-size: 18px;
+}
+
 .hp-item{
     width: 33%;
     padding: 2% 0% 2% 0%;
@@ -233,7 +240,7 @@ h1{
  */
 
 
-}
+
 
 h3{
     font-family: Aclonica;

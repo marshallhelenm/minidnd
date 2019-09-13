@@ -36,6 +36,7 @@
     align-content: center;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 40%;
 }
 
 #side-bar{
@@ -51,6 +52,13 @@
 
 .side-btn{
     margin-top: 5%;
+    width: 100%;
+    align-self: center;
 }
 
 
+#side-bar-top{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
