@@ -166,15 +166,25 @@ function spellsBox(char){
     
     let spellBox = document.getElementById('spells')
     spellBox.classList.add('bottom-item')
+<<<<<<< HEAD
     spellBox.classList.add('horz')
     
     let castBox = document.createElement('div')
+=======
+    
+    let castBox = document.createElement('div')
+    castBox.classList.add('bottom-left')
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
     
     let title = document.createElement('h3')
     title.textContent = 'Spells'
     spellBox.appendChild(title)
     
+<<<<<<< HEAD
     let slotBar = document.createElement('div')
+=======
+    let slotBar = document.createElement('span')
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
     castBox.appendChild(slotBar)
     
     let slots = document.createElement('p')
@@ -208,6 +218,7 @@ function spellsBox(char){
     }
     spellBox.appendChild(castBox)
 
+<<<<<<< HEAD
     let spellsLeft = document.createElement('div')
     // spellsLeft.classList.add('horz')
     // spellsLeft.classList.add('vert')
@@ -217,6 +228,14 @@ function spellsBox(char){
 
     spellBox.appendChild(spellsLeft)
     spellBox.appendChild(preparedSpells)
+=======
+    let notTitle = document.createElement('div')
+    notTitle.classList.add('horz')
+    notTitle.appendChild(castBox)
+    notTitle.appendChild(preparedSpells)
+
+    spellBox.appendChild(notTitle)
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
 }
 
 function rollForSuccess(event){

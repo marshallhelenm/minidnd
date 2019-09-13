@@ -11,11 +11,17 @@
 
 #logo{
     justify-content: flex-start;
+<<<<<<< HEAD
     max-width: 200px;
     height: 10%;
     text-align: center;
     align-self: center;
     margin-top: 5%;
+=======
+    max-width: 100%;
+    height: 10%;
+    text-align: center;
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
 } 
 
 #logo-img{
@@ -40,6 +46,7 @@
 
 #side-bar{
     justify-content: space-between;
+<<<<<<< HEAD
     position: absolute;
     max-height: 100vh;
     height: 100%;
@@ -47,6 +54,8 @@
     min-width: 190px;
     position: fixed;
     left: 0;
+=======
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
 }
 
 .side-btn{
@@ -54,4 +63,7 @@
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da

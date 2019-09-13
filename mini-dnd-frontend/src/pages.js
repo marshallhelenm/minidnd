@@ -38,7 +38,7 @@ function loadCharCreator() {
     charForm.classList.add('vert')
     page.appendChild(div)
     
-    let title =  document.createElement('h2')
+    let title =  document.createElement('h1')
     title.innerText = 'Create Character'
     div.appendChild(title)
 
@@ -78,15 +78,17 @@ function loadCharCreator() {
     raceMenu.setAttribute('id', 'selectRace')
     raceMenu.classList.add('form-control')
     let raceMenuDiv = document.createElement('div')
-    raceMenuDiv.classList.add('form-group')
+    raceMenuDiv.classList.add('form-group','form-group-with-descriptor')
     let raceLabel = document.createElement('label')
     raceLabel.setAttribute('for', 'selectRace')
     raceLabel.textContent = 'Select a Race:'
     raceMenuDiv.appendChild(raceLabel)
     raceMenuDiv.appendChild(raceMenu)
-
+    //display race attributes
     let raceDescription = document.createElement('ul')
-    raceMenu.addEventListener('change',displayRaceAbilities)
+    raceDescription.classList.add('char-box-borders', 'no-list-style')
+    raceDescription.setAttribute('id','race-descriptor')
+    raceMenu.addEventListener('change',event => {displayRaceAbilities(event.target)})
     raceMenuDiv.appendChild(raceDescription)
     
     
@@ -97,13 +99,18 @@ function loadCharCreator() {
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
-    classMenuDiv.classList.add('form-group')
+    classMenuDiv.classList.add('form-group','form-group-with-descriptor')
     let classLabel = document.createElement('label')
     classLabel.setAttribute('for', 'selectClass')
     classLabel.textContent = 'Select a Class:'
     classMenuDiv.appendChild(classLabel)
     classMenuDiv.appendChild(classMenu)
-    
+    //display class attributes
+    let classDescription = document.createElement('ul')
+    classDescription.classList.add('char-box-borders', 'no-list-style')
+    classDescription.setAttribute('id','class-descriptor')
+    classMenu.addEventListener('change',event => {displayClassAbilities(event.target)})
+    classMenuDiv.appendChild(classDescription)
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
@@ -219,6 +226,8 @@ function loadRaces(){
             option.textContent = race.name
             raceList.appendChild(option)
         }
+
+        displayRaceAbilities(raceList) //display abilities of default race
     })
 }
 
@@ -228,10 +237,10 @@ function loadClasses(){
     fetch(BASE_URL+'/class_types')
     .then(response => response.json())
     .then(classes => {
-        for(let classtype of classes){
+        for(let class_type of classes){
             let option = document.createElement('option')
-            option.setAttribute('value',classtype.id)
-            option.setAttribute('id',classtype.name)
+            option.setAttribute('value',class_type.id)
+            option.setAttribute('id',class_type.name)
 
 
             option.setAttribute('numabilities',class_type.class_type_abilities.length)
@@ -241,9 +250,15 @@ function loadClasses(){
                 option.setAttribute(attribute,class_type.class_type_abilities[i].description)
             }
 
+<<<<<<< HEAD
             option.textContent = classtype.name
+=======
+            option.textContent = class_type.name
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
             classList.appendChild(option)
         }
+
+        displayClassAbilities(classList) //display abilities of default class
     })
 }
 
@@ -270,7 +285,11 @@ function loadCharSheet() {
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
+<<<<<<< HEAD
     // bottom.classList.add('char-box-borders')
+=======
+    bottom.classList.add('char-box-borders')
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
     // bottom.classList.add('horz')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
@@ -360,10 +379,16 @@ function loadCharSheet() {
     // saveSpan.classList.add('vert-sidebar')
     charBodyLeft.appendChild(saveSpan)
 
+<<<<<<< HEAD
     let h3Saves = document.createElement('h3')
     h3Saves.innerText = 'Saves'
     h3Saves.setAttribute('id', 'h3-skills')
     saveSpan.appendChild(h3Saves)
+=======
+    let h3 = document.createElement('h3')
+    h3.innerText = 'Saves:'
+    saveSpan.appendChild(h3)
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
 
     let phys = document.createElement('button')
     phys.classList.add('skillBox')
@@ -443,8 +468,12 @@ function loadCharSheet() {
     charBodyRight.appendChild(skillSpan)
 
     let h3Skills = document.createElement('h3')
+<<<<<<< HEAD
     h3Skills.setAttribute('id', 'h3-skills')
     h3Skills.innerText = 'Skills'
+=======
+    h3Skills.innerText = 'Skills:'
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
     skillSpan.appendChild(h3Skills)
 
     let ath = document.createElement('button')
@@ -574,9 +603,36 @@ function showInfo(raceMenu, classMenu) {
     // raceMenuDiv.appendChild(raceDescrip)
 }
 
+<<<<<<< HEAD
+=======
 
-function displayRaceAbilities(event){
-    console.log(event.target.abilities)
+function displayRaceAbilities(menu){
+    let index = menu.selectedIndex
+    let selected = menu.children[index]
+    let num = selected.getAttribute('numAbilities')
+    let display = document.getElementById('race-descriptor')
+    while (display.firstChild){ display.removeChild(display.firstChild)}
+    for(let i = 0; i < num; i++){
+        let attribute = 'ability' + i
+        let li = document.createElement('li')
+        li.textContent = selected.getAttribute(attribute)
+        display.appendChild(li)
+    }
+}
+>>>>>>> ac537545db50f1f95fc43c456955e394a713b6da
+
+function displayClassAbilities(menu){
+    let index = menu.selectedIndex
+    let selected = menu.children[index]
+    let num = selected.getAttribute('numAbilities')
+    let display = document.getElementById('class-descriptor')
+    while (display.firstChild){ display.removeChild(display.firstChild)}
+    for(let i = 0; i < num; i++){
+        let attribute = 'ability' + i
+        let li = document.createElement('li')
+        li.textContent = selected.getAttribute(attribute)
+        display.appendChild(li)
+    }
 }
 
 
