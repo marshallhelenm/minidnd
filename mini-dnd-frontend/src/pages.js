@@ -242,7 +242,7 @@ function loadClasses(){
             }
 
             option.textContent = classtype.name
-            classList.appendChild(option
+            classList.appendChild(option)
         }
     })
 }
@@ -270,7 +270,7 @@ function loadCharSheet() {
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
-    bottom.classList.add('char-box-borders')
+    // bottom.classList.add('char-box-borders')
     // bottom.classList.add('horz')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
@@ -360,9 +360,10 @@ function loadCharSheet() {
     // saveSpan.classList.add('vert-sidebar')
     charBodyLeft.appendChild(saveSpan)
 
-    let h3 = document.createElement('h3')
-    h3.innerText = 'Saves:'
-    saveSpan.appendChild(h3)
+    let h3Saves = document.createElement('h3')
+    h3Saves.innerText = 'Saves'
+    h3Saves.setAttribute('id', 'h3-skills')
+    saveSpan.appendChild(h3Saves)
 
     let phys = document.createElement('button')
     phys.classList.add('skillBox')
@@ -442,7 +443,8 @@ function loadCharSheet() {
     charBodyRight.appendChild(skillSpan)
 
     let h3Skills = document.createElement('h3')
-    h3Skills.innerText = 'Skills:'
+    h3Skills.setAttribute('id', 'h3-skills')
+    h3Skills.innerText = 'Skills'
     skillSpan.appendChild(h3Skills)
 
     let ath = document.createElement('button')
@@ -474,12 +476,15 @@ function loadCharSheet() {
 
 
     // Bottom
-    let weaponAbilitiesBox = document.createElement('span')
+    let weaponAbilitiesBox = document.createElement('div')
     weaponAbilitiesBox.setAttribute('id','weapons-and-abilities')
     weaponAbilitiesBox.classList.add('horz')
+    weaponAbilitiesBox.classList.add('bottom-item')
     bottom.appendChild(weaponAbilitiesBox)
 
-    let weaponBox = document.createElement('span')
+    let weaponBox = document.createElement('div')
+    weaponBox.classList.add('char-box-borders')
+    weaponBox.classList.add('bottom-left')
     weaponAbilitiesBox.appendChild(weaponBox)
 
     let weaponTitle = document.createElement('h3')
@@ -496,10 +501,13 @@ function loadCharSheet() {
 
     let abilities = document.createElement('div')
     abilities.setAttribute('id', 'abilities')
+    abilities.classList.add('char-box-borders')
+    abilities.classList.add('bottom-right')
     weaponAbilitiesBox.appendChild(abilities)
 
     let spells = document.createElement('div')
     spells.setAttribute('id','spells')
+    spells.classList.add('char-box-borders')
     bottom.appendChild(spells)
 
     let btnDiv = document.createElement('div')
