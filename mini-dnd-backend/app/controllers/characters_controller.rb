@@ -33,6 +33,7 @@ class CharactersController < ApplicationController
     def update
         @char = Character.find(params[:id])
         @char.update(char_params)
+        # byebug
         @char.armor_class = @char.armorClass
         @char.save
         render :json => @char
@@ -64,7 +65,7 @@ class CharactersController < ApplicationController
     private
 
     def char_params
-        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :spell_slots, :description)
+        params.require(:character).permit(:id, :hp, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :spell_slots, :description)
     end
     
     def assignStats(char)

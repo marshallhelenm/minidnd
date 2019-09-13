@@ -429,6 +429,7 @@ function loadCharSheet() {
     hpCurrent.setAttribute('id', 'hp')
     hpCurrent.setAttribute('type','number')
     hpCurrent.setAttribute('value',3)
+    hpCurrent.addEventListener('change',updateHP)
     hpSpan.appendChild(hpCurrent)
 
     let hpMax = document.createElement('h4')
@@ -437,10 +438,14 @@ function loadCharSheet() {
     hpMax.textContent = `/ `
     hpSpan.appendChild(hpMax)
 
-    let acBox = document.createElement('span')
-    acBox.setAttribute('id', 'ac')
-    acBox.textContent = `AC: `
+    let acBox = document.createElement('div')
+    acBox.setAttribute('id', 'ac-box')
     charBodyCenter.appendChild(acBox)
+    
+    let ac = document.createElement('h4')
+    ac.setAttribute('id', 'ac')
+    ac.textContent = `AC: `
+    acBox.appendChild(ac)
 
 
     // Char Body Right

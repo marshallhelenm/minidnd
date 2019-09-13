@@ -232,6 +232,22 @@ function useSpellSlot(char){
     }
 }
 
+function updateHP(){
+    
+    let id = document.getElementById('edit-char').getAttribute('value')
+    let hp = document.getElementById('hp').value
+    console.log(hp)
+    fetch(BASE_URL+'/characters/'+id,{
+        method: 'PATCH',
+        headers: {
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            'hp': hp
+        })
+    })
+}
+
 function returnToTown(event){
     $('#restModal').modal('toggle')
     let charID = document.getElementById('edit-char').value
