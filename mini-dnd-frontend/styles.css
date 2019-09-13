@@ -8,8 +8,15 @@
     min-height: 100%;
     position: absolute;
     right: 0;
-    min-height: 100%
+    min-height: 100%;
+
 }
+
+#createCharacter{
+    padding-top: 5%;
+}
+
+
 
 .vert{
     display: flex;

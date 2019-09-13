@@ -51,7 +51,7 @@ function loadEditSheet(char) {
     page.appendChild(div)
     
     
-    let title =  document.createElement('h2')
+    let title =  document.createElement('h1')
     title.innerText = 'Edit Character'
     div.appendChild(title)
     
