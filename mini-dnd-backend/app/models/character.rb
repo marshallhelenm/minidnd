@@ -242,8 +242,7 @@ class Character < ApplicationRecord
     return num_prepared_spells
   end
 
-  def prepareSpells(wizConfirm)
-    console.log('wizConfirm inside prepareSpells:', wizConfirm)
+  def prepareSpells(wizConfirm={'isWiz' => 'nope', 'keepSpells' => 'no'})
     #Number of Spell slots
     calculateSpellSlots
 
@@ -251,35 +250,36 @@ class Character < ApplicationRecord
     num_prepared_spells = calculateNumPreparedSpells
 
     #Prepare Spells
+    if wizConfirm['isWiz'] == 'Wizard' && wizConfirm['keepSpells'] == 'yes'
+      self.save
+    else
+      self.spells = [] # spells currently prepared
 
-    self.spells = [] # spells currently prepared
+      if(self.class_type.name == 'Cleric')
+        spell = Spell.find_by(name: 'Turn Undead')
+        PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+        self.spells.push(spell)
+      end
 
-    if(self.class_type.name == 'Cleric')
-      spell = Spell.find_by(name: 'Turn Undead')
-      PreparedSpell.new(character_id: self.id, spell_id: spell.id)
-      self.spells.push(spell)
+      if(self.class_type.name == 'Druid')
+            spell = Spell.find_by(name: 'Wildshape')
+        PreparedSpell.new(character_id: self.id, spell_id: spell.id)
+        self.spells.push(spell)
+      end
+
+      classSpellList = Spell.where("spell_type = '#{self.class_type.magic_type}'")
+      spells_to_prepare = []
+
+      while (spells_to_prepare.uniq.length < num_prepared_spells)
+        spells_to_prepare.push(classSpellList.sample)
+        spells_to_prepare = spells_to_prepare.uniq
+      end
+
+      spells_to_prepare.each do |spell|
+        self.spells << Spell.find(spell.id)
+      end
+      self.save
     end
-
-    if(self.class_type.name == 'Druid')
-          spell = Spell.find_by(name: 'Wildshape')
-      PreparedSpell.new(character_id: self.id, spell_id: spell.id)
-      self.spells.push(spell)
-    end
-
-
-    classSpellList = Spell.where("spell_type = '#{self.class_type.magic_type}'")
-    spells_to_prepare = []
-
-    while (spells_to_prepare.uniq.length < num_prepared_spells)
-      spells_to_prepare.push(classSpellList.sample)
-      spells_to_prepare = spells_to_prepare.uniq
-    end
-
-    spells_to_prepare.each do |spell|
-      self.spells << Spell.find(spell.id)
-    end
-
-    self.save
   end
 
 
@@ -328,4 +328,8 @@ class Character < ApplicationRecord
       end
       return (level*100) + xpToLevel(level-1)
   end
+
+
+  
+
 end
