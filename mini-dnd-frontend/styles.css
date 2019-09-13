@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Aclonica&display=swap');
+
 #page{
     border: solid;
     display: flex;
     background-color: #f5f6f7;
+    padding-bottom: 5%;
 }
 
 .vert{
@@ -24,8 +27,8 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+    /* padding-left: 5%;
+    padding-right: 5%; */
 }
 
 #side-bar{
@@ -67,15 +70,23 @@ flex-direction: row;
     align-self: center;
 }
 .hp-item{
-    max-width: 33%;
-    padding-left: 0%;
-    padding-right: 0%;
+    width: 33%;
+    padding: 2% 0% 2% 0%;
+    /* padding-top: 0%;
+    padding-right: 0%; */
     margin: 0%;
+    border: 3px solid #ced4da;
+    border-radius: 50px;
+    background-color: #f5f6f7;
+    text-align: center;
 }
 
 #char_photo{
-    width: 300px;
-    height: 280px;
+    width: 100%;
+    height: auto;
+    padding: 5%;
+    border: 3px solid #ced4da;
+    border-radius: 20px;
 }
 
 #weapons-and-abilities{
@@ -84,5 +95,103 @@ flex-direction: row;
 }
 
 #rand-char-btn{
+    margin-bottom: 2%;
+}
+
+#login{
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+
+.sides{
+    max-width: 20%;
+}
+
+.center{
+    min-width: 50%;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.saves-n-skills{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    height: 100%;
+    padding: 0% 2% 0% 2%;
+}
+
+.char-box-borders{
+    padding: 2%;
+    border: 3px solid #ced4da;
+    border-radius: 20px;
+    margin: 2% 0% 2% 0%;
+}
+
+#spells{
     margin-bottom: 5%;
 }
+
+
+.bottom-right{
+    width: 60%;
+}
+
+.bottom-left{
+    width: 40%;
+}
+
+.bottom-item{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#btnDiv{
+    margin-top: 0%;
+    border: 3px solid #ced4da;
+    border-radius: 20px;
+    justify-content: space-around;
+}
+
+h1{
+    font-family: Aclonica;
+}
+
+/* .aclonicaH1{
+    font-family: Aclonica; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px;
+}
+
+.aclonicaH3{
+    font-family: Aclonica; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 15.4px;
+}
+
+.aclonicaP{
+    font-family: Aclonica; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400; 
+    line-height: 20px;
+}
+
+
+
+
+
+
+
+
+ */
+
+

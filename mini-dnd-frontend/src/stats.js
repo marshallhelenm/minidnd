@@ -11,7 +11,7 @@ function displayStats(char) {
     document.getElementById('race').innerText = `Race: ${char.race.name}`
     document.getElementById('race').setAttribute('value',char.race.name)
 
-    document.getElementById('char_name').innerText = char.name
+    document.getElementById('char_name_h1').innerText = char.name
 
     document.getElementById('char_description').innerText = char.description
 
@@ -159,43 +159,57 @@ function spellsBox(char){
     if (char.class_type.caster_type == 'none'){
         return
     }   
-
+    
     let spellBox = document.getElementById('spells')
-
+    spellBox.classList.add('bottom-item')
+    
+    let castBox = document.createElement('div')
+    castBox.classList.add('bottom-left')
+    
     let title = document.createElement('h3')
     title.textContent = 'Spells'
     spellBox.appendChild(title)
-
+    
     let slotBar = document.createElement('span')
-    spellBox.appendChild(slotBar)
-
+    castBox.appendChild(slotBar)
+    
     let slots = document.createElement('p')
     slots.setAttribute('id','slots')
     if (char.spell_slots > 0){
         slots.textContent = 'Remaining Spell Slots: ' + char.spell_slots
-
+        
     } else{
         slots.textContent = 'No more spell slots'
     }
-    slotBar.appendChild(slots)
-
+    castBox.appendChild(slots)
+    
     let castBtn = document.createElement('button')
     castBtn.textContent = 'Cast Spell'
     castBtn.setAttribute('id','cast-button')
+    castBtn.classList.add('btn-outline-dark')
+    castBtn.classList.add('btn')
     castBtn.addEventListener('click',() =>{useSpellSlot(char)})
-    slotBar.appendChild(castBtn)
+    castBox.appendChild(castBtn)
     
     if (char.spell_slots == 0){
         castBtn.style.display = 'none'
     } 
-
+    
     let preparedSpells = document.createElement('ul')
+    preparedSpells.classList.add('bottom-right')
     for(let spell of char.spells){
         let spellListing = document.createElement('li')
         spellListing.textContent = spell.name +": " + spell.description
         preparedSpells.appendChild(spellListing)
     }
-    spellBox.appendChild(preparedSpells)
+    spellBox.appendChild(castBox)
+
+    let notTitle = document.createElement('div')
+    notTitle.classList.add('horz')
+    notTitle.appendChild(castBox)
+    notTitle.appendChild(preparedSpells)
+
+    spellBox.appendChild(notTitle)
 }
 
 function rollForSuccess(event){
