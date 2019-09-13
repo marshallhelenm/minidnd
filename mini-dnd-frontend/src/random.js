@@ -14,8 +14,64 @@ function randomCharacter(event) {
     adjective = adjective.charAt(0).toUpperCase() + adjective.slice(1)
     let location = sampleFrom(descriptors['location'])
     let backstory = sampleFrom(descriptors['backstory'])
-    let weapon = sampleFrom(['finesse', 'martial', 'large'])
-    let armor = sampleFrom(['light', 'medium', 'heavy'])
+
+    let armor;
+    let weapon;
+
+    switch (class_type){
+        case 'Fighter':
+            armor = 'heavy'
+            weapon = sampleFrom(['martial', 'large'])
+            break;
+        case 'Paladin':
+            armor = 'heavy'
+            weapon = sampleFrom(['martial', 'large'])   
+            break;
+        case 'Barbarian':
+            armor = 'heavy'
+            weapon = 'large'
+            break;
+        case 'Cleric':
+            armor = 'medium'
+            weapon = 'martial'
+            break;
+        case 'Ranger':
+            armor = 'medium'
+            weapon = 'ranged'
+            break;
+        case 'Monk':
+            armor = 'medium'
+            weapon = 'finesse'
+            break;
+        case 'Bard':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Thief':
+            armor = 'light'
+            weapon = 'finesse'
+            break;
+        case 'Druid':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Warlock':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Wizard':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Sorcerer':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+    }
+
+    console.log(armor, weapon)
+
+
 
     let charDescrip = document.getElementById('charDescrip')
     charDescrip.value = `${adjective} ${race} ${class_type} from ${location} who ${backstory}`

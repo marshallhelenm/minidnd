@@ -72,6 +72,9 @@ function loadCharCreator() {
     descripDiv.appendChild(charDescrip)
     
     let raceMenu = document.createElement('select')
+    raceMenu.onchange = event => {
+        showInfo(raceMenu, classMenu)
+    }
     raceMenu.setAttribute('id', 'selectRace')
     raceMenu.classList.add('form-control')
     let raceMenuDiv = document.createElement('div')
@@ -84,6 +87,9 @@ function loadCharCreator() {
     
     
     let classMenu = document.createElement('select')
+    classMenu.onchange = event => {
+        showInfo(raceMenu, classMenu)
+    }
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
@@ -185,6 +191,7 @@ function loadCharCreator() {
     div.appendChild(charForm)
     loadRaces()
     loadClasses()
+    showInfo(raceMenuDiv, classMenuDiv)
 }
 
 function loadRaces(){
@@ -464,6 +471,15 @@ function showModal(event) {
     let confirmRestBtn = document.getElementById('confirm-rest-button')
     confirmRestBtn.addEventListener('click', returnToTown)
 
+}
+
+function showInfo(raceMenu, classMenu) {
+    let raceIndex = raceMenu.selectedIndex
+    console.log("this method will display the race and class info during character creation! It just doesn't yet...", raceIndex, raceMenu.options)
+    // let raceDescrip = document.createElement('div')
+
+
+    // raceMenuDiv.appendChild(raceDescrip)
 }
 
 

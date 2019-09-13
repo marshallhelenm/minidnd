@@ -1,0 +1,47 @@
+.vert-sidebar{
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+}
+
+
+#left{
+    min-width: 200px;
+}
+
+#logo{
+    justify-content: flex-start;
+    max-width: 100%;
+    height: 10%;
+    text-align: center;
+} 
+
+#logo-img{
+    height: 1.5em;
+
+}
+
+#credits{
+    text-align: center;
+    
+}
+
+#side-menu{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    align-self: center;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#side-bar{
+    justify-content: space-between;
+}
+
+.side-btn{
+    margin-top: 5%;
+}
+
+
