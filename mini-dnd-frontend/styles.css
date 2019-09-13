@@ -8,6 +8,7 @@
     min-height: 100%;
     position: absolute;
     right: 0;
+    min-height: 100%
 }
 
 .vert{
@@ -71,6 +72,13 @@ flex-direction: row;
     border-radius: 50px;
     background-color: #f5f6f7;
 }
+
+#hp{
+    background-color: #f5f6f7;
+    border: none;
+    font-size: 18px;
+}
+
 .hp-item{
     width: 33%;
     padding: 2% 0% 2% 0%;
@@ -78,6 +86,27 @@ flex-direction: row;
     padding-right: 0%; */
     margin: 0%;
     text-align: center;
+}
+
+#char_description{
+    margin-bottom: 0%;
+    margin-top: 2%;
+}
+
+#ac-box{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#ac{
+    border: 3px solid #ced4da;
+    border-radius: 50px;
+    background-color: #f5f6f7;
+    width: 33%;
+    margin:0;
 }
 
 #char_photo{
@@ -128,6 +157,15 @@ flex-direction: row;
     padding: 0% 2% 0% 2%;
 }
 
+.bottom-right{
+    max-width: 60%;
+}
+
+.bottom-left{
+    max-width: 40%;
+    margin-right: 5% !important;
+}
+
 .char-box-borders{
     padding: 2%;
     border: 3px solid #ced4da;
@@ -140,23 +178,16 @@ flex-direction: row;
 }
 
 
+
+.form-group-with-descriptor{
+    margin-bottom: 0%;
+}
+
 .bottom-item{
     /* margin-left: 5%;
     margin-right: 5%; */
     max-width: 100%;
     width: 100%;
-}
-
-.form-group-with-descriptor{
-    margin-bottom: 0%;
-}
-.bottom-right{
-    width: 60%;
-}
-
-.bottom-left{
-    width: 40%;
-    margin-right: 5%;
 }
 
 
@@ -171,6 +202,20 @@ h1{
     font-family: Aclonica;
     text-align: center;
 }
+
+.no-list-style{
+    list-style-type: none;
+}
+
+.sBtns{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 
 
 h3{
@@ -187,18 +232,3 @@ h3{
     justify-content: center;
     padding: 0;
 }
-
-
-.no-list-style{
-    list-style-type: none;
-}
-
-.sBtns{
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-

@@ -69,23 +69,26 @@
 
       <div id='left' class='col-2'>
         <nav id='side-bar' class='nav flex-column bg-dark'>
-            <div id='logo'>
-              <h1 id='logo-text' class='nav-item text-light'>Bite Size <img id='logo-img' src='assets/d20.png'> DnD</h1>
+            <div id='side-bar-top'>
+              <div id='logo'>
+                <h1 id='logo-text' class='nav-item text-light'>Bite Size <img id='logo-img' src='assets/d20.png'> DnD</h1>
+              </div>
+              <div id='side-menu' class="nav-item">
+
+                <div id='select-char' class='nav-item btn-group dropdown side-btn'>
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Select Character
+                  </button>
+                    <div class="dropdown-menu" id='selectChar'>
+                      <!-- things get dynamically added here -->
+                  </div>
+                </div>
+                <button id='log-out-btn' class='nav-item btn btn-secondary side-btn'>Log Out</button>
+                <button id='rules-btn' class='nav-item btn btn-secondary side-btn'>Rules</button>
+              </div>
             </div>
           <div id='side-logo' class="nav-item"></div>
-          <div id='side-menu' class="nav-item">
-
-            <div id='select-char' class='nav-item btn-group dropdown side-btn'>
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Select Character
-                </button>
-                  <div class="dropdown-menu" id='selectChar'>
-                    <!-- things get dynamically added here -->
-                </div>
-            </div>
-            <button id='log-out-btn' class='nav-item btn btn-secondary side-btn'>Log Out</button>
-            <button id='rules-btn' class='nav-item btn btn-secondary side-btn'>Rules</button>
-          </div>
+          
           <p id='credits' class="nav-item text-light">Nick Dunlap<br>Helen Marshall<br>2019</p>
         </nav>
       </div>

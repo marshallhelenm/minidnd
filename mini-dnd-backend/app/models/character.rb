@@ -328,6 +328,11 @@ class Character < ApplicationRecord
       profit = 0
     end
 
+    if (self.race.name = "Human")
+      profit = (profit*1.1).round
+      bonus_xp = (bonus_xp*1.1).round
+    end
+
     self.xp += profit + bonus_xp
     
     if (self.xp >= xpToLevel(self.level))

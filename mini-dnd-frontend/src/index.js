@@ -38,7 +38,6 @@ function loggedIn() { //checks if user is logged in or not and if they have a ch
 }
 
 function makeUN(event){ //logs you in or creates a username and logs you in
-    console.log('makeUN called')
     let userName = document.getElementById("loginName").value
     event.target.style.display = 'none'
     fetch(BASE_URL+'/login',{
@@ -53,7 +52,6 @@ function makeUN(event){ //logs you in or creates a username and logs you in
     })
     .then(response => response.json())
     .then(json => {
-            console.log(json.message)
             localStorage.setItem('user_id',json.user_id)
             loadSideBar()
             loggedIn()

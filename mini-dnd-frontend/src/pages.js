@@ -93,9 +93,6 @@ function loadCharCreator() {
     
     
     let classMenu = document.createElement('select')
-    classMenu.onchange = event => {
-        showInfo(raceMenu, classMenu)
-    }
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
@@ -216,11 +213,9 @@ function loadCharCreator() {
     div.appendChild(charForm)
     loadRaces()
     loadClasses()
-    showInfo(raceMenuDiv, classMenuDiv)
 }
 
 function loadRaces(){
-    console.log('loading classes')
     let raceList = document.getElementById("selectRace")
     fetch(BASE_URL+'/races')
     .then(response => response.json())
@@ -246,7 +241,6 @@ function loadRaces(){
 }
 
 function loadClasses(){
-    console.log('loading classes')
     let classList = document.getElementById("selectClass")
     fetch(BASE_URL+'/class_types')
     .then(response => response.json())
@@ -449,6 +443,7 @@ function loadCharSheet() {
     hpCurrent.setAttribute('id', 'hp')
     hpCurrent.setAttribute('type','number')
     hpCurrent.setAttribute('value',3)
+    hpCurrent.addEventListener('change',updateHP)
     hpSpan.appendChild(hpCurrent)
 
     let hpMax = document.createElement('h4')
@@ -457,10 +452,14 @@ function loadCharSheet() {
     hpMax.textContent = `/ `
     hpSpan.appendChild(hpMax)
 
-    let acBox = document.createElement('span')
-    acBox.setAttribute('id', 'ac')
-    acBox.textContent = `AC: `
+    let acBox = document.createElement('div')
+    acBox.setAttribute('id', 'ac-box')
     charBodyCenter.appendChild(acBox)
+    
+    let ac = document.createElement('h4')
+    ac.setAttribute('id', 'ac')
+    ac.textContent = `AC: `
+    acBox.appendChild(ac)
 
 
     // Char Body Right
@@ -600,16 +599,6 @@ function showModal(event) {
     confirmRestBtn.addEventListener('click', returnToTown)
 
 }
-
-function showInfo(raceMenu, classMenu) {
-    let raceIndex = raceMenu.selectedIndex
-    console.log("this method will display the race and class info during character creation! It just doesn't yet...", raceIndex, raceMenu.options)
-    // let raceDescrip = document.createElement('div')
-
-
-    // raceMenuDiv.appendChild(raceDescrip)
-}
-
 
 function displayRaceAbilities(menu){
     let index = menu.selectedIndex
