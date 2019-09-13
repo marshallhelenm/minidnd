@@ -235,7 +235,7 @@ function loadClasses(){
             }
 
             option.textContent = classtype.name
-            classList.appendChild(option)
+            classList.appendChild(option
         }
     })
 }
