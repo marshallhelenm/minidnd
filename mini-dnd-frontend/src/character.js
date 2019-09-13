@@ -259,3 +259,201 @@ function returnToTown(event){
         .then(json => displayStats(json))
 
 }
+
+
+function rollForSuccess(event){
+    // <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
+    let modalButtons = document.getElementById('dice-modal-footer')
+    while (modalButtons.firstChild){ modalButtons.removeChild(modalButtons.firstChild)}
+    let closeButton = document.createElement('button')
+    closeButton.classList.add('btn','btn-secondary')
+    closeButton.setAttribute('type','button')
+    closeButton.setAttribute('data-dismiss','modal')
+    closeButton.textContent = 'Done'
+    modalButtons.appendChild(closeButton)
+
+    $('#diceModal').modal('toggle')
+    let dialogue = document.getElementById('diceModal-body')
+    
+    document.getElementById('diceModal-title').textContent = 'Rolling ' + event.target.name
+    
+    while (dialogue.firstChild){
+        dialogue.removeChild(dialogue.firstChild)
+    }
+
+    let firstRoll = rollDie(dialogue,Number(event.target.value),20)
+
+    let result = document.createElement('strong')
+    if (firstRoll >= 20){
+        result.textContent = "Success\n"
+    } else {
+        result.textContent = "Failure\n"
+    }
+    dialogue.appendChild(result)
+
+    dialogue.appendChild(document.createElement('br'))
+
+    let advButton = document.createElement('button')
+    advButton.addEventListener('click',() => {additionalRoll(true,Number(event.target.value),firstRoll)})
+    advButton.textContent = 'Advantage'
+    dialogue.appendChild(advButton)
+
+    let disadvButton = document.createElement('button')
+    disadvButton.addEventListener('click',() => {additionalRoll(false,Number(event.target.value),firstRoll)})
+    disadvButton.textContent = 'Disadvantage'
+    dialogue.appendChild(disadvButton)
+}
+
+function rollForAttack(event, numAttack=1){
+    let modalButtons = document.getElementById('dice-modal-footer')
+    while (modalButtons.firstChild){ modalButtons.removeChild(modalButtons.firstChild)}
+
+    let newAttack = document.createElement('button')
+    newAttack.classList.add('btn','btn-secondary')
+    newAttack.setAttribute('type','button')
+    // newAttack.setAttribute('data-dismiss','modal')
+    newAttack.textContent = 'Attack Again'
+    newAttack.addEventListener('click', () => {rollForAttack(event, ++numAttack)})
+    modalButtons.appendChild(newAttack)
+
+    let closeButton = document.createElement('button')
+    closeButton.classList.add('btn','btn-secondary')
+    closeButton.setAttribute('type','button')
+    closeButton.setAttribute('data-dismiss','modal')
+    closeButton.textContent = 'Done'
+    modalButtons.appendChild(closeButton)
+
+
+
+    if (numAttack == 1){ $('#diceModal').modal('toggle') }
+    let dialogue = document.getElementById('diceModal-body')
+    
+    let title = document.getElementById('diceModal-title')
+    title.textContent = 'Rolling ' + event.target.name
+    if (numAttack > 1){
+        title.textContent += ` ${numAttack}`
+    }
+
+    while (dialogue.firstChild){
+        dialogue.removeChild(dialogue.firstChild)
+    }
+
+    let firstRoll = rollDie(dialogue,Number(event.target.value),20)
+
+    let result = document.createElement('strong')
+    result.textContent = `${firstRoll} to Hit`
+    dialogue.appendChild(result)
+
+    dialogue.appendChild(document.createElement('br'))
+
+    let advButton = document.createElement('button')
+    advButton.addEventListener('click',() => {additionalRoll(true,Number(event.target.value),firstRoll,true)})
+    advButton.textContent = 'Advantage'
+    dialogue.appendChild(advButton)
+
+    let disadvButton = document.createElement('button')
+    disadvButton.addEventListener('click',() => {additionalRoll(false,Number(event.target.value),firstRoll,true)})
+    disadvButton.textContent = 'Disadvantage'
+    dialogue.appendChild(disadvButton)
+
+    console.log(event.target)
+    let damageRoll = rollDie(dialogue,Number(event.target.getAttribute('damagemod')),Number(event.target.getAttribute('damagedie')))
+    let damageText = document.createElement('strong')
+    damageText.textContent = `${damageRoll} Damage`
+    dialogue.appendChild(damageText)
+}
+
+function additionalRoll(advantage,mod,firstRoll,isAttackRoll){
+    let dialogue = document.getElementById('diceModal-body')
+    console.log(dialogue.children)
+    dialogue.removeChild(dialogue.children[1])//remove break
+    dialogue.removeChild(dialogue.children[1])//remove disadvantage button
+    dialogue.removeChild(dialogue.children[1])//remove advantage button
+    dialogue.removeChild(dialogue.children[1])//remove result
+
+    let info = document.createElement('p')
+    if (advantage){
+        info.textContent = 'Rolling Advantage'
+    } else { info.textContent = 'Rolling Disadvantage'}
+    dialogue.appendChild(info)
+
+    let secondRoll = rollDie(dialogue,mod,20)
+
+    if (isAttackRoll){
+        let result = document.createElement('strong')
+        dialogue.appendChild(result)
+        if(advantage){
+            if (firstRoll > secondRoll){
+                result.textContent = firstRoll
+            } else {
+                result.textContent = secondRoll
+            }
+        }
+        else{
+            if (firstRoll > secondRoll >= 20){
+                result.textContent = secondRoll
+            } else {
+                result.textContent = firstRoll
+            }
+        }
+        result.textContent += ' to Hit'
+
+        //Move Damage Roll Output to the end
+        let move1 = dialogue.children[1]
+        dialogue.appendChild(move1)
+        let move2 = dialogue.children[1]
+        dialogue.appendChild(move2)
+    } else {
+        let result = document.createElement('strong')
+        dialogue.appendChild(result)
+        if(advantage){
+            if (firstRoll >= 20 || secondRoll >= 20){
+                result.textContent = "Success"
+            } else {
+                result.textContent = "Failure"
+            }
+        }
+        else{
+            if (firstRoll >= 20 && secondRoll >= 20){
+                result.textContent = "Success"
+            } else {
+                result.textContent = "Failure"
+            }
+        }
+    }
+}
+
+function rollDie(dialogue,mod,size=20){
+
+    let intro = document.createElement('p')
+    intro.textContent = `Rolling d${size}: `
+    dialogue.appendChild(intro)
+
+    let isHalfling = document.getElementById('race').getAttribute('value') == 'Halfling'
+    console.log('Is Halfling? ', isHalfling)
+
+    let roll = Math.floor(Math.random() * size) + 1
+    let result = roll+Number(mod)
+    intro.textContent += ` ${roll}`
+    if (mod > 0) { intro.textContent += ` + ${mod}`}
+    intro.textContent += ` = `
+    intro.textContent += `${result}`
+    
+
+    if (roll == 1 && isHalfling){
+
+        let output = document.createElement('p')
+        output.textContent = `Halfling reroll: d${size}: `
+        dialogue.appendChild(output)
+        roll = Math.floor(Math.random() * size) + 1
+        output.textContent += ` ${roll} + ${mod} = `
+        result = roll+Number(mod)
+
+        output.textContent += `${result}`
+    }
+
+    return result
+}
+
+
+
