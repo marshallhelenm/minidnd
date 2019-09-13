@@ -33,6 +33,7 @@ function deleteChar(e) {
 
 
 function editChar(e) {
+    console.log('sadg')
     fetch(BASE_URL+`/characters/${event.target.value}`)
         .then(response => response.json())
         .then(character => loadEditSheet(character))
@@ -55,23 +56,32 @@ function loadEditSheet(char) {
     div.appendChild(title)
     
     let name = document.createElement('input')
-    name.setAttribute('placeholder', 'char.name')
-    name.defaultValue = char.name
+    name.setAttribute('placeholder', 'Character Name')
+    // name.defaultValue = randomName()
     name.setAttribute('type', 'text')
-    name.setAttribute('id', 'selectName')
+    name.setAttribute('id', 'name-field')
+    name.defaultValue = char.name
     name.classList.add('form-control')
     let nameDiv = document.createElement('div')
     nameDiv.classList.add('form-group')
+    let nameLabel = document.createElement('label')
+    nameLabel.setAttribute('for', 'name-field')
+    nameLabel.textContent = 'Name:'
+    nameDiv.appendChild(nameLabel)
     nameDiv.appendChild(name)
 
     let charDescrip = document.createElement('textarea')
-    charDescrip.setAttribute('placeholder', char.description)
+    charDescrip.setAttribute('placeholder', 'A brave (or stupid) adventurer!')
     charDescrip.defaultValue = char.description
     charDescrip.setAttribute('type', 'textarea')
     charDescrip.setAttribute('id', 'charDescrip')
     charDescrip.classList.add('form-control')
     let descripDiv = document.createElement('div')
     descripDiv.classList.add('form-group')
+    let descripLabel = document.createElement('label')
+    descripLabel.setAttribute('for', 'charDescrip')
+    descripLabel.textContent = 'Description:'
+    descripDiv.appendChild(descripLabel)
     descripDiv.appendChild(charDescrip)
     
     let weaponMenu = document.createElement('select')
@@ -79,6 +89,10 @@ function loadEditSheet(char) {
     weaponMenu.classList.add('form-control')
     let weaponMenuDiv = document.createElement('div')
     weaponMenuDiv.classList.add('form-group')
+    let weaponLabel = document.createElement('label')
+    weaponLabel.setAttribute('for', 'selectWeapon')
+    weaponLabel.textContent = 'Select a Weapon:'
+    weaponMenuDiv.appendChild(weaponLabel)
     weaponMenuDiv.appendChild(weaponMenu)
     
     let finesse = document.createElement('option')
@@ -106,6 +120,10 @@ function loadEditSheet(char) {
     armorMenu.classList.add('form-control')
     let armorMenuDiv = document.createElement('div')
     armorMenuDiv.classList.add('form-group')
+    let armorLabel = document.createElement('label')
+    armorLabel.setAttribute('for', 'selectArmor')
+    armorLabel.textContent = 'Select Armor:'
+    armorMenuDiv.appendChild(armorLabel)
     armorMenuDiv.appendChild(armorMenu)
     
     let light = document.createElement('option')
@@ -122,11 +140,25 @@ function loadEditSheet(char) {
     heavy.setAttribute('value', 'heavy')
     heavy.textContent = 'Plate - AC 16 - MV 4'
     armorMenu.appendChild(heavy)
+
+    let pic = document.createElement('input')
+    pic.setAttribute('placeholder', 'https://img.url')
+    pic.setAttribute('type', 'text')
+    pic.setAttribute('id', 'pic-field')
+    pic.classList.add('form-control')
+    let picDiv = document.createElement('div')
+    picDiv.classList.add('form-group')
+    let picLabel = document.createElement('label')
+    picLabel.setAttribute('for', 'pic-field')
+    picLabel.textContent = 'Upload a Picture:'
+    picDiv.appendChild(picLabel)
+    picDiv.appendChild(pic)
     
     let submitBtn = document.createElement('button')
     submitBtn.setAttribute('id', 'edit-character')
     submitBtn.setAttribute('value', char.id)
     submitBtn.onclick = event => {
+        event.preventDefault()
         submitCharChanges(char)
     }
     submitBtn.textContent = 'Submit Changes'
@@ -138,24 +170,31 @@ function loadEditSheet(char) {
     charForm.appendChild(descripDiv)
     charForm.appendChild(armorMenuDiv)
     charForm.appendChild(weaponMenuDiv)
+    charForm.appendChild(picDiv)
     charForm.appendChild(submitBtn)
     div.appendChild(charForm)
 
 }
 
-function submitCharChanges(stats){
+function submitCharChanges(charInfo){
+    console.log('charInfo in submitCharChanges', charInfo)
+
+    let pic_url = document.getElementById('pic-field').value
+    if (pic_url == ""){
+        pic_url = 'https://media.wizards.com/2015/images/dnd/ClassSymb_Fighter.png'
+    }
     let char = {
         'name' : document.getElementById('name-field').value,
         'description' : document.getElementById('charDescrip').value,
+        'race_id' : charInfo.race_id,
         'user_id' : localStorage.getItem('user_id'),
+        'class_type_id' : charInfo.class_type_id,
         'weapon' : document.getElementById('selectWeapon').value,
         'armor' : document.getElementById('selectArmor').value,
-        'id': event.target.value,
-        'race_id': stats.race_id,
-        'class_type_id' : stats.class_type_id
+        'img_url' : pic_url
     }
     //optimistically render charactersheet with new info
-    editCharacterInDropdown(char)
+    editCharacterInDropdown(charInfo)
 
     //fetch to update char on backend
     fetch(BASE_URL+'/characters/'+event.target.value,{
@@ -172,6 +211,11 @@ function submitCharChanges(stats){
 
 
 function submitNewCharacter(e){
+
+    let pic_url = document.getElementById('pic-field').value
+    if (pic_url == ""){
+        pic_url = 'https://media.wizards.com/2015/images/dnd/ClassSymb_Fighter.png'
+    }
     fetch(BASE_URL+'/characters',{
         method: 'POST',
         headers: {
@@ -185,7 +229,9 @@ function submitNewCharacter(e){
             'user_id' : localStorage.getItem('user_id'),
             'class_type_id' : document.getElementById('selectClass').value,
             'weapon' : document.getElementById('selectWeapon').value,
-            'armor' : document.getElementById('selectArmor').value
+            'armor' : document.getElementById('selectArmor').value,
+            'img_url' : pic_url
+
         })
     })
         .then(response => response.json()) 
