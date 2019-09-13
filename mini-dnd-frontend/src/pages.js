@@ -75,15 +75,16 @@ function loadCharCreator() {
     raceMenu.setAttribute('id', 'selectRace')
     raceMenu.classList.add('form-control')
     let raceMenuDiv = document.createElement('div')
-    raceMenuDiv.classList.add('form-group')
+    raceMenuDiv.classList.add('form-group','form-group-with-descriptor')
     let raceLabel = document.createElement('label')
     raceLabel.setAttribute('for', 'selectRace')
     raceLabel.textContent = 'Select a Race:'
     raceMenuDiv.appendChild(raceLabel)
     raceMenuDiv.appendChild(raceMenu)
-
+    //display race attributes
     let raceDescription = document.createElement('ul')
-    raceMenu.addEventListener('change',displayRaceAbilities)
+    raceDescription.setAttribute('id','race-descriptor')
+    raceMenu.addEventListener('change',event => {displayRaceAbilities(event.target)})
     raceMenuDiv.appendChild(raceDescription)
     
     
@@ -91,13 +92,17 @@ function loadCharCreator() {
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
-    classMenuDiv.classList.add('form-group')
+    classMenuDiv.classList.add('form-group','form-group-with-descriptor')
     let classLabel = document.createElement('label')
     classLabel.setAttribute('for', 'selectClass')
     classLabel.textContent = 'Select a Class:'
     classMenuDiv.appendChild(classLabel)
     classMenuDiv.appendChild(classMenu)
-    
+    //display class attributes
+    let classDescription = document.createElement('ul')
+    classDescription.setAttribute('id','class-descriptor')
+    classMenu.addEventListener('change',event => {displayClassAbilities(event.target)})
+    classMenuDiv.appendChild(classDescription)
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
@@ -212,6 +217,8 @@ function loadRaces(){
             option.textContent = race.name
             raceList.appendChild(option)
         }
+
+        displayRaceAbilities(raceList) //display abilities of default race
     })
 }
 
@@ -221,10 +228,10 @@ function loadClasses(){
     fetch(BASE_URL+'/class_types')
     .then(response => response.json())
     .then(classes => {
-        for(let classtype of classes){
+        for(let class_type of classes){
             let option = document.createElement('option')
-            option.setAttribute('value',classtype.id)
-            option.setAttribute('id',classtype.name)
+            option.setAttribute('value',class_type.id)
+            option.setAttribute('id',class_type.name)
 
 
             option.setAttribute('numabilities',class_type.class_type_abilities.length)
@@ -234,9 +241,11 @@ function loadClasses(){
                 option.setAttribute(attribute,class_type.class_type_abilities[i].description)
             }
 
-            option.textContent = classtype.name
-            classList.appendChild(option
+            option.textContent = class_type.name
+            classList.appendChild(option)
         }
+
+        displayClassAbilities(classList) //display abilities of default class
     })
 }
 
@@ -516,8 +525,32 @@ function showModal(event) {
 }
 
 
-function displayRaceAbilities(event){
-    console.log(event.target.abilities)
+function displayRaceAbilities(menu){
+    let index = menu.selectedIndex
+    let selected = menu.children[index]
+    let num = selected.getAttribute('numAbilities')
+    let display = document.getElementById('race-descriptor')
+    while (display.firstChild){ display.removeChild(display.firstChild)}
+    for(let i = 0; i < num; i++){
+        let attribute = 'ability' + i
+        let li = document.createElement('li')
+        li.textContent = selected.getAttribute(attribute)
+        display.appendChild(li)
+    }
+}
+
+function displayClassAbilities(menu){
+    let index = menu.selectedIndex
+    let selected = menu.children[index]
+    let num = selected.getAttribute('numAbilities')
+    let display = document.getElementById('class-descriptor')
+    while (display.firstChild){ display.removeChild(display.firstChild)}
+    for(let i = 0; i < num; i++){
+        let attribute = 'ability' + i
+        let li = document.createElement('li')
+        li.textContent = selected.getAttribute(attribute)
+        display.appendChild(li)
+    }
 }
 
 
