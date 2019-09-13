@@ -175,7 +175,20 @@ function loadCharCreator() {
     heavy.setAttribute('id', 'heavy')
     heavy.textContent = 'Plate - AC 16 - MV 4'
     armorMenu.appendChild(heavy)
-    
+
+    let pic = document.createElement('input')
+    pic.setAttribute('placeholder', 'https://img.url')
+    pic.setAttribute('type', 'text')
+    pic.setAttribute('id', 'pic-field')
+    pic.classList.add('form-control')
+    let picDiv = document.createElement('div')
+    picDiv.classList.add('form-group')
+    let picLabel = document.createElement('label')
+    picLabel.setAttribute('for', 'pic-field')
+    picLabel.textContent = 'Upload a Picture:'
+    picDiv.appendChild(picLabel)
+    picDiv.appendChild(pic)
+
     let randBtn = document.createElement('button')
     randBtn.setAttribute('id', 'rand-char-btn')
     randBtn.classList.add('btn')
@@ -187,7 +200,7 @@ function loadCharCreator() {
     submitBtn.setAttribute('id', 'submitNewCharacter')
     submitBtn.classList.add('btn')
     submitBtn.classList.add('btn-outline-success')
-    submitBtn.onclick = submitNewCharacter
+    submitBtn.onclick = event => submitNewCharacter(event)
     submitBtn.textContent = 'Create Character'
 
     
@@ -197,6 +210,7 @@ function loadCharCreator() {
     charForm.appendChild(classMenuDiv)
     charForm.appendChild(armorMenuDiv)
     charForm.appendChild(weaponMenuDiv)
+    charForm.appendChild(picDiv)
     charForm.appendChild(randBtn)
     charForm.appendChild(submitBtn)
     div.appendChild(charForm)
@@ -278,7 +292,7 @@ function loadCharSheet() {
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
-    bottom.classList.add('char-box-borders')
+    // bottom.classList.add('char-box-borders')
     // bottom.classList.add('horz')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
@@ -373,6 +387,12 @@ function loadCharSheet() {
     h3Saves.setAttribute('id', 'h3-skills')
     saveSpan.appendChild(h3Saves)
 
+
+    let saveBtns = document.createElement('div')
+    saveBtns.classList.add('sBtns')
+    saveBtns.setAttribute('id', 'save-btns')
+    saveSpan.appendChild(saveBtns)
+
     let phys = document.createElement('button')
     phys.classList.add('skillBox')
     phys.classList.add('btn')
@@ -380,7 +400,7 @@ function loadCharSheet() {
     phys.classList.add('btn-sm')
     phys.setAttribute('id', 'phys_save')
     phys.textContent = 'Physical:  '
-    saveSpan.appendChild(phys)
+    saveBtns.appendChild(phys)
 
     let mag = document.createElement('button')
     mag.classList.add('skillBox')
@@ -389,7 +409,7 @@ function loadCharSheet() {
     mag.classList.add('btn-sm')
     mag.setAttribute('id', 'mag_save')
     mag.textContent = 'Magical:  '
-    saveSpan.appendChild(mag)
+    saveBtns.appendChild(mag)
 
     let init = document.createElement('button')
     init.classList.add('skillBox')
@@ -398,7 +418,7 @@ function loadCharSheet() {
     init.classList.add('btn-sm')
     init.setAttribute('id', 'initiative')
     init.textContent = 'Initiative:  '
-    saveSpan.appendChild(init)
+    saveBtns.appendChild(init)
 
 
     // Char Body Center
@@ -460,6 +480,11 @@ function loadCharSheet() {
     h3Skills.innerText = 'Skills'
     skillSpan.appendChild(h3Skills)
 
+    let skillBtns = document.createElement('div')
+    skillBtns.classList.add('sBtns')
+    skillBtns.setAttribute('id', 'skill-btns')
+    skillSpan.appendChild(skillBtns)
+
     let ath = document.createElement('button')
     ath.classList.add('skillBox')
     ath.classList.add('btn')
@@ -467,7 +492,7 @@ function loadCharSheet() {
     ath.classList.add('btn-sm')
     ath.setAttribute('id', 'athletics')
     ath.textContent = 'Athletics:  '
-    skillSpan.appendChild(ath)
+    skillBtns.appendChild(ath)
 
     let sub = document.createElement('button')
     sub.classList.add('skillBox')
@@ -476,7 +501,7 @@ function loadCharSheet() {
     sub.classList.add('btn-sm')
     sub.setAttribute('id', 'subterfuge')
     sub.textContent = 'Subterfuge:  '
-    skillSpan.appendChild(sub)
+    skillBtns.appendChild(sub)
 
     let lor = document.createElement('button')
     lor.classList.add('skillBox')
@@ -485,7 +510,7 @@ function loadCharSheet() {
     lor.classList.add('btn-sm')
     lor.setAttribute('id', 'lore')
     lor.textContent = 'Lore:  '
-    skillSpan.appendChild(lor)
+    skillBtns.appendChild(lor)
 
 
     // Bottom

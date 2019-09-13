@@ -5,9 +5,13 @@
     background-color: #f5f6f7;
     padding-bottom: 5%;
     max-width: 80%;
+    min-height: 100%;
     position: absolute;
     right: 0;
+<<<<<<< HEAD
     min-height: 100%
+=======
+>>>>>>> 105ad66d020e1dff6a69d2ad343fac7e472bfc5e
 }
 
 .vert{
@@ -35,6 +39,10 @@
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 105ad66d020e1dff6a69d2ad343fac7e472bfc5e
 #screen{
     padding: 0; 
 }
@@ -86,27 +94,6 @@ flex-direction: row;
     text-align: center;
 }
 
-#char_description{
-    margin-bottom: 0%;
-    margin-top: 2%;
-}
-
-#ac-box{
-    margin-top: 2%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-#ac{
-    border: 3px solid #ced4da;
-    border-radius: 50px;
-    background-color: #f5f6f7;
-    width: 33%;
-    margin:0;
-}
-
 #char_photo{
     width: 100%;
     height: auto;
@@ -131,13 +118,20 @@ flex-direction: row;
 
 
 .sides{
-    max-width: 20%;
+    max-width: 25%;
+    width: 22%;
 }
 
 .center{
     min-width: 50%;
     justify-content: space-around;
     text-align: center;
+}
+
+#char-body-center{
+    min-height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .saves-n-skills{
@@ -169,7 +163,6 @@ flex-direction: row;
 }
 
 
-
 .form-group-with-descriptor{
     margin-bottom: 0%;
 }
@@ -186,7 +179,9 @@ flex-direction: row;
     margin-right: 5%; */
     max-width: 100%;
     width: 100%;
+    margin-right: 5%;
 }
+
 
 #btnDiv{
     margin-top: 0%;
@@ -200,44 +195,39 @@ h1{
     text-align: center;
 }
 
+
+h3{
+    font-family: Aclonica;
+}
+
+#weapons-and-abilities{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#bottom{
+    justify-content: center;
+    padding: 0;
+}
+
+
 .no-list-style{
     list-style-type: none;
 }
-/* .aclonicaH1{
-    font-family: Aclonica; 
-    font-size: 24px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 26.4px;
-}
 
-.aclonicaH3{
-    font-family: Aclonica; 
-    font-size: 14px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 15.4px;
-}
-
-.aclonicaP{
-    font-family: Aclonica; 
-    font-size: 14px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 400; 
-    line-height: 20px;
+.sBtns{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 
 
 
-
-
-
-
- */
 
 
 
