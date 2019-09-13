@@ -104,3 +104,7 @@ flex-direction: row;
     justify-content: space-between;
     padding: 0;
 }
+
+#rand-char-btn{
+    margin-bottom: 5%;
+}

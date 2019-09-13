@@ -1,7 +1,42 @@
-function randDescription() {
-      return `${self.adjective} ${self.race} ${self.class_type} from ${self.location} who ${self.backstory}`
+function sampleFrom(arr) {
+    let randomItem = arr[Math.floor(Math.random()*arr.length)];
+    return randomItem
+}
+
+function randomCharacter(event) {
+    // put random character info on the character creation form
+    console.log('suggesting random character traits')
+    let descriptors = randDescriptors()
+    console.log(sampleFrom(descriptors['race']))
+    let race = sampleFrom(descriptors['race'])
+    let class_type = sampleFrom(descriptors['class_type'])
+    let adjective = sampleFrom(descriptors['adjective'])
+    adjective = adjective.charAt(0).toUpperCase() + adjective.slice(1)
+    let location = sampleFrom(descriptors['location'])
+    let backstory = sampleFrom(descriptors['backstory'])
+    let weapon = sampleFrom(['finesse', 'martial', 'large'])
+    let armor = sampleFrom(['light', 'medium', 'heavy'])
+
+    let charDescrip = document.getElementById('charDescrip')
+    charDescrip.value = `${adjective} ${race} ${class_type} from ${location} who ${backstory}`
+
+    let raceMenu = document.getElementById(race)
+    raceMenu.selected = true;
+
+    let classMenu = document.getElementById(class_type)
+    classMenu.selected = true;
+
+    let weaponMenu = document.getElementById(weapon)
+    weaponMenu.selected = true
+
+    let armorMenu = document.getElementById(armor)
+    armorMenu.selected = true
+    
+    
 }
   
+
+
 function randDescriptors(){
     return { 
         adjective: [
@@ -168,13 +203,13 @@ function randDescriptors(){
             "Dwarf",
             "Elf",
             "Gnome",
-            "Half-orc",
+            "Half-Orc",
             "Halfling",
             "Human",
             "Tiefling",
         ],
     
-        randClass: [
+        class_type: [
             "Cleric",
             "Fighter",
             "Thief",
@@ -710,10 +745,4 @@ function randDescriptors(){
             "doesn't speak a word of common"
         ]
     }       
-}
-
-function randRace(){
-    let descriptors = randDescriptors
-    console.log('randRace:', descriptors)
-    return randDescriptors['race'].sample
 }
