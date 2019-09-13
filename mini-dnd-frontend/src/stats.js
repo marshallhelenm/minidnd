@@ -219,10 +219,3 @@ function spellsBox(char){
     spellBox.appendChild(preparedSpells)
 }
 
-
-
-
-
-
-
-
