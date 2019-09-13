@@ -202,7 +202,12 @@ function loadRaces(){
             option.setAttribute('value',race.id)
             option.setAttribute('id',race.name)
 
-            
+            option.setAttribute('numabilities',race.race_abilities.length)
+
+            for(let i = 0; i < race.race_abilities.length; i++){
+                let attribute = 'ability' + i
+                option.setAttribute(attribute,race.race_abilities[i].description)
+            }
 
             option.textContent = race.name
             raceList.appendChild(option)
@@ -220,6 +225,15 @@ function loadClasses(){
             let option = document.createElement('option')
             option.setAttribute('value',classtype.id)
             option.setAttribute('id',classtype.name)
+
+
+            option.setAttribute('numabilities',class_type.class_type_abilities.length)
+
+            for(let i = 0; i < class_type.class_type_abilities.length; i++){
+                let attribute = 'ability' + i
+                option.setAttribute(attribute,class_type.class_type_abilities[i].description)
+            }
+
             option.textContent = classtype.name
             classList.appendChild(option)
         }
