@@ -38,7 +38,7 @@ function loadCharCreator() {
     charForm.classList.add('vert')
     page.appendChild(div)
     
-    let title =  document.createElement('h2')
+    let title =  document.createElement('h1')
     title.innerText = 'Create Character'
     div.appendChild(title)
 
@@ -72,6 +72,9 @@ function loadCharCreator() {
     descripDiv.appendChild(charDescrip)
     
     let raceMenu = document.createElement('select')
+    raceMenu.onchange = event => {
+        showInfo(raceMenu, classMenu)
+    }
     raceMenu.setAttribute('id', 'selectRace')
     raceMenu.classList.add('form-control')
     let raceMenuDiv = document.createElement('div')
@@ -83,12 +86,16 @@ function loadCharCreator() {
     raceMenuDiv.appendChild(raceMenu)
     //display race attributes
     let raceDescription = document.createElement('ul')
+    raceDescription.classList.add('char-box-borders', 'no-list-style')
     raceDescription.setAttribute('id','race-descriptor')
     raceMenu.addEventListener('change',event => {displayRaceAbilities(event.target)})
     raceMenuDiv.appendChild(raceDescription)
     
     
     let classMenu = document.createElement('select')
+    classMenu.onchange = event => {
+        showInfo(raceMenu, classMenu)
+    }
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
@@ -100,6 +107,7 @@ function loadCharCreator() {
     classMenuDiv.appendChild(classMenu)
     //display class attributes
     let classDescription = document.createElement('ul')
+    classDescription.classList.add('char-box-borders', 'no-list-style')
     classDescription.setAttribute('id','class-descriptor')
     classMenu.addEventListener('change',event => {displayClassAbilities(event.target)})
     classMenuDiv.appendChild(classDescription)
@@ -194,6 +202,7 @@ function loadCharCreator() {
     div.appendChild(charForm)
     loadRaces()
     loadClasses()
+    showInfo(raceMenuDiv, classMenuDiv)
 }
 
 function loadRaces(){
@@ -272,68 +281,98 @@ function loadCharSheet() {
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
+    bottom.classList.add('char-box-borders')
+    // bottom.classList.add('horz')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
 
     let charBodyLeft = document.createElement('div')
     charBodyLeft.setAttribute('id', 'char-body-left')
     charBodyLeft.classList.add('top-item')
+    charBodyLeft.classList.add('sides')
+
     let charBodyCenter = document.createElement('div')
     charBodyCenter.setAttribute('id', 'char-body-center')
+    charBodyCenter.classList.add('char-box-borders')
     charBodyCenter.classList.add('top-item')
+    charBodyCenter.classList.add('center')
+
     let charBodyRight = document.createElement('div')
     charBodyRight.setAttribute('id', 'char-body-right')
     charBodyRight.classList.add('top-item')
+    charBodyRight.classList.add('sides')
     top.appendChild(charBodyLeft)
     top.appendChild(charBodyCenter)
     top.appendChild(charBodyRight)
 
     // Char Header
-    let nameLevelSpan = document.createElement('span')
-    nameLevelSpan.setAttribute('id', 'nameLevelSpan')
-    nameLevelSpan.classList.add('vert')
-    nameLevelSpan.classList.add('vert-small')
-    charHeader.appendChild(nameLevelSpan)
+    // let nameLevelSpan = document.createElement('span')
+    // nameLevelSpan.setAttribute('id', 'nameLevelSpan')
+    // nameLevelSpan.classList.add('vert')
+    // nameLevelSpan.classList.add('vert-small')
+    // charHeader.appendChild(nameLevelSpan)
+
+    let charLevelDiv = document.createElement('div')
+    charLevelDiv.setAttribute('id', 'level-div')
+    charLevelDiv.classList.add('char-box-borders')
+    charLevelDiv.classList.add('top-item')
+
+    let levelDiv = document.createElement('div')
+    levelDiv.setAttribute('id', 'level')
+    levelDiv.textContent = `Level: `
+    charLevelDiv.appendChild(levelDiv)
+
+    charLevelDiv.classList.add('sides')
+    charHeader.appendChild(charLevelDiv)
+
+
+    let xpDiv = document.createElement('div')
+    xpDiv.setAttribute('id', 'xp')
+    xpDiv.textContent = `XP: `
+    charLevelDiv.appendChild(xpDiv)
+
 
     let charName = document.createElement('h3')
     charName.setAttribute('id', 'char_name')
-    nameLevelSpan.appendChild(charName)
-
-    let charLevelSpan = document.createElement('span')
-    charLevelSpan.setAttribute('id', 'level')
-    charLevelSpan.textContent = `Level: `
-    nameLevelSpan.appendChild(charLevelSpan)
+    charName.classList.add('center')
+    charName.classList.add('char-box-borders')
+    charName.classList.add('top-item')
+    let charNameH1 = document.createElement('h1')
+    charNameH1.setAttribute('id', 'char_name_h1')
+    charName.appendChild(charNameH1)
+    charHeader.appendChild(charName)
     
-    let classRaceXpSpan = document.createElement('span')
-    classRaceXpSpan.classList.add('vert')
-    classRaceXpSpan.classList.add('vert-small')
-    classRaceXpSpan.classList.add('role-descriptor')
-    charHeader.appendChild(classRaceXpSpan)
+    let classRaceSpan = document.createElement('span')
+    classRaceSpan.setAttribute('id', 'class-race-xp')
+    classRaceSpan.classList.add('vert')
+    classRaceSpan.classList.add('vert-small')
+    classRaceSpan.classList.add('sides')
+    classRaceSpan.classList.add('role-descriptor')
+    classRaceSpan.classList.add('char-box-borders')
+    classRaceSpan.classList.add('top-item')
+    charHeader.appendChild(classRaceSpan)
 
     let classSpan = document.createElement('span')
     classSpan.setAttribute('id', 'class')
     classSpan.textContent = `Class: `
-    classRaceXpSpan.appendChild(classSpan)
+    classRaceSpan.appendChild(classSpan)
 
     let raceSpan = document.createElement('span')
     raceSpan.setAttribute('id', 'race')
     raceSpan.textContent = `Race: `
-    classRaceXpSpan.appendChild(raceSpan)
-
-    let xpSpan = document.createElement('span')
-    xpSpan.setAttribute('id', 'xp')
-    xpSpan.textContent = `XP: `
-    classRaceXpSpan.appendChild(xpSpan)
+    classRaceSpan.appendChild(raceSpan)
 
     //Char Body Left
     let saveSpan = document.createElement('span')
     saveSpan.setAttribute('id', 'saves')
     saveSpan.classList.add('vert')
-    saveSpan.classList.add('vert-sidebar')
+    saveSpan.classList.add('saves-n-skills')
+    saveSpan.classList.add('char-box-borders')
+    // saveSpan.classList.add('vert-sidebar')
     charBodyLeft.appendChild(saveSpan)
 
     let h3 = document.createElement('h3')
-    h3.innerText = 'Saves: '
+    h3.innerText = 'Saves:'
     saveSpan.appendChild(h3)
 
     let phys = document.createElement('button')
@@ -408,11 +447,13 @@ function loadCharSheet() {
     let skillSpan = document.createElement('span')
     skillSpan.setAttribute('id', 'skills')
     skillSpan.classList.add('vert')
-    skillSpan.classList.add('vert-sidebar')
+    skillSpan.classList.add('saves-n-skills')
+    skillSpan.classList.add('char-box-borders')
+    // skillSpan.classList.add('vert-sidebar')
     charBodyRight.appendChild(skillSpan)
 
     let h3Skills = document.createElement('h3')
-    h3Skills.innerText = 'Skills: '
+    h3Skills.innerText = 'Skills:'
     skillSpan.appendChild(h3Skills)
 
     let ath = document.createElement('button')
@@ -473,7 +514,10 @@ function loadCharSheet() {
     bottom.appendChild(spells)
 
     let btnDiv = document.createElement('div')
-    bottom.appendChild(btnDiv)
+    btnDiv.setAttribute('id', 'btnDiv')
+    btnDiv.classList.add('horz')
+    btnDiv.classList.add('char-box-borders')
+    sheet.appendChild(btnDiv)
 
     let restBtn = document.createElement('button')
     restBtn.classList.add('btn')
@@ -522,6 +566,15 @@ function showModal(event) {
     let confirmRestBtn = document.getElementById('confirm-rest-button')
     confirmRestBtn.addEventListener('click', returnToTown)
 
+}
+
+function showInfo(raceMenu, classMenu) {
+    let raceIndex = raceMenu.selectedIndex
+    console.log("this method will display the race and class info during character creation! It just doesn't yet...", raceIndex, raceMenu.options)
+    // let raceDescrip = document.createElement('div')
+
+
+    // raceMenuDiv.appendChild(raceDescrip)
 }
 
 
