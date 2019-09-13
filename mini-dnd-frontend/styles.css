@@ -19,7 +19,7 @@
 }
 
 .vert-sidebar{
-    height: 100%;
+    height: 50%;
     justify-content: space-around;
 }
 
@@ -74,10 +74,11 @@ flex-direction: row;
     display: flex;
     flex-direction: column;
     max-width: 300px;
+    min-width: 140px;
 }
 
 .role-descriptor{
-    max-width: 100px;
+    max-width: 111px;
 }
 
 #hp-span{

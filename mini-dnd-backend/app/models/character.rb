@@ -6,7 +6,7 @@ class Character < ApplicationRecord
   has_many :class_type_abilities, through: :class_type
   has_many :prepared_spells
   has_many :spells, through: :prepared_spells
-  attr_accessor :initiative
+  attr_accessor :initiative, :toHit
 
   validates :name, presence: true
 
@@ -165,7 +165,7 @@ class Character < ApplicationRecord
     return num
   end
 
-  def toHit
+  def getToHit
     bonus = self.level
     if self.race_id == 7 # if they are a half-orc
       bonus += 1
@@ -189,6 +189,7 @@ class Character < ApplicationRecord
     self.physical_save = self.phys_save
     self.magic_save = self.mag_save
     self.initiative = self.getInitiative
+    self.toHit = self.getToHit
   end
 
   def calculateSpellSlots

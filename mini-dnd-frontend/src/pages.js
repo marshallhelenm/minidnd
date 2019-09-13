@@ -291,18 +291,27 @@ function loadCharSheet() {
 
     let phys = document.createElement('button')
     phys.classList.add('skillBox')
+    phys.classList.add('btn')
+    phys.classList.add('btn-outline-dark')
+    phys.classList.add('btn-sm')
     phys.setAttribute('id', 'phys_save')
     phys.textContent = 'Physical:  '
     saveSpan.appendChild(phys)
 
     let mag = document.createElement('button')
     mag.classList.add('skillBox')
+    mag.classList.add('btn')
+    mag.classList.add('btn-outline-dark')
+    mag.classList.add('btn-sm')
     mag.setAttribute('id', 'mag_save')
     mag.textContent = 'Magical:  '
     saveSpan.appendChild(mag)
 
     let init = document.createElement('button')
     init.classList.add('skillBox')
+    init.classList.add('btn')
+    init.classList.add('btn-outline-dark')
+    init.classList.add('btn-sm')
     init.setAttribute('id', 'initiative')
     init.textContent = 'Initiative:  '
     saveSpan.appendChild(init)
@@ -361,18 +370,27 @@ function loadCharSheet() {
 
     let ath = document.createElement('button')
     ath.classList.add('skillBox')
+    ath.classList.add('btn')
+    ath.classList.add('btn-outline-dark')
+    ath.classList.add('btn-sm')
     ath.setAttribute('id', 'athletics')
     ath.textContent = 'Athletics:  '
     skillSpan.appendChild(ath)
 
     let sub = document.createElement('button')
     sub.classList.add('skillBox')
+    sub.classList.add('btn')
+    sub.classList.add('btn-outline-dark')
+    sub.classList.add('btn-sm')
     sub.setAttribute('id', 'subterfuge')
     sub.textContent = 'Subterfuge:  '
     skillSpan.appendChild(sub)
 
     let lor = document.createElement('button')
     lor.classList.add('skillBox')
+    lor.classList.add('btn')
+    lor.classList.add('btn-outline-dark')
+    lor.classList.add('btn-sm')
     lor.setAttribute('id', 'lore')
     lor.textContent = 'Lore:  '
     skillSpan.appendChild(lor)
