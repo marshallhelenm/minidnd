@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_193051) do
     t.integer "initiative"
     t.integer "max_hp"
     t.integer "hp"
-    t.integer "level"
-    t.integer "xp"
+    t.integer "level", default: 1
+    t.integer "xp", default: 0
     t.integer "spell_slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

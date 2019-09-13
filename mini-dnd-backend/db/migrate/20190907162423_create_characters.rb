@@ -19,8 +19,8 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
       t.integer :initiative
       t.integer :max_hp
       t.integer :hp
-      t.integer :level
-      t.integer :xp
+      t.integer :level, default: 1
+      t.integer :xp, default: 0
 
       t.integer :spell_slots
 

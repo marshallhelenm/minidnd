@@ -5,6 +5,7 @@ function main(){
     //Character Creation Stuff
     loggedIn()
     loadSideBar()
+    // randRace()
 }
 
 //Login

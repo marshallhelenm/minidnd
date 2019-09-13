@@ -245,7 +245,7 @@ function loadCharSheet() {
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
-    top.classList.add('vert')
+    top.classList.add('horz')
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
@@ -284,6 +284,7 @@ function loadCharSheet() {
     let classRaceXpSpan = document.createElement('span')
     classRaceXpSpan.classList.add('vert')
     classRaceXpSpan.classList.add('vert-small')
+    classRaceXpSpan.classList.add('role-descriptor')
     charHeader.appendChild(classRaceXpSpan)
 
     let classSpan = document.createElement('span')
@@ -314,18 +315,27 @@ function loadCharSheet() {
 
     let phys = document.createElement('button')
     phys.classList.add('skillBox')
+    phys.classList.add('btn')
+    phys.classList.add('btn-outline-dark')
+    phys.classList.add('btn-sm')
     phys.setAttribute('id', 'phys_save')
     phys.textContent = 'Physical:  '
     saveSpan.appendChild(phys)
 
     let mag = document.createElement('button')
     mag.classList.add('skillBox')
+    mag.classList.add('btn')
+    mag.classList.add('btn-outline-dark')
+    mag.classList.add('btn-sm')
     mag.setAttribute('id', 'mag_save')
     mag.textContent = 'Magical:  '
     saveSpan.appendChild(mag)
 
     let init = document.createElement('button')
     init.classList.add('skillBox')
+    init.classList.add('btn')
+    init.classList.add('btn-outline-dark')
+    init.classList.add('btn-sm')
     init.setAttribute('id', 'initiative')
     init.textContent = 'Initiative:  '
     saveSpan.appendChild(init)
@@ -359,8 +369,9 @@ function loadCharSheet() {
     hpSpan.appendChild(hpCurrent)
 
     let hpMax = document.createElement('h4')
+    hpMax.setAttribute('id','maxHp')
     hpMax.classList.add('hp-item')
-    hpMax.textContent = `/`
+    hpMax.textContent = `/ `
     hpSpan.appendChild(hpMax)
 
     let acBox = document.createElement('span')
@@ -383,18 +394,27 @@ function loadCharSheet() {
 
     let ath = document.createElement('button')
     ath.classList.add('skillBox')
+    ath.classList.add('btn')
+    ath.classList.add('btn-outline-dark')
+    ath.classList.add('btn-sm')
     ath.setAttribute('id', 'athletics')
     ath.textContent = 'Athletics:  '
     skillSpan.appendChild(ath)
 
     let sub = document.createElement('button')
     sub.classList.add('skillBox')
+    sub.classList.add('btn')
+    sub.classList.add('btn-outline-dark')
+    sub.classList.add('btn-sm')
     sub.setAttribute('id', 'subterfuge')
     sub.textContent = 'Subterfuge:  '
     skillSpan.appendChild(sub)
 
     let lor = document.createElement('button')
     lor.classList.add('skillBox')
+    lor.classList.add('btn')
+    lor.classList.add('btn-outline-dark')
+    lor.classList.add('btn-sm')
     lor.setAttribute('id', 'lore')
     lor.textContent = 'Lore:  '
     skillSpan.appendChild(lor)
@@ -402,20 +422,28 @@ function loadCharSheet() {
 
     // Bottom
     let weaponAbilitiesBox = document.createElement('span')
+    weaponAbilitiesBox.setAttribute('id','weapons-and-abilities')
+    weaponAbilitiesBox.classList.add('horz')
     bottom.appendChild(weaponAbilitiesBox)
 
+    let weaponBox = document.createElement('span')
+    weaponAbilitiesBox.appendChild(weaponBox)
+
+    let weaponTitle = document.createElement('h3')
+    weaponTitle.textContent = "Attacks"
+    weaponBox.appendChild(weaponTitle)
 
     let attacks = document.createElement('div')
     attacks.setAttribute('id', 'attacks')
-    bottom.appendChild(attacks)
+    weaponBox.appendChild(attacks)
 
     let inventory = document.createElement('div')
     inventory.setAttribute('id', 'inventory')
     bottom.appendChild(inventory)
 
     let abilities = document.createElement('div')
-    inventory.setAttribute('id', 'abilities')
-    bottom.appendChild(abilities)
+    abilities.setAttribute('id', 'abilities')
+    weaponAbilitiesBox.appendChild(abilities)
 
     let spells = document.createElement('div')
     spells.setAttribute('id','spells')
