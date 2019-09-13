@@ -84,6 +84,10 @@ function loadCharCreator() {
     raceLabel.textContent = 'Select a Race:'
     raceMenuDiv.appendChild(raceLabel)
     raceMenuDiv.appendChild(raceMenu)
+
+    let raceDescription = document.createElement('ul')
+    raceMenu.addEventListener('change',displayRaceAbilities)
+    raceMenuDiv.appendChild(raceDescription)
     
     
     let classMenu = document.createElement('select')
@@ -204,6 +208,14 @@ function loadRaces(){
             let option = document.createElement('option')
             option.setAttribute('value',race.id)
             option.setAttribute('id',race.name)
+
+            option.setAttribute('numabilities',race.race_abilities.length)
+
+            for(let i = 0; i < race.race_abilities.length; i++){
+                let attribute = 'ability' + i
+                option.setAttribute(attribute,race.race_abilities[i].description)
+            }
+
             option.textContent = race.name
             raceList.appendChild(option)
         }
@@ -220,8 +232,17 @@ function loadClasses(){
             let option = document.createElement('option')
             option.setAttribute('value',classtype.id)
             option.setAttribute('id',classtype.name)
+
+
+            option.setAttribute('numabilities',class_type.class_type_abilities.length)
+
+            for(let i = 0; i < class_type.class_type_abilities.length; i++){
+                let attribute = 'ability' + i
+                option.setAttribute(attribute,class_type.class_type_abilities[i].description)
+            }
+
             option.textContent = classtype.name
-            classList.appendChild(option)
+            classList.appendChild(option
         }
     })
 }
@@ -546,6 +567,8 @@ function showInfo(raceMenu, classMenu) {
 }
 
 
-
+function displayRaceAbilities(event){
+    console.log(event.target.abilities)
+}
 
 
