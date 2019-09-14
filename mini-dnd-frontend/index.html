@@ -6,6 +6,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link rel="stylesheet" href="styles.css">
       <link rel="stylesheet" href="sidebar.css">
+      <link rel="stylesheet" href="charSheet.css">
       <script type="text/javascript" src="src/pages.js"></script>
       <script type="text/javascript" src="src/character.js"></script>
       <script type="text/javascript" src="src/sideBar.js"></script>
@@ -45,15 +46,21 @@
             </button>
           </div>
           <div class="modal-body">
-            Amount of silver looted: <input type='number' id='rest-silver-looted'>
-            Number of Characters: <input type='number' id='rest-party-size'>
-            Bonus XP Awarded: <input type='number' id='rest-bonus-xp'>
-            Keep Spells? <span id='wiz'> 
+            <div class='modal-div'>
+            <label>Amount of silver looted: </label><input type='number' id='rest-silver-looted' class='form-control modal-input'>
+            </div>
+            <div class='modal-div'>
+            <label>Number of Characters: </label><input type='number' id='rest-party-size' class='form-control modal-input'>
+            </div>
+            <div class='modal-div'>
+            <label>Bonus XP Awarded: </label><input type='number' id='rest-bonus-xp' class='form-control modal-input'>
+            </div>
+            <div id='wiz' class='modal-div'>Keep Spells? 
               <select id='wiz-confirm' class='form-control'>
                 <option value='yes'>Yeah</option>
                 <option value='no'>Nah</option>
               </select>
-            </span>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Never Mind</button>

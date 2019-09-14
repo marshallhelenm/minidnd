@@ -395,6 +395,7 @@ function loadCharSheet() {
     phys.classList.add('btn')
     phys.classList.add('btn-outline-dark')
     phys.classList.add('btn-sm')
+    phys.classList.add('s-btn')
     phys.setAttribute('id', 'phys_save')
     phys.textContent = 'Physical:  '
     saveBtns.appendChild(phys)
@@ -403,6 +404,7 @@ function loadCharSheet() {
     mag.classList.add('skillBox')
     mag.classList.add('btn')
     mag.classList.add('btn-outline-dark')
+    mag.classList.add('s-btn')
     mag.classList.add('btn-sm')
     mag.setAttribute('id', 'mag_save')
     mag.textContent = 'Magical:  '
@@ -413,6 +415,7 @@ function loadCharSheet() {
     init.classList.add('btn')
     init.classList.add('btn-outline-dark')
     init.classList.add('btn-sm')
+    init.classList.add('s-btn')
     init.setAttribute('id', 'initiative')
     init.textContent = 'Initiative:  '
     saveBtns.appendChild(init)
@@ -487,6 +490,7 @@ function loadCharSheet() {
     ath.classList.add('btn')
     ath.classList.add('btn-outline-dark')
     ath.classList.add('btn-sm')
+    ath.classList.add('s-btn')
     ath.setAttribute('id', 'athletics')
     ath.textContent = 'Athletics:  '
     skillBtns.appendChild(ath)
@@ -496,6 +500,7 @@ function loadCharSheet() {
     sub.classList.add('btn')
     sub.classList.add('btn-outline-dark')
     sub.classList.add('btn-sm')
+    sub.classList.add('s-btn')
     sub.setAttribute('id', 'subterfuge')
     sub.textContent = 'Subterfuge:  '
     skillBtns.appendChild(sub)
@@ -505,6 +510,7 @@ function loadCharSheet() {
     lor.classList.add('btn')
     lor.classList.add('btn-outline-dark')
     lor.classList.add('btn-sm')
+    lor.classList.add('s-btn')
     lor.setAttribute('id', 'lore')
     lor.textContent = 'Lore:  '
     skillBtns.appendChild(lor)
@@ -539,11 +545,6 @@ function loadCharSheet() {
     abilities.classList.add('char-box-borders')
     abilities.classList.add('bottom-right')
     weaponAbilitiesBox.appendChild(abilities)
-
-    let spells = document.createElement('div')
-    spells.setAttribute('id','spells')
-    spells.classList.add('char-box-borders')
-    bottom.appendChild(spells)
 
     let btnDiv = document.createElement('div')
     btnDiv.setAttribute('id', 'btnDiv')

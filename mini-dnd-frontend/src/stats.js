@@ -163,8 +163,10 @@ function spellsBox(char){
     if (char.class_type.caster_type == 'none'){
         return
     }   
-    
-    let spellBox = document.getElementById('spells')
+    let spellBox = document.createElement('div')
+    spellBox.setAttribute('id','spellBox')
+    spellBox.classList.add('char-box-borders')
+    bottom.appendChild(spellBox)
     spellBox.classList.add('bottom-item')
     spellBox.classList.add('horz')
     
