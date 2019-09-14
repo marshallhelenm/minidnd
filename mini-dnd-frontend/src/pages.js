@@ -430,6 +430,7 @@ function loadCharSheet() {
 
     let charDescrip = document.createElement('p')
     charDescrip.setAttribute('id', 'char_description')
+    charDescrip.classList.add('scrollable')
     charBodyCenter.appendChild(charDescrip)
 
     let hpSpan = document.createElement('span')

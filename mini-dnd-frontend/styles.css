@@ -29,6 +29,13 @@
     max-width: 111px;
 }
 
+.scrollable {
+    overflow-y: hidden;
+}
+
+.scrollable:hover{
+    overflow-y: scroll;
+}
 
 #rand-char-btn{
     margin-bottom: 2%;

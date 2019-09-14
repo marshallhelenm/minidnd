@@ -185,4 +185,7 @@
     border-radius: 20px;
 }
 
+#char_description{
+    max-height: 18%;
+}
     
