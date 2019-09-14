@@ -274,14 +274,24 @@ function loadCharSheet() {
     page.appendChild(sheet)
     sheet.classList.add('vert')
 
-    let charHeader = document.createElement('div')
-    charHeader.setAttribute('id', 'char-header')
-    charHeader.classList.add('horz')
-    let charBody = document.createElement('div')
-    charBody.setAttribute('id', 'char-body')
-    charBody.classList.add('vert')
-    sheet.appendChild(charHeader)
-    sheet.appendChild(charBody)
+    // let charHeader = document.createElement('div')
+    // charHeader.setAttribute('id', 'char-header')
+    // charHeader.classList.add('horz')
+    // let charBody = document.createElement('div')
+    // charBody.setAttribute('id', 'char-body')
+    // charBody.classList.add('vert')
+    // sheet.appendChild(charHeader)
+    // sheet.appendChild(charBody)
+
+    let charName = document.createElement('div')
+    charName.setAttribute('id', 'char_name')
+    // charName.classList.add('center')
+    // charName.classList.add('char-box-borders')
+    // charName.classList.add('top-item')
+    let charNameH1 = document.createElement('h1')
+    charNameH1.setAttribute('id', 'char_name_h1')
+    charName.appendChild(charNameH1)
+    sheet.appendChild(charName)
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
@@ -297,7 +307,6 @@ function loadCharSheet() {
     let charBodyLeft = document.createElement('div')
     charBodyLeft.setAttribute('id', 'char-body-left')
     charBodyLeft.classList.add('top-item')
-    charBodyLeft.classList.add('sides')
 
     let charBodyCenter = document.createElement('div')
     charBodyCenter.setAttribute('id', 'char-body-center')
@@ -308,7 +317,6 @@ function loadCharSheet() {
     let charBodyRight = document.createElement('div')
     charBodyRight.setAttribute('id', 'char-body-right')
     charBodyRight.classList.add('top-item')
-    charBodyRight.classList.add('sides')
     top.appendChild(charBodyLeft)
     top.appendChild(charBodyCenter)
     top.appendChild(charBodyRight)
@@ -323,51 +331,39 @@ function loadCharSheet() {
     let charLevelDiv = document.createElement('div')
     charLevelDiv.setAttribute('id', 'level-div')
     charLevelDiv.classList.add('char-box-borders')
-    charLevelDiv.classList.add('top-item')
+    // charLevelDiv.classList.add('top-item')
 
     let levelDiv = document.createElement('div')
     levelDiv.setAttribute('id', 'level')
-    levelDiv.textContent = `Level: `
     charLevelDiv.appendChild(levelDiv)
 
-    charLevelDiv.classList.add('sides')
-    charHeader.appendChild(charLevelDiv)
+    charLevelDiv.classList.add('saves-n-skills')
+    charBodyLeft.appendChild(charLevelDiv)
 
 
     let xpDiv = document.createElement('div')
     xpDiv.setAttribute('id', 'xp')
-    xpDiv.textContent = `XP: `
     charLevelDiv.appendChild(xpDiv)
 
 
-    let charName = document.createElement('h3')
-    charName.setAttribute('id', 'char_name')
-    charName.classList.add('center')
-    charName.classList.add('char-box-borders')
-    charName.classList.add('top-item')
-    let charNameH1 = document.createElement('h1')
-    charNameH1.setAttribute('id', 'char_name_h1')
-    charName.appendChild(charNameH1)
-    charHeader.appendChild(charName)
+
     
-    let classRaceSpan = document.createElement('span')
+    let classRaceSpan = document.createElement('div')
     classRaceSpan.setAttribute('id', 'class-race-xp')
     classRaceSpan.classList.add('vert')
-    classRaceSpan.classList.add('vert-small')
-    classRaceSpan.classList.add('sides')
-    classRaceSpan.classList.add('role-descriptor')
+    // classRaceSpan.classList.add('top-item')
+    // classRaceSpan.classList.add('vert-small')
     classRaceSpan.classList.add('char-box-borders')
-    classRaceSpan.classList.add('top-item')
-    charHeader.appendChild(classRaceSpan)
+    classRaceSpan.classList.add('saves-n-skills')
 
-    let classSpan = document.createElement('span')
+    charBodyRight.appendChild(classRaceSpan)
+
+    let classSpan = document.createElement('div')
     classSpan.setAttribute('id', 'class')
-    classSpan.textContent = `Class: `
     classRaceSpan.appendChild(classSpan)
 
     let raceSpan = document.createElement('span')
     raceSpan.setAttribute('id', 'race')
-    raceSpan.textContent = `Race: `
     classRaceSpan.appendChild(raceSpan)
 
     //Char Body Left

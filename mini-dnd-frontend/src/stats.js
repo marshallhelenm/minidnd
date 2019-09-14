@@ -5,12 +5,7 @@
 function displayStats(char) {
         console.log('char in displayStats:', char)
     loadCharSheet() //contains clearPage
-    document.getElementById('class').innerText = `Class: ${char.class_type.name}`
-    document.getElementById('class').setAttribute('value',char.class_type.name)
-
-    document.getElementById('race').innerText = `Race: ${char.race.name}`
-    document.getElementById('race').setAttribute('value',char.race.name)
-
+ 
     document.getElementById('char_name_h1').innerText = char.name
 
     document.getElementById('char_description').innerText = char.description
@@ -49,8 +44,44 @@ function displayStats(char) {
     document.getElementById('lore').addEventListener('click',rollForSuccess)
 
     //other
-    document.getElementById('level').innerText += ' ' + char.level
-    document.getElementById('xp').innerText += ' ' + char.xp
+    let levelRow = document.getElementById('level')
+    let levelSpan = document.createElement('span')
+    levelSpan.classList.add('colon')
+    levelSpan.textContent = 'Level: '
+    levelRow.appendChild(levelSpan)
+    let levelNumSpan = document.createElement('span')
+    levelNumSpan.textContent = char.level
+    levelRow.appendChild(levelNumSpan)
+ 
+    let xpRow = document.getElementById('xp')
+    let xpSpan = document.createElement('span')
+    xpSpan.classList.add('colon')
+    xpSpan.textContent = 'XP: '
+    xpRow.appendChild(xpSpan)
+    let xpNumSpan = document.createElement('span')
+    xpNumSpan.textContent = char.xp
+    xpRow.appendChild(xpNumSpan)
+ 
+    let raceRow = document.getElementById('race')
+    raceRow.setAttribute('value', char.race.name)
+    let raceSpan = document.createElement('span')
+    raceSpan.classList.add('colon')
+    raceSpan.textContent = 'Race: '
+    raceRow.appendChild(raceSpan)
+    let raceNumSpan = document.createElement('span')
+    raceNumSpan.textContent = char.race.name
+    raceRow.appendChild(raceNumSpan)
+
+    let classRow = document.getElementById('class')
+    classRow.setAttribute('value', char.class_type.name)
+    let classSpan = document.createElement('span')
+    classSpan.classList.add('colon')
+    classSpan.textContent = 'Class: '
+    classRow.appendChild(classSpan)
+    let classNumSpan = document.createElement('span')
+    classNumSpan.textContent = char.class_type.name
+    classRow.appendChild(classNumSpan)
+ 
     document.getElementById('ac').innerText += ' ' + char.armor_class
     document.getElementById('hp').value = char.hp
     document.getElementById('maxHp').textContent += char.max_hp

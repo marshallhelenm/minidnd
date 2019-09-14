@@ -7,8 +7,8 @@
 .top-item{
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    min-width: 140px;
+    max-width: 25%;
+    width: 23%;
 }
 
 
@@ -43,6 +43,10 @@
     text-align: center;
 }
 
+#char-header{
+    justify-content: center;
+}
+
 #char-body-center{
     min-height: 100%;
     margin-top: 0;
@@ -53,8 +57,9 @@
     display: flex;
     justify-content: space-around;
     text-align: center;
-    /* height: 100%; */
     padding: 0% 2% 0% 2%;
+    margin-bottom: 5%;
+    flex-direction: column;
 }
 
 .sBtns{
@@ -65,6 +70,7 @@
     margin-left: 5%;
     margin-right: 5%;
     padding-bottom: 15%;
+    /* width: 100%; */
 }
 
 .s-btn{
@@ -80,15 +86,6 @@
 .modal-input{
     max-width: 50%;;
 }
-
-
-
-.sides{
-    max-width: 25%;
-    width: 22%;
-}
-
-
 
 #bottom{
     justify-content: center;
@@ -179,7 +176,6 @@
     max-height: 300px;
     height: auto;
     width: auto;
-    padding: 5%;
     align-self: center;
     border: 3px solid #ced4da;
     border-radius: 20px;
@@ -189,3 +185,14 @@
     max-height: 18%;
 }
     
+.colon{
+    font-weight: bold;
+    font-family: Aclonica;
+}
+
+#char_name_h1{
+    margin-bottom: 0%;
+    white-space: nowrap;
+    max-width: 100%;
+    margin: 5% 0% 5% 0%;
+}
