@@ -3,7 +3,6 @@
 
 
 function displayStats(char) {
-        console.log('char in displayStats:', char)
     loadCharSheet() //contains clearPage
  
     document.getElementById('char_name_h1').innerText = char.name
