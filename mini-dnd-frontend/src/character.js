@@ -142,6 +142,7 @@ function loadEditSheet(char) {
     armorMenu.appendChild(heavy)
 
     let pic = document.createElement('input')
+    pic.defaultValue = char.img_url
     pic.setAttribute('placeholder', 'https://img.url')
     pic.setAttribute('type', 'text')
     pic.setAttribute('id', 'pic-field')

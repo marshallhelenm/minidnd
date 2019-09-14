@@ -31,11 +31,16 @@ class CharactersController < ApplicationController
 
     def update
         @char = Character.find(params[:id])
-        @char.update(char_params)
-        # byebug
-        @char.armor_class = @char.armorClass
-        @char.save
-        render :json => @char
+        if @char.valid?
+            @char.update(char_params)
+            assignStats(@char)
+            @char.prepareSpells   
+            # byebug
+            @char.armor_class = @char.armorClass
+            render :json => @char
+        else
+            render :json => {error: 'Every hero needs a name!'}
+        end
         
     end
 
@@ -70,6 +75,7 @@ class CharactersController < ApplicationController
     def assignStats(char)
         char.calculateStats
         char.maxHP
+        # char.initiative = char.getInitiative
     end
 
 end    
