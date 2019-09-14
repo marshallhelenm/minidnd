@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Aclonica&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+
+* {
+    font-family: Handlee;
+    font-weight: bold;
+  }
 
 #page{
     display: flex;
@@ -71,7 +77,8 @@ h3{
 }
 
 p{
-    font-family: Aclonica;
+    font-family: Handlee;
+    font-weight: bold;
 }
 
 .no-list-style{
