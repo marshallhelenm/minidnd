@@ -7,12 +7,18 @@
       <link rel="stylesheet" href="styles.css">
       <link rel="stylesheet" href="sidebar.css">
       <link rel="stylesheet" href="charSheet.css">
-      <script type="text/javascript" src="src/pages.js"></script>
-      <script type="text/javascript" src="src/character.js"></script>
-      <script type="text/javascript" src="src/sideBar.js"></script>
-      <script type="text/javascript" src="src/stats.js"></script>
-      <script type="text/javascript" src="src/index.js"></script>
-      <script type="text/javascript" src="src/random.js"></script>
+      <script type="text/javascript" src="src/pages.js">
+      </script>
+      <script type="text/javascript" src="src/character.js">
+      </script>
+      <script type="text/javascript" src="src/sideBar.js">
+      </script>
+      <script type="text/javascript" src="src/stats.js">
+      </script>
+      <script type="text/javascript" src="src/index.js">
+      </script>
+      <script type="text/javascript" src="src/random.js">
+      </script>
       <title>Bite Size DnD</title>
   </head>  
   <body>
@@ -47,13 +53,16 @@
           </div>
           <div class="modal-body">
             <div class='modal-div'>
-            <label>Amount of silver looted: </label><input type='number' id='rest-silver-looted' class='form-control modal-input'>
+            <label>Amount of silver looted: </label>
+            <input type='number' id='rest-silver-looted' class='form-control modal-input'>
             </div>
             <div class='modal-div'>
-            <label>Number of Characters: </label><input type='number' id='rest-party-size' class='form-control modal-input'>
+            <label>Number of Characters: </label>
+            <input type='number' id='rest-party-size' class='form-control modal-input'>
             </div>
             <div class='modal-div'>
-            <label>Bonus XP Awarded: </label><input type='number' id='rest-bonus-xp' class='form-control modal-input'>
+            <label>Bonus XP Awarded: </label>
+            <input type='number' id='rest-bonus-xp' class='form-control modal-input'>
             </div>
             <div id='wiz' class='modal-div'>Keep Spells? 
               <select id='wiz-confirm' class='form-control'>
@@ -70,46 +79,310 @@
       </div>
     </div>
 
-    <!-- Page -->
     <div id='screen' class='container-fluid'>
-    <div class='row no-gutters'>
-
-      <div id='left' class='col-2'>
-        <nav id='side-bar' class='nav flex-column bg-dark'>
+      <div class='row no-gutters'>
+        
+        <!-- Side Bar -->
+        <div id='left' class='col-2'>
+          <nav id='side-bar' class='nav flex-column bg-dark'>
             <div id='side-bar-top'>
               <div id='logo'>
                 <h1 id='logo-text' class='nav-item text-light'>Bite Size <img id='logo-img' src='assets/d20.png'> DnD</h1>
               </div>
               <div id='side-menu' class="nav-item">
-
+                
                 <div id='select-char' class='nav-item btn-group dropdown side-btn'>
                   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Select Character
+                    Select Character
                   </button>
-                    <div class="dropdown-menu" id='selectChar'>
-                      <!-- things get dynamically added here -->
+                  <div class="dropdown-menu" id='selectChar'>
+                    <!-- things get dynamically added here -->
                   </div>
                 </div>
                 <button id='log-out-btn' class='nav-item btn btn-secondary side-btn'>Log Out</button>
                 <button id='rules-btn' class='nav-item btn btn-secondary side-btn'>Rules</button>
               </div>
             </div>
-          <div id='side-logo' class="nav-item"></div>
-          
-          <p id='credits' class="nav-item text-light">Nick Dunlap<br>Helen Marshall<br>2019</p>
-        </nav>
-      </div>
+            <div id='side-logo' class="nav-item">
 
+            </div>
+            
+            <p id='credits' class="nav-item text-light">Nick Dunlap<br>Helen Marshall<br>2019</p>
+          </nav>
+      </div>
+      
+      <!-- Page -->
       <div id='page' class='col'>
         <!-- characterCreator and characterSheet both load here. Rules too. -->
+
+        <!-- character sheet -->
+        <div id="charSheet" class="vert">
+          <div id="char_name">
+            <h1 id="char_name_h1">
+              <!-- name here -->
+            </h1>
+          </div>
+          <div id="top" class="horz">
+            <div id="char-body-left" class="top-item">
+              <div id="level-div" class="char-box-borders saves-n-skills">
+                <div id="level">
+                  <span class="colon">Level: </span>
+                  <span id='level-num'>
+                    <!-- level number here -->
+                  </span>
+                </div>
+                <div id="xp">
+                  <span class="colon">XP: </span>
+                  <span id='xp-total'>
+                    <!-- xp total here -->
+                  </span>
+                </div>
+              </div>
+              <span id="saves" class="vert saves-n-skills char-box-borders">
+                <h3 id="h3-skills">Saves</h3>
+                <div class="sBtns" id="save-btns">
+                  <button class="skillBox btn btn-outline-dark btn-sm s-btn" id="phys_save" value="1" name="Save vs Physical">
+                      <!-- physical save bonus here -->
+                  </button>
+                  <button class="skillBox btn btn-outline-dark s-btn btn-sm" id="mag_save" value="3" name="Save vs Magic">
+                      <!-- magic save bonus here -->
+                  </button>
+                  <button class="skillBox btn btn-outline-dark btn-sm s-btn" id="initiative" value="8" name="Initiative">
+                      <!-- init bonus here -->
+                  </button>
+                </div>
+              </span>
+            </div>
+            <div id="char-body-center" class="char-box-borders top-item center">
+              <img src="https://media.wizards.com/2015/images/dnd/ClassSymb_Fighter.png" id="char_photo">
+              <p id="char_description" class="scrollable">
+                <!-- char description here -->
+              </p>
+              <span id="hp-span">
+                <h4 class="hp-item">HP: </h4>
+                <input  id="hp" class="hp-item" type="number" value="3">
+                <h4 id="maxHp" class="hp-item">
+
+                </h4>
+              </span>
+              <div id="ac-box">
+                <h4 id="ac"> <em>AC: </em>
+                <!-- AC total here -->
+                </h4>
+              </div>
+            </div>
+            <div id="char-body-right" class="top-item">
+              <div id="class-race-xp" class="vert char-box-borders saves-n-skills">
+                <div id="class" value="Sorcerer">
+                  <span class="colon">Class: </span>
+                  <span id='class-name'>
+
+                  </span>
+                  <!-- class name span here -->
+                </div>
+                <span id="race" value="Dwarf">
+                  <span class="colon">Race: </span>
+                  <span id='race-name'>
+
+                  </span>
+                  <!-- race name span here -->
+                </span>
+              </div>
+              <span id="skills" class="vert saves-n-skills char-box-borders">
+                <h3 id="h3-skills">Skills</h3>
+                <div class="sBtns" id="skill-btns">
+                  <button class="skillBox btn btn-outline-dark btn-sm s-btn" id="athletics" value="9" name="Athletics">
+                      <!-- athletics bonus -->
+                  </button>
+                  <button class="skillBox btn btn-outline-dark btn-sm s-btn" id="subterfuge" value="8" name="Subterfuge">
+                      <!-- subterfuge bonus -->
+                  </button>
+                  <button class="skillBox btn btn-outline-dark btn-sm s-btn" id="lore" value="9" name="Lore">
+                    <!-- lore bonus -->
+                  </button>
+                </div>
+              </span>
+            </div>
+          </div>
+          <div id="bottom" class="vert">
+            <div id="weapons-and-abilities" class="horz bottom-item">
+              <div class="char-box-borders bottom-left">
+                <h3>Attacks</h3>
+                <div id="attacks">
+   
+                </div>
+              </div>
+              <div id="abilities" class="char-box-borders bottom-right">
+                <h3>Abilities</h3>
+                  <!-- abilities listed here -->
+              </div>
+            </div>
+            <div id="inventory">
+
+            </div>
+            <div id="spellBox" class="char-box-borders bottom-item horz">
+              <div class="bottom-left" id='cast-box'>
+                <h3>Spells</h3>
+                <div>
+                  <div>
+                    <!-- spells listed here -->
+                  </div>
+                  <button id="cast-button" class="btn-outline-dark btn">
+                    Cast Spell
+                  </button>
+                  <p id="slots">
+                    <!-- remaining spell slots listed here -->
+                  </p>
+                </div>
+              </div>
+              <ul class="bottom-right" id='prepared-spells'>
+                
+              </ul>
+            </div>
+          </div>
+          <div id="btnDiv" class="horz char-box-borders">
+            <button class="btn btn-outline-secondary btn-sm" id="rest-btn" data-target="#restModal">
+              Return to Town
+            </button>
+            <button id="edit-char" class="btn btn-outline-secondary btn-sm" value="10">
+              Edit Character
+            </button>
+            <button id="del-char" class="btn btn-outline-danger btn-sm" value="10">
+              Delete Character
+            </button>
+          </div>
+        </div>
+
+
+        <!-- edit character form -->
+        <div class="vert charForm" id="editForm">
+          <h1>Edit Character</h1>
+          <form id="charForm" class="vert">
+            <div class="form-group">
+              <label for="name-field">Name:</label>
+              <input placeholder="Character Name" type="text" id="name-field" value="asgd" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="charDescrip">Description:</label>
+              <textarea placeholder="A brave (or stupid) adventurer!" type="textarea" id="charDescrip" class="form-control">
+                <!-- character's description here -->
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label for="selectArmor">Select Armor:</label>
+              <select id="selectArmor" class="form-control">
+                <option value="light">Leather - AC 12 - MV 8</option>
+                <option value="medium">Chain - AC 14 - MV 6</option>
+                <option value="heavy">Plate - AC 16 - MV 4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="selectWeapon">Select a Weapon:</label>
+              <select id="selectWeapon" class="form-control">
+                <option value="finesse">Finesse Weapon - d4, attack twice</option>
+                <option value="martial">Martial Weapon - d8, paired with shield</option>
+                <option value="large">Large Weapon - d12, two handed</option>
+                <option value="ranged">Ranged Weapon - d6</option>
+              </select>
+              </div>
+                <div class="form-group">
+                  <label for="pic-field">Upload a Picture:</label>
+                  <input value="https://media.wizards.com/2015/images/dnd/ClassSymb_Fighter.png" placeholder="https://img.url" type="text" id="pic-field" class="form-control">
+                </div>
+                <button id="edit-character" value="26" class="btn btn-outline-success">Submit Changes</button>
+              </form>
+        </div>
+
+        <!-- new char form -->
+        <div class="vert" id="createForm">
+          <h1>Create Character</h1>
+          <div id="charForm" class="vert">
+          <div class="form-group">
+          <label for="name-field">Name:</label>
+          <input placeholder="Character Name" type="text" id="name-field" class="form-control">
+        </div>
+        <div class="form-group" id='descrip-div'>
+          <!-- <label for="charDescrip">Description:</label>
+          <textarea placeholder="A brave (or stupid) adventurer!" type="textarea" id="charDescrip" class="form-control">
+
+          </textarea> -->
+        </div>
+        <div class="form-group form-group-with-descriptor">
+          <label for="selectRace">Select a Race:</label>
+          <select id="selectRace" class="form-control">
+            <option value="1" id="Human" numabilities="2" ability0="10% bonus XP." ability1="+1 to all skills.">Human</option>
+            <option value="2" id="Dragonborn" numabilities="1" ability0="Dragon Breath for 1d6 damage. Choose fire, lightning, cold, or acid damage at character creation.">Dragonborn</option>
+            <option value="3" id="Dwarf" numabilities="2" ability0="See in the dark." ability1="+2 HP per Level">Dwarf</option>
+            <option value="4" id="Elf" numabilities="1" ability0="+2 to saves against magic.">Elf</option>
+            <option value="5" id="Gnome" numabilities="1" ability0="Can talk to small animals or vermin">Gnome</option>
+            <option value="6" id="Halfling" numabilities="1" ability0="Reroll any 1’s, keep new result.">Halfling</option>
+            <option value="7" id="Half-Orc" numabilities="1" ability0="+1 to hit with weapons">Half-Orc</option>
+            <option value="8" id="Tiefling" numabilities="2" ability0="See in the dark." ability1="Cast darkness 1/venture.">Tiefling</option>
+        </select>
+          <ul class="char-box-borders no-list-style" id="race-descriptor">
+         
+        </ul>
+        </div>
+        <div class="form-group form-group-with-descriptor">
+          <label for="selectClass">Select a Class:</label>
+          <select id="selectClass" class="form-control">
+            <option value="1" id="Fighter" numabilities="1" ability0="+2 Armor Class">Fighter</option>
+            <option value="2" id="Barbarian" numabilities="1" ability0="+2 Damage with Martial or Large weapons">Barbarian</option>
+            <option value="3" id="Monk" numabilities="1" ability0="Fists are light weapons. Extra unarmed attack if not using a shield.">Monk</option>
+            <option value="4" id="Paladin" numabilities="1" ability0="+2 Damage against undead.">Paladin</option>
+            <option value="5" id="Thief" numabilities="1" ability0="x3 damage if attacking while unseen">Thief</option>
+            <option value="6" id="Bard" numabilities="1" ability0="Adds level to all skill checks (instead of half level)">Bard</option>
+            <option value="7" id="Ranger" numabilities="1" ability0="Has an animal companion. The animal companion shares the Ranger's initiative and takes one action.">Ranger</option>
+            <option value="8" id="Cleric" numabilities="1" ability0="Always have Turn Undead prepared as a spell.">Cleric</option>
+            <option value="9" id="Druid" numabilities="1" ability0="Always has Wildshape prepared as a spell.">Druid</option>
+            <option value="10" id="Sorcerer" numabilities="1" ability0="Prepares 1 fewer spell. Can cast 1 extra spell each day.">Sorcerer</option>
+            <option value="11" id="Warlock" numabilities="1" ability0="Eldritch Blast for 1d8 damage (can be done with attack)">Warlock</option>
+            <option value="12" id="Wizard" numabilities="1" ability0="Can choose not to reroll spells each day. (All or none)">Wizard</option>
+        </select>
+          <ul class="char-box-borders no-list-style" id="class-descriptor">
+
+        </ul>
+        </div>
+        <div class="form-group">
+          <label for="selectArmor">Select Armor:</label>
+          <select id="selectArmor" class="form-control">
+            <option value="light" id="light">Leather - AC 12 - MV 8</option>
+            <option value="medium" id="medium">Chain - AC 14 - MV 6</option>
+            <option value="heavy" id="heavy">Plate - AC 16 - MV 4</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label for="selectWeapon">Select a Weapon:</label>
+          <select id="selectWeapon" class="form-control">
+            <option value="finesse" id="finesse">Finesse Weapon - d4, attack twice</option>
+            <option value="martial" id="martial">Martial Weapon - d8, paired with shield</option>
+            <option value="large" id="large">Large Weapon - d12, two handed</option>
+            <option value="ranged" id="ranged">Ranged Weapon - d6</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label for="pic-field">Upload a Picture:</label>
+          <input placeholder="https://img.url" type="text" id="pic-field" class="form-control">
+        </div>
+        <button id="rand-char-btn" class="btn btn-outline-secondary">Random Character</button>
+        <button id="submitNewCharacter" class="btn btn-outline-success">Create Character</button>
+      </div>
+      </div>
+
+
+
+
       </div> 
 
     </div>
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
   </body>  
 </html> 

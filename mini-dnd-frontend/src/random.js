@@ -68,9 +68,7 @@ function randomCharacter(event) {
     }
 
 
-
-
-    let charDescrip = document.getElementById('charDescrip')
+    let charDescrip = document.getElementById('new-char-descrip')
     charDescrip.value = `${adjective} ${race} ${class_type} from ${location} who ${backstory}`
 
     let raceMenu = document.getElementById(race)
