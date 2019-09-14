@@ -1,40 +1,57 @@
-function clearPage() {
-    let page = document.getElementById('page')
-    while (page.firstChild){
-        page.removeChild(page.firstChild)
-    } 
-    return page
+function clearPage(desiredFormId, desiredStyle) {
+    let charSheet = document.getElementById('charSheet')
+    charSheet.style.display = 'none'
+    let createForm = document.getElementById('createForm')
+    createForm.style.display = 'none'
+    let editForm = document.getElementById('editForm')
+    editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'none'
+    let rulesPage = document.getElementById('rules')
+    rulesPage.style.display = 'none'
+    let desiredPage = document.getElementById(desiredFormId)
+    desiredPage.display.style = desiredStyle
 }
 
 function loadLogIn(){
-    clearPage()
-    let page = document.getElementById('page')
+    let charSheet = document.getElementById('charSheet')
+    charSheet.style.display = 'none'
+    let createForm = document.getElementById('createForm')
+    createForm.style.display = 'none'
+    let editForm = document.getElementById('editForm')
+    editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'block'
 
-    let div = document.createElement('div')
-    div.setAttribute('id', 'login')
-    page.appendChild(div)
+    while (!!loginPage.firstChild){
+        loginPage.removeChild(loginPage.firstChild)
+    }
 
     let field = document.createElement('input')
     field.setAttribute('id', 'loginName')
     field.placeholder = 'Username'
-    div.appendChild(field)
+    loginPage.appendChild(field)
 
     let btn = document.createElement('button')
     btn.setAttribute('id', 'submitLogin')
     btn.addEventListener('click',makeUN)
     btn.innerText = 'Submit'
-    div.appendChild(btn)
+    loginPage.appendChild(btn)
 }
 
 //Character Creation
 function loadCharCreator() {   
+    // clearPage('createForm', 'flex')
     let charSheet = document.getElementById('charSheet')
     charSheet.style.display = 'none'
-
     let createForm = document.getElementById('createForm')
     createForm.style.display = 'flex'
-
-    let name = document.getElementById('name-field')
+    let editForm = document.getElementById('editForm')
+    editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'none'
+    let rulesPage = document.getElementById('rules')
+    rulesPage.style.display = 'none'
 
     
     let descripDiv = document.getElementById('descrip-div')
@@ -64,71 +81,7 @@ function loadCharCreator() {
 
     //display class attributes
     classMenu.addEventListener('change',event => {displayClassAbilities(event.target)})
-    
-
-    // let weaponMenu = document.createElement('select')
-    // weaponMenu.setAttribute('id', 'selectWeapon')
-    // weaponMenu.classList.add('form-control')
-    // let weaponMenuDiv = document.createElement('div')
-    // weaponMenuDiv.classList.add('form-group')
-    // let weaponLabel = document.createElement('label')
-    // weaponLabel.setAttribute('for', 'selectWeapon')
-    // weaponLabel.textContent = 'Select a Weapon:'
-    // weaponMenuDiv.appendChild(weaponLabel)
-    // weaponMenuDiv.appendChild(weaponMenu)
-    
-    // let finesse = document.createElement('option')
-    // finesse.setAttribute('value', 'finesse')
-    // finesse.setAttribute('id', 'finesse')
-    // finesse.textContent = 'Finesse Weapon - d4, attack twice'
-    // weaponMenu.appendChild(finesse)
-    
-    // let martial = document.createElement('option')
-    // martial.setAttribute('value', 'martial')
-    // martial.setAttribute('id', 'martial')
-    // martial.textContent = 'Martial Weapon - d8, paired with shield'
-    // weaponMenu.appendChild(martial)
-    
-    // let large = document.createElement('option')
-    // large.setAttribute('value', 'large')
-    // large.setAttribute('id', 'large')
-    // large.textContent = 'Large Weapon - d12, two handed'
-    // weaponMenu.appendChild(large)
-    
-    // let ranged = document.createElement('option')
-    // ranged.setAttribute('value', 'ranged')
-    // ranged.setAttribute('id', 'ranged')
-    // ranged.textContent = 'Ranged Weapon - d6'
-    // weaponMenu.appendChild(ranged)
-    
-    // let armorMenu = document.createElement('select')
-    // armorMenu.setAttribute('id', 'selectArmor')
-    // armorMenu.classList.add('form-control')
-    // let armorMenuDiv = document.createElement('div')
-    // armorMenuDiv.classList.add('form-group')
-    // let armorLabel = document.createElement('label')
-    // armorLabel.setAttribute('for', 'selectArmor')
-    // armorLabel.textContent = 'Select Armor:'
-    // armorMenuDiv.appendChild(armorLabel)
-    // armorMenuDiv.appendChild(armorMenu)
-    
-    // let light = document.createElement('option')
-    // light.setAttribute('value', 'light')
-    // light.setAttribute('id', 'light')
-    // light.textContent = 'Leather - AC 12 - MV 8'
-    // armorMenu.appendChild(light)
-    
-    // let medium = document.createElement('option')
-    // medium.setAttribute('value', 'medium')
-    // medium.setAttribute('id', 'medium')
-    // medium.textContent = 'Chain - AC 14 - MV 6'
-    // armorMenu.appendChild(medium)
-    
-    // let heavy = document.createElement('option')
-    // heavy.setAttribute('value', 'heavy')
-    // heavy.setAttribute('id', 'heavy')
-    // heavy.textContent = 'Plate - AC 16 - MV 4'
-    // armorMenu.appendChild(heavy)
+ 
 
     let pic = document.getElementById('pic-field')
     pic.classList.add('form-control')
@@ -195,14 +148,17 @@ function loadClasses(){
 }
 
 function loadCharSheet() {
+    // clearPage('charSheet', 'flex')
     let charSheet = document.getElementById('charSheet')
     charSheet.style.display = 'flex'
-
     let createForm = document.getElementById('createForm')
     createForm.style.display = 'none'
-
     let editForm = document.getElementById('editForm')
     editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'none'
+    let rulesPage = document.getElementById('rules')
+    rulesPage.style.display = 'none'
 
     let hpCurrent = document.getElementById('hp')
     console.log('hpCurrent: ', hpCurrent)

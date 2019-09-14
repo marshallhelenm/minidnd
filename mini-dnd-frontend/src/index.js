@@ -3,6 +3,16 @@ document.addEventListener('DOMContentLoaded',main)
 function main(){
     
     //Character Creation Stuff
+    let charSheet = document.getElementById('charSheet')
+    charSheet.style.display = 'none'
+    let createForm = document.getElementById('createForm')
+    createForm.style.display = 'none'
+    let editForm = document.getElementById('editForm')
+    editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'none'
+    let rulesPage = document.getElementById('rules')
+    rulesPage.style.display = 'none'
     loggedIn()
     loadSideBar()
     // randRace()

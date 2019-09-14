@@ -15,22 +15,37 @@ function loadSideBar() {
         })
 
         let rulesBtn = document.getElementById('rules-btn')
-        rulesBtn.addEventListener('click', event => {
-            event.preventDefault()
-            clearPage()
-            let p = document.createElement('h2')
-            p.textContent = 'Under Construction'
-            let page = document.getElementById('page')
-            page.appendChild(p)
-        })
+        rulesBtn.onclick = loadRulesPage
     }
     
 }
 
+function loadRulesPage(event) {
+    // clearPage('rules', 'flex')
+    let charSheet = document.getElementById('charSheet')
+    charSheet.style.display = 'none'
+    let createForm = document.getElementById('createForm')
+    createForm.style.display = 'none'
+    let editForm = document.getElementById('editForm')
+    editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'none'
+    let rulesPage = document.getElementById('rules')
+    rulesPage.style.display = 'flex'
+}
+
 function logOut(event) {
     localStorage.setItem('user_id',null)
-    // clear all info off screen and bring us back to log in page
-    let page = clearPage()
+    let charSheet = document.getElementById('charSheet')
+    charSheet.style.display = 'none'
+    let createForm = document.getElementById('createForm')
+    createForm.style.display = 'none'
+    let editForm = document.getElementById('editForm')
+    editForm.style.display = 'none'
+    let loginPage = document.getElementById('login')
+    loginPage.style.display = 'block'
+    let rulesPage = document.getElementById('rules')
+    rulesPage.style.display = 'none'
 
     loadSideBar()
     loadLogIn()
