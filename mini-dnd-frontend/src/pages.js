@@ -93,9 +93,6 @@ function loadCharCreator() {
     
     
     let classMenu = document.createElement('select')
-    classMenu.onchange = event => {
-        showInfo(raceMenu, classMenu)
-    }
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
