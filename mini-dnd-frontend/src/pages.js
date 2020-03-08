@@ -38,7 +38,7 @@ function loadCharCreator() {
     charForm.classList.add('vert')
     page.appendChild(div)
     
-    let title =  document.createElement('h2')
+    let title =  document.createElement('h1')
     title.innerText = 'Create Character'
     div.appendChild(title)
 
@@ -72,28 +72,42 @@ function loadCharCreator() {
     descripDiv.appendChild(charDescrip)
     
     let raceMenu = document.createElement('select')
+    raceMenu.onchange = event => {
+        showInfo(raceMenu, classMenu)
+    }
     raceMenu.setAttribute('id', 'selectRace')
     raceMenu.classList.add('form-control')
     let raceMenuDiv = document.createElement('div')
-    raceMenuDiv.classList.add('form-group')
+    raceMenuDiv.classList.add('form-group','form-group-with-descriptor')
     let raceLabel = document.createElement('label')
     raceLabel.setAttribute('for', 'selectRace')
     raceLabel.textContent = 'Select a Race:'
     raceMenuDiv.appendChild(raceLabel)
     raceMenuDiv.appendChild(raceMenu)
+    //display race attributes
+    let raceDescription = document.createElement('ul')
+    raceDescription.classList.add('char-box-borders', 'no-list-style')
+    raceDescription.setAttribute('id','race-descriptor')
+    raceMenu.addEventListener('change',event => {displayRaceAbilities(event.target)})
+    raceMenuDiv.appendChild(raceDescription)
     
     
     let classMenu = document.createElement('select')
     classMenu.setAttribute('id', 'selectClass')
     classMenu.classList.add('form-control')
     let classMenuDiv = document.createElement('div')
-    classMenuDiv.classList.add('form-group')
+    classMenuDiv.classList.add('form-group','form-group-with-descriptor')
     let classLabel = document.createElement('label')
     classLabel.setAttribute('for', 'selectClass')
     classLabel.textContent = 'Select a Class:'
     classMenuDiv.appendChild(classLabel)
     classMenuDiv.appendChild(classMenu)
-    
+    //display class attributes
+    let classDescription = document.createElement('ul')
+    classDescription.classList.add('char-box-borders', 'no-list-style')
+    classDescription.setAttribute('id','class-descriptor')
+    classMenu.addEventListener('change',event => {displayClassAbilities(event.target)})
+    classMenuDiv.appendChild(classDescription)
     
     let weaponMenu = document.createElement('select')
     weaponMenu.setAttribute('id', 'selectWeapon')
@@ -158,7 +172,20 @@ function loadCharCreator() {
     heavy.setAttribute('id', 'heavy')
     heavy.textContent = 'Plate - AC 16 - MV 4'
     armorMenu.appendChild(heavy)
-    
+
+    let pic = document.createElement('input')
+    pic.setAttribute('placeholder', 'https://img.url')
+    pic.setAttribute('type', 'text')
+    pic.setAttribute('id', 'pic-field')
+    pic.classList.add('form-control')
+    let picDiv = document.createElement('div')
+    picDiv.classList.add('form-group')
+    let picLabel = document.createElement('label')
+    picLabel.setAttribute('for', 'pic-field')
+    picLabel.textContent = 'Upload a Picture:'
+    picDiv.appendChild(picLabel)
+    picDiv.appendChild(pic)
+
     let randBtn = document.createElement('button')
     randBtn.setAttribute('id', 'rand-char-btn')
     randBtn.classList.add('btn')
@@ -170,7 +197,7 @@ function loadCharCreator() {
     submitBtn.setAttribute('id', 'submitNewCharacter')
     submitBtn.classList.add('btn')
     submitBtn.classList.add('btn-outline-success')
-    submitBtn.onclick = submitNewCharacter
+    submitBtn.onclick = event => submitNewCharacter(event)
     submitBtn.textContent = 'Create Character'
 
     
@@ -180,6 +207,7 @@ function loadCharCreator() {
     charForm.appendChild(classMenuDiv)
     charForm.appendChild(armorMenuDiv)
     charForm.appendChild(weaponMenuDiv)
+    charForm.appendChild(picDiv)
     charForm.appendChild(randBtn)
     charForm.appendChild(submitBtn)
     div.appendChild(charForm)
@@ -188,7 +216,6 @@ function loadCharCreator() {
 }
 
 function loadRaces(){
-    console.log('loading classes')
     let raceList = document.getElementById("selectRace")
     fetch(BASE_URL+'/races')
     .then(response => response.json())
@@ -197,25 +224,45 @@ function loadRaces(){
             let option = document.createElement('option')
             option.setAttribute('value',race.id)
             option.setAttribute('id',race.name)
+
+            option.setAttribute('numabilities',race.race_abilities.length)
+
+            for(let i = 0; i < race.race_abilities.length; i++){
+                let attribute = 'ability' + i
+                option.setAttribute(attribute,race.race_abilities[i].description)
+            }
+
             option.textContent = race.name
             raceList.appendChild(option)
         }
+
+        displayRaceAbilities(raceList) //display abilities of default race
     })
 }
 
 function loadClasses(){
-    console.log('loading classes')
     let classList = document.getElementById("selectClass")
     fetch(BASE_URL+'/class_types')
     .then(response => response.json())
     .then(classes => {
-        for(let classtype of classes){
+        for(let class_type of classes){
             let option = document.createElement('option')
-            option.setAttribute('value',classtype.id)
-            option.setAttribute('id',classtype.name)
-            option.textContent = classtype.name
+            option.setAttribute('value',class_type.id)
+            option.setAttribute('id',class_type.name)
+
+
+            option.setAttribute('numabilities',class_type.class_type_abilities.length)
+
+            for(let i = 0; i < class_type.class_type_abilities.length; i++){
+                let attribute = 'ability' + i
+                option.setAttribute(attribute,class_type.class_type_abilities[i].description)
+            }
+
+            option.textContent = class_type.name
             classList.appendChild(option)
         }
+
+        displayClassAbilities(classList) //display abilities of default class
     })
 }
 
@@ -227,14 +274,24 @@ function loadCharSheet() {
     page.appendChild(sheet)
     sheet.classList.add('vert')
 
-    let charHeader = document.createElement('div')
-    charHeader.setAttribute('id', 'char-header')
-    charHeader.classList.add('horz')
-    let charBody = document.createElement('div')
-    charBody.setAttribute('id', 'char-body')
-    charBody.classList.add('vert')
-    sheet.appendChild(charHeader)
-    sheet.appendChild(charBody)
+    // let charHeader = document.createElement('div')
+    // charHeader.setAttribute('id', 'char-header')
+    // charHeader.classList.add('horz')
+    // let charBody = document.createElement('div')
+    // charBody.setAttribute('id', 'char-body')
+    // charBody.classList.add('vert')
+    // sheet.appendChild(charHeader)
+    // sheet.appendChild(charBody)
+
+    let charName = document.createElement('div')
+    charName.setAttribute('id', 'char_name')
+    // charName.classList.add('center')
+    // charName.classList.add('char-box-borders')
+    // charName.classList.add('top-item')
+    let charNameH1 = document.createElement('h1')
+    charNameH1.setAttribute('id', 'char_name_h1')
+    charName.appendChild(charNameH1)
+    sheet.appendChild(charName)
 
     let top = document.createElement('div')
     top.setAttribute('id', 'top')
@@ -242,15 +299,21 @@ function loadCharSheet() {
     let bottom = document.createElement('div')
     bottom.setAttribute('id', 'bottom')
     bottom.classList.add('vert')
+    // bottom.classList.add('char-box-borders')
+    // bottom.classList.add('horz')
     sheet.appendChild(top)
     sheet.appendChild(bottom)
 
     let charBodyLeft = document.createElement('div')
     charBodyLeft.setAttribute('id', 'char-body-left')
     charBodyLeft.classList.add('top-item')
+
     let charBodyCenter = document.createElement('div')
     charBodyCenter.setAttribute('id', 'char-body-center')
+    charBodyCenter.classList.add('char-box-borders')
     charBodyCenter.classList.add('top-item')
+    charBodyCenter.classList.add('center')
+
     let charBodyRight = document.createElement('div')
     charBodyRight.setAttribute('id', 'char-body-right')
     charBodyRight.classList.add('top-item')
@@ -259,79 +322,99 @@ function loadCharSheet() {
     top.appendChild(charBodyRight)
 
     // Char Header
-    let nameLevelSpan = document.createElement('span')
-    nameLevelSpan.setAttribute('id', 'nameLevelSpan')
-    nameLevelSpan.classList.add('vert')
-    nameLevelSpan.classList.add('vert-small')
-    charHeader.appendChild(nameLevelSpan)
+    // let nameLevelSpan = document.createElement('span')
+    // nameLevelSpan.setAttribute('id', 'nameLevelSpan')
+    // nameLevelSpan.classList.add('vert')
+    // nameLevelSpan.classList.add('vert-small')
+    // charHeader.appendChild(nameLevelSpan)
 
-    let charName = document.createElement('h3')
-    charName.setAttribute('id', 'char_name')
-    nameLevelSpan.appendChild(charName)
+    let charLevelDiv = document.createElement('div')
+    charLevelDiv.setAttribute('id', 'level-div')
+    charLevelDiv.classList.add('char-box-borders')
+    // charLevelDiv.classList.add('top-item')
 
-    let charLevelSpan = document.createElement('span')
-    charLevelSpan.setAttribute('id', 'level')
-    charLevelSpan.textContent = `Level: `
-    nameLevelSpan.appendChild(charLevelSpan)
+    let levelDiv = document.createElement('div')
+    levelDiv.setAttribute('id', 'level')
+    charLevelDiv.appendChild(levelDiv)
+
+    charLevelDiv.classList.add('saves-n-skills')
+    charBodyLeft.appendChild(charLevelDiv)
+
+
+    let xpDiv = document.createElement('div')
+    xpDiv.setAttribute('id', 'xp')
+    charLevelDiv.appendChild(xpDiv)
+
+
+
     
-    let classRaceXpSpan = document.createElement('span')
-    classRaceXpSpan.classList.add('vert')
-    classRaceXpSpan.classList.add('vert-small')
-    classRaceXpSpan.classList.add('role-descriptor')
-    charHeader.appendChild(classRaceXpSpan)
+    let classRaceSpan = document.createElement('div')
+    classRaceSpan.setAttribute('id', 'class-race-xp')
+    classRaceSpan.classList.add('vert')
+    // classRaceSpan.classList.add('top-item')
+    // classRaceSpan.classList.add('vert-small')
+    classRaceSpan.classList.add('char-box-borders')
+    classRaceSpan.classList.add('saves-n-skills')
 
-    let classSpan = document.createElement('span')
+    charBodyRight.appendChild(classRaceSpan)
+
+    let classSpan = document.createElement('div')
     classSpan.setAttribute('id', 'class')
-    classSpan.textContent = `Class: `
-    classRaceXpSpan.appendChild(classSpan)
+    classRaceSpan.appendChild(classSpan)
 
     let raceSpan = document.createElement('span')
     raceSpan.setAttribute('id', 'race')
-    raceSpan.textContent = `Race: `
-    classRaceXpSpan.appendChild(raceSpan)
-
-    let xpSpan = document.createElement('span')
-    xpSpan.setAttribute('id', 'xp')
-    xpSpan.textContent = `XP: `
-    classRaceXpSpan.appendChild(xpSpan)
+    classRaceSpan.appendChild(raceSpan)
 
     //Char Body Left
     let saveSpan = document.createElement('span')
     saveSpan.setAttribute('id', 'saves')
     saveSpan.classList.add('vert')
-    saveSpan.classList.add('vert-sidebar')
+    saveSpan.classList.add('saves-n-skills')
+    saveSpan.classList.add('char-box-borders')
+    // saveSpan.classList.add('vert-sidebar')
     charBodyLeft.appendChild(saveSpan)
 
-    let h3 = document.createElement('h3')
-    h3.innerText = 'Saves: '
-    saveSpan.appendChild(h3)
+    let h3Saves = document.createElement('h3')
+    h3Saves.innerText = 'Saves'
+    h3Saves.setAttribute('id', 'h3-skills')
+    saveSpan.appendChild(h3Saves)
+
+
+    let saveBtns = document.createElement('div')
+    saveBtns.classList.add('sBtns')
+    saveBtns.setAttribute('id', 'save-btns')
+    saveSpan.appendChild(saveBtns)
 
     let phys = document.createElement('button')
     phys.classList.add('skillBox')
     phys.classList.add('btn')
     phys.classList.add('btn-outline-dark')
     phys.classList.add('btn-sm')
+    phys.classList.add('s-btn')
     phys.setAttribute('id', 'phys_save')
     phys.textContent = 'Physical:  '
-    saveSpan.appendChild(phys)
+    saveBtns.appendChild(phys)
 
     let mag = document.createElement('button')
     mag.classList.add('skillBox')
     mag.classList.add('btn')
     mag.classList.add('btn-outline-dark')
+    mag.classList.add('s-btn')
     mag.classList.add('btn-sm')
     mag.setAttribute('id', 'mag_save')
     mag.textContent = 'Magical:  '
-    saveSpan.appendChild(mag)
+    saveBtns.appendChild(mag)
 
     let init = document.createElement('button')
     init.classList.add('skillBox')
     init.classList.add('btn')
     init.classList.add('btn-outline-dark')
     init.classList.add('btn-sm')
+    init.classList.add('s-btn')
     init.setAttribute('id', 'initiative')
     init.textContent = 'Initiative:  '
-    saveSpan.appendChild(init)
+    saveBtns.appendChild(init)
 
 
     // Char Body Center
@@ -343,6 +426,7 @@ function loadCharSheet() {
 
     let charDescrip = document.createElement('p')
     charDescrip.setAttribute('id', 'char_description')
+    charDescrip.classList.add('scrollable')
     charBodyCenter.appendChild(charDescrip)
 
     let hpSpan = document.createElement('span')
@@ -359,6 +443,7 @@ function loadCharSheet() {
     hpCurrent.setAttribute('id', 'hp')
     hpCurrent.setAttribute('type','number')
     hpCurrent.setAttribute('value',3)
+    hpCurrent.addEventListener('change',updateHP)
     hpSpan.appendChild(hpCurrent)
 
     let hpMax = document.createElement('h4')
@@ -367,10 +452,14 @@ function loadCharSheet() {
     hpMax.textContent = `/ `
     hpSpan.appendChild(hpMax)
 
-    let acBox = document.createElement('span')
-    acBox.setAttribute('id', 'ac')
-    acBox.textContent = `AC: `
+    let acBox = document.createElement('div')
+    acBox.setAttribute('id', 'ac-box')
     charBodyCenter.appendChild(acBox)
+    
+    let ac = document.createElement('h4')
+    ac.setAttribute('id', 'ac')
+    ac.textContent = `AC: `
+    acBox.appendChild(ac)
 
 
     // Char Body Right
@@ -378,48 +467,62 @@ function loadCharSheet() {
     let skillSpan = document.createElement('span')
     skillSpan.setAttribute('id', 'skills')
     skillSpan.classList.add('vert')
-    skillSpan.classList.add('vert-sidebar')
+    skillSpan.classList.add('saves-n-skills')
+    skillSpan.classList.add('char-box-borders')
+    // skillSpan.classList.add('vert-sidebar')
     charBodyRight.appendChild(skillSpan)
 
     let h3Skills = document.createElement('h3')
-    h3Skills.innerText = 'Skills: '
+    h3Skills.setAttribute('id', 'h3-skills')
+    h3Skills.innerText = 'Skills'
     skillSpan.appendChild(h3Skills)
+
+    let skillBtns = document.createElement('div')
+    skillBtns.classList.add('sBtns')
+    skillBtns.setAttribute('id', 'skill-btns')
+    skillSpan.appendChild(skillBtns)
 
     let ath = document.createElement('button')
     ath.classList.add('skillBox')
     ath.classList.add('btn')
     ath.classList.add('btn-outline-dark')
     ath.classList.add('btn-sm')
+    ath.classList.add('s-btn')
     ath.setAttribute('id', 'athletics')
     ath.textContent = 'Athletics:  '
-    skillSpan.appendChild(ath)
+    skillBtns.appendChild(ath)
 
     let sub = document.createElement('button')
     sub.classList.add('skillBox')
     sub.classList.add('btn')
     sub.classList.add('btn-outline-dark')
     sub.classList.add('btn-sm')
+    sub.classList.add('s-btn')
     sub.setAttribute('id', 'subterfuge')
     sub.textContent = 'Subterfuge:  '
-    skillSpan.appendChild(sub)
+    skillBtns.appendChild(sub)
 
     let lor = document.createElement('button')
     lor.classList.add('skillBox')
     lor.classList.add('btn')
     lor.classList.add('btn-outline-dark')
     lor.classList.add('btn-sm')
+    lor.classList.add('s-btn')
     lor.setAttribute('id', 'lore')
     lor.textContent = 'Lore:  '
-    skillSpan.appendChild(lor)
+    skillBtns.appendChild(lor)
 
 
     // Bottom
-    let weaponAbilitiesBox = document.createElement('span')
+    let weaponAbilitiesBox = document.createElement('div')
     weaponAbilitiesBox.setAttribute('id','weapons-and-abilities')
     weaponAbilitiesBox.classList.add('horz')
+    weaponAbilitiesBox.classList.add('bottom-item')
     bottom.appendChild(weaponAbilitiesBox)
 
-    let weaponBox = document.createElement('span')
+    let weaponBox = document.createElement('div')
+    weaponBox.classList.add('char-box-borders')
+    weaponBox.classList.add('bottom-left')
     weaponAbilitiesBox.appendChild(weaponBox)
 
     let weaponTitle = document.createElement('h3')
@@ -436,14 +539,15 @@ function loadCharSheet() {
 
     let abilities = document.createElement('div')
     abilities.setAttribute('id', 'abilities')
+    abilities.classList.add('char-box-borders')
+    abilities.classList.add('bottom-right')
     weaponAbilitiesBox.appendChild(abilities)
 
-    let spells = document.createElement('div')
-    spells.setAttribute('id','spells')
-    bottom.appendChild(spells)
-
     let btnDiv = document.createElement('div')
-    bottom.appendChild(btnDiv)
+    btnDiv.setAttribute('id', 'btnDiv')
+    btnDiv.classList.add('horz')
+    btnDiv.classList.add('char-box-borders')
+    sheet.appendChild(btnDiv)
 
     let restBtn = document.createElement('button')
     restBtn.classList.add('btn')
@@ -494,7 +598,32 @@ function showModal(event) {
 
 }
 
+function displayRaceAbilities(menu){
+    let index = menu.selectedIndex
+    let selected = menu.children[index]
+    let num = selected.getAttribute('numAbilities')
+    let display = document.getElementById('race-descriptor')
+    while (display.firstChild){ display.removeChild(display.firstChild)}
+    for(let i = 0; i < num; i++){
+        let attribute = 'ability' + i
+        let li = document.createElement('li')
+        li.textContent = selected.getAttribute(attribute)
+        display.appendChild(li)
+    }
+}
 
-
+function displayClassAbilities(menu){
+    let index = menu.selectedIndex
+    let selected = menu.children[index]
+    let num = selected.getAttribute('numAbilities')
+    let display = document.getElementById('class-descriptor')
+    while (display.firstChild){ display.removeChild(display.firstChild)}
+    for(let i = 0; i < num; i++){
+        let attribute = 'ability' + i
+        let li = document.createElement('li')
+        li.textContent = selected.getAttribute(attribute)
+        display.appendChild(li)
+    }
+}
 
 

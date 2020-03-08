@@ -5,17 +5,70 @@ function sampleFrom(arr) {
 
 function randomCharacter(event) {
     // put random character info on the character creation form
-    console.log('suggesting random character traits')
     let descriptors = randDescriptors()
-    console.log(sampleFrom(descriptors['race']))
     let race = sampleFrom(descriptors['race'])
     let class_type = sampleFrom(descriptors['class_type'])
     let adjective = sampleFrom(descriptors['adjective'])
     adjective = adjective.charAt(0).toUpperCase() + adjective.slice(1)
     let location = sampleFrom(descriptors['location'])
     let backstory = sampleFrom(descriptors['backstory'])
-    let weapon = sampleFrom(['finesse', 'martial', 'large'])
-    let armor = sampleFrom(['light', 'medium', 'heavy'])
+
+    let armor;
+    let weapon;
+
+    switch (class_type){
+        case 'Fighter':
+            armor = 'heavy'
+            weapon = sampleFrom(['martial', 'large'])
+            break;
+        case 'Paladin':
+            armor = 'heavy'
+            weapon = sampleFrom(['martial', 'large'])   
+            break;
+        case 'Barbarian':
+            armor = 'heavy'
+            weapon = 'large'
+            break;
+        case 'Cleric':
+            armor = 'medium'
+            weapon = 'martial'
+            break;
+        case 'Ranger':
+            armor = 'medium'
+            weapon = 'ranged'
+            break;
+        case 'Monk':
+            armor = 'medium'
+            weapon = 'finesse'
+            break;
+        case 'Bard':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Thief':
+            armor = 'light'
+            weapon = 'finesse'
+            break;
+        case 'Druid':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Warlock':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Wizard':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+        case 'Sorcerer':
+            armor = 'light'
+            weapon = sampleFrom(['finesse', 'ranged'])
+            break;
+    }
+
+
+
 
     let charDescrip = document.getElementById('charDescrip')
     charDescrip.value = `${adjective} ${race} ${class_type} from ${location} who ${backstory}`
@@ -109,6 +162,7 @@ function randDescriptors(){
             "guarded",
             "hateful",
             "helpful",
+            "high-strung",
             "hot-headed",
             "hypercritical",
             "level-headed",
@@ -490,7 +544,7 @@ function randDescriptors(){
             "has serious daddy issues",
             "has a drinking problem",
             "is completely colour blind",
-            "failed out of every guild going",
+            "failed out of every guild",
             "saw their whole family consumed by a gelatinous cube",
             "gets nervous speaking in front of crowds",
             "is afraid of sharp edges",
@@ -502,7 +556,6 @@ function randDescriptors(){
             "grew up in a graveyard",
             "is afraid of fire",
             "hates music",
-            "grew up fat",
             "distrusts all authority",
             "mistrusts anyone smaller than them",
             "hates the monarchy",
@@ -739,7 +792,7 @@ function randDescriptors(){
             "only became an adventurer after losing a bet",
             "is wanted for a reward",
             "wears a mysterious necklace that constantly brings them out in a rash",
-            "parties hard, way too hard.",
+            "parties hard. Way too hard.",
             "isn't technically alive anymore",
             "is convinced they're always being left out",
             "doesn't speak a word of common"

@@ -3,15 +3,9 @@
 
 
 function displayStats(char) {
-        console.log('char in displayStats:', char)
     loadCharSheet() //contains clearPage
-    document.getElementById('class').innerText = `Class: ${char.class_type.name}`
-    document.getElementById('class').setAttribute('value',char.class_type.name)
-
-    document.getElementById('race').innerText = `Race: ${char.race.name}`
-    document.getElementById('race').setAttribute('value',char.race.name)
-
-    document.getElementById('char_name').innerText = char.name
+ 
+    document.getElementById('char_name_h1').innerText = char.name
 
     document.getElementById('char_description').innerText = char.description
 
@@ -49,8 +43,44 @@ function displayStats(char) {
     document.getElementById('lore').addEventListener('click',rollForSuccess)
 
     //other
-    document.getElementById('level').innerText += ' ' + char.level
-    document.getElementById('xp').innerText += ' ' + char.xp
+    let levelRow = document.getElementById('level')
+    let levelSpan = document.createElement('span')
+    levelSpan.classList.add('colon')
+    levelSpan.textContent = 'Level: '
+    levelRow.appendChild(levelSpan)
+    let levelNumSpan = document.createElement('span')
+    levelNumSpan.textContent = char.level
+    levelRow.appendChild(levelNumSpan)
+ 
+    let xpRow = document.getElementById('xp')
+    let xpSpan = document.createElement('span')
+    xpSpan.classList.add('colon')
+    xpSpan.textContent = 'XP: '
+    xpRow.appendChild(xpSpan)
+    let xpNumSpan = document.createElement('span')
+    xpNumSpan.textContent = char.xp
+    xpRow.appendChild(xpNumSpan)
+ 
+    let raceRow = document.getElementById('race')
+    raceRow.setAttribute('value', char.race.name)
+    let raceSpan = document.createElement('span')
+    raceSpan.classList.add('colon')
+    raceSpan.textContent = 'Race: '
+    raceRow.appendChild(raceSpan)
+    let raceNumSpan = document.createElement('span')
+    raceNumSpan.textContent = char.race.name
+    raceRow.appendChild(raceNumSpan)
+
+    let classRow = document.getElementById('class')
+    classRow.setAttribute('value', char.class_type.name)
+    let classSpan = document.createElement('span')
+    classSpan.classList.add('colon')
+    classSpan.textContent = 'Class: '
+    classRow.appendChild(classSpan)
+    let classNumSpan = document.createElement('span')
+    classNumSpan.textContent = char.class_type.name
+    classRow.appendChild(classNumSpan)
+ 
     document.getElementById('ac').innerText += ' ' + char.armor_class
     document.getElementById('hp').value = char.hp
     document.getElementById('maxHp').textContent += char.max_hp
@@ -73,40 +103,44 @@ function attackBox(char) {
     box.appendChild(numAtk)
     let weapon = document.createElement('p')
 
-    console.log(char.weapon)
-    weapon.textContent = `${capitalize(char.weapon)} Weapon - DMG: `
+    let atkButton = document.createElement('button')
+    atkButton.textContent = "Weapon Attack"
+    atkButton.setAttribute('name','Weapon Attack')
+    atkButton.setAttribute('value',char.toHit)
+    atkButton.setAttribute('damageDie',char.damageDie)
+    atkButton.setAttribute('damageMod',0)
+    atkButton.classList.add('btn')
+    atkButton.classList.add('btn-outline-secondary')
+    atkButton.addEventListener('click', event => {rollForAttack(event)})
+
+    weapon.textContent = `${capitalize(char.weapon)} Weapon - AB +${char.toHit} - DMG: 1d${char.damageDie}`
     
+
     switch(char.weapon){
         case 'finesse':
-            weapon.textContent += '1d4'
             break;
         case 'ranged':
-            weapon.textContent += '1d6'
             break;
         case 'martial':
-            weapon.textContent += '1d8'
             if (char.class_type.name == "Barbarian"){
                 weapon.textContent += ' +2'
+                atkButton.setAttribute('damageMod',2)
             }
             break;
         case 'large':
-            weapon.textContent += '1d12'
             if (char.class_type.name == "Barbarian"){
                 weapon.textContent += ' +2'
+                atkButton.setAttribute('damageMod',2)
             }
             break;
     }
-            if (char.class_type.name == "Paladin"){
-                weapon.textContent += ' (+2 against undead)'
-            }
-
-
+    if (char.class_type.name == "Paladin"){
+        weapon.textContent += ' (+2 against undead)'
+    }
     box.appendChild(weapon)
+    box.appendChild(atkButton)
 
 
-
-    let atk = document.createElement('button')
-    atk.textContent = '+ ' + char.toHit
 }
 
 function writeNumAttacks(char){
@@ -120,7 +154,7 @@ function writeNumAttacks(char){
     }
     if (char.class_type.sub_type == 'Warrior'){
         console.log('warrior bonus attacks')
-        number += (char.level-1)/3
+        number += Math.floor((char.level-1)/3)
     }
     
     text = number + ' Attack'
@@ -159,108 +193,61 @@ function spellsBox(char){
     if (char.class_type.caster_type == 'none'){
         return
     }   
-
-    let spellBox = document.getElementById('spells')
-
+    let spellBox = document.createElement('div')
+    spellBox.setAttribute('id','spellBox')
+    spellBox.classList.add('char-box-borders')
+    bottom.appendChild(spellBox)
+    spellBox.classList.add('bottom-item')
+    spellBox.classList.add('horz')
+    
+    let castBox = document.createElement('div')
+    
     let title = document.createElement('h3')
     title.textContent = 'Spells'
     spellBox.appendChild(title)
-
-    let slotBar = document.createElement('span')
-    spellBox.appendChild(slotBar)
-
+    
+    let slotBar = document.createElement('div')
+    castBox.appendChild(slotBar)
+    
     let slots = document.createElement('p')
     slots.setAttribute('id','slots')
     if (char.spell_slots > 0){
         slots.textContent = 'Remaining Spell Slots: ' + char.spell_slots
-
+        
     } else{
         slots.textContent = 'No more spell slots'
     }
-    slotBar.appendChild(slots)
-
+    castBox.appendChild(slots)
+    
     let castBtn = document.createElement('button')
     castBtn.textContent = 'Cast Spell'
     castBtn.setAttribute('id','cast-button')
+    castBtn.classList.add('btn-outline-dark')
+    castBtn.classList.add('btn')
     castBtn.addEventListener('click',() =>{useSpellSlot(char)})
-    slotBar.appendChild(castBtn)
+    castBox.appendChild(castBtn)
     
     if (char.spell_slots == 0){
         castBtn.style.display = 'none'
     } 
-
+    
     let preparedSpells = document.createElement('ul')
+    preparedSpells.classList.add('bottom-right')
     for(let spell of char.spells){
         let spellListing = document.createElement('li')
         spellListing.textContent = spell.name +": " + spell.description
         preparedSpells.appendChild(spellListing)
     }
+    spellBox.appendChild(castBox)
+
+    let spellsLeft = document.createElement('div')
+    // spellsLeft.classList.add('horz')
+    // spellsLeft.classList.add('vert')
+    spellsLeft.classList.add('bottom-left')
+    spellsLeft.appendChild(title)
+    spellsLeft.appendChild(castBox)
+
+    spellBox.appendChild(spellsLeft)
     spellBox.appendChild(preparedSpells)
 }
-
-function rollForSuccess(event){
-    $('#diceModal').modal('toggle')
-    let dialogue = document.getElementById('diceModal-body')
-    
-    document.getElementById('diceModal-title').textContent = 'Rolling ' + event.target.name
-    
-    while (dialogue.firstChild){
-        dialogue.removeChild(dialogue.firstChild)
-    }
-
-
-    
-
-
-    let firstRoll = rollDie(dialogue,event.target.value,20)
-
-    let firstResult = document.createElement('strong')
-    if (firstRoll >= 20){
-        firstResult.textContent = "Success"
-    } else {
-        firstResult.textContent = "Failure"
-    }
-    dialogue.appendChild(firstResult)
-
-
-}
-
-function rollDie(dialogue,mod,size=20){
-
-    let intro = document.createElement('p')
-    intro.textContent = `Rolling d${size}: `
-    dialogue.appendChild(intro)
-
-    let isHalfling = document.getElementById('race').getAttribute('value') == 'Halfling'
-    console.log('Is Halfling? ', isHalfling)
-
-    let roll = Math.floor(Math.random() * size) + 1
-    let result = roll+Number(mod)
-    intro.textContent += ` ${roll} + ${mod} = `
-    intro.textContent += `${result}`
-    
-
-    if (roll == 1 && isHalfling){
-
-        let output = document.createElement('p')
-        output.textContent = `Halfling reroll: d${size}: `
-        dialogue.appendChild(output)
-        roll = Math.floor(Math.random() * size) + 1
-        output.textContent += ` ${roll} + ${mod} = `
-        result = roll+Number(mod)
-        output.textContent += `${result}`
-    }
-
-    return result
-}
-
-
-
-
-
-
-
-
-
-
 

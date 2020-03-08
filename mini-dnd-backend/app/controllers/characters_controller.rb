@@ -13,7 +13,6 @@ class CharactersController < ApplicationController
     end
 
     def create
-        # byebug
         @char = Character.new(char_params)
         assignStats(@char)
         @char.prepareSpells        
@@ -32,10 +31,16 @@ class CharactersController < ApplicationController
 
     def update
         @char = Character.find(params[:id])
-        @char.update(char_params)
-        @char.armor_class = @char.armorClass
-        @char.save
-        render :json => @char
+        if @char.valid?
+            @char.update(char_params)
+            assignStats(@char)
+            @char.prepareSpells   
+            # byebug
+            @char.armor_class = @char.armorClass
+            render :json => @char
+        else
+            render :json => {error: 'Every hero needs a name!'}
+        end
         
     end
 
@@ -47,8 +52,8 @@ class CharactersController < ApplicationController
     def restAtTown
         @char = Character.find(params[:id])
         loot = params[:loot]
-        bonus_xp = params[:loot]
-        party_size = params[:loot]
+        bonus_xp = params[:bonusXP]
+        party_size = params[:partySize]
         wizConfirm = params[:wizConfirm]
         @char.returnToSafety(loot,bonus_xp,party_size,wizConfirm)
         @char = Character.find(params[:id])
@@ -64,12 +69,13 @@ class CharactersController < ApplicationController
     private
 
     def char_params
-        params.require(:character).permit(:id, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :spell_slots, :description)
+        params.require(:character).permit(:id, :hp, :name, :user_id, :class_type_id, :race_id, :weapon, :armor, :xp, :level, :spell_slots, :description, :img_url)
     end
     
     def assignStats(char)
         char.calculateStats
         char.maxHP
+        # char.initiative = char.getInitiative
     end
 
 end    

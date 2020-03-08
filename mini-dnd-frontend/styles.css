@@ -1,61 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Aclonica&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+
+* {
+    font-family: Handlee;
+    font-weight: bold;
+  }
+
 #page{
-    border: solid;
     display: flex;
+    background-color: #f5f6f7;
+    padding-bottom: 5%;
+    max-width: 80%;
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    min-height: 100%;
+
 }
 
-.vert{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+#createCharacter{
+    padding-top: 5%;
 }
 
-.vert-small{
-    width: 30%;
-    padding-left: 0%;
-    padding-right: 0%;
-}
-
-.vert-sidebar{
-    height: 50%;
-    justify-content: space-around;
-}
-
-.horz{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
-#side-bar{
-    border: solid;
-    min-height: 100vh;
-    height: 100%; 
-}
-
-#left{
-    min-width: 200px;
-}
-
-/* #logo{
-    justify-content: flex-start;
-}
-
-#credits{
-    align-self: flex-end;
-    
-} */
-
-#side-menu{
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-}
 #screen{
     padding: 0; 
 }
@@ -65,46 +31,57 @@
     margin-left: 0;
 }
 
-#top{
-display: flex;
-flex-direction: row;
+.scrollable {
+    overflow-y: hidden;
 }
 
-.top-item{
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    min-width: 140px;
-}
-
-.role-descriptor{
-    max-width: 111px;
-}
-
-#hp-span{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-self: center;
-}
-.hp-item{
-    max-width: 33%;
-    padding-left: 0%;
-    padding-right: 0%;
-    margin: 0%;
-}
-
-#char_photo{
-    width: 300px;
-    height: 280px;
-}
-
-#weapons-and-abilities{
-    justify-content: space-between;
-    padding: 0;
+.scrollable:hover{
+    overflow-y: auto;
 }
 
 #rand-char-btn{
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
+
+#login{
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.char-box-borders{
+    padding: 2%;
+    border: 3px solid #ced4da;
+    border-radius: 20px;
+    margin: 2% 0% 2% 0%;
+}
+
+.form-group-with-descriptor{
+    margin-bottom: 0%;
+}
+
+#btnDiv{
+    margin-top: 0%;
+    border: 3px solid #ced4da;
+    border-radius: 20px;
+    justify-content: space-around;
+}
+
+h1{
+    font-family: Aclonica;
+    text-align: center;
+}
+
+
+h3{
+    font-family: Aclonica;
+}
+
+p{
+    font-family: Handlee;
+    font-weight: bold;
+}
+
+.no-list-style{
+    list-style-type: none;
+}
+

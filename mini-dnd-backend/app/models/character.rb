@@ -6,7 +6,7 @@ class Character < ApplicationRecord
   has_many :class_type_abilities, through: :class_type
   has_many :prepared_spells
   has_many :spells, through: :prepared_spells
-  attr_accessor :initiative, :toHit
+  attr_accessor :initiative, :toHit, :damageMod, :damageDie
 
   validates :name, presence: true
 
@@ -181,6 +181,28 @@ class Character < ApplicationRecord
       return bonus
   end
 
+  def getDamageMod
+      if(self.class_type.name == "Barbarian")
+        if(self.weapon == 'martial' || self.weapon == 'large')
+          return 2
+        end
+      end
+      return 0
+  end
+
+  def getDamageDie
+      case(self.weapon)
+        when 'finesse'
+          return 4
+        when 'ranged'
+          return 6
+        when 'martial'
+          return 8
+        when 'large'
+          return 12
+      end
+  end
+
   def calculateStats
     self.armor_class = self.armorClass
     self.athletics = self.athletics_bonus
@@ -190,6 +212,8 @@ class Character < ApplicationRecord
     self.magic_save = self.mag_save
     self.initiative = self.getInitiative
     self.toHit = self.getToHit
+    self.damageMod = self.getDamageMod
+    self.damageDie = self.getDamageDie
   end
 
   def calculateSpellSlots
@@ -302,6 +326,11 @@ class Character < ApplicationRecord
     profit = share - (self.level*10)
     if (profit < 0)
       profit = 0
+    end
+
+    if (self.race.name = "Human")
+      profit = (profit*1.1).round
+      bonus_xp = (bonus_xp*1.1).round
     end
 
     self.xp += profit + bonus_xp
